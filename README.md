@@ -1,5 +1,5 @@
 # lift-weights
-An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) -- more information is available in (bootstrap_react.md) [bootstrap_react.md].
+An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [bootstrap_react.md](bootstrap_react.md).
 
 ## environment setup
 
@@ -7,7 +7,7 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 `nvm -v`  
 `node -v`  
 
-* if versions are not available, then install `nvm` source: (nvm repo)[https://github.com/nvm-sh/nvm]  
+* if versions are not available, then install `nvm` source: [nvm repo](https://github.com/nvm-sh/nvm)   
 `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash`  
 
 * view the latest versions for `nvm `  
