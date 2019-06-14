@@ -2,6 +2,13 @@
   "name": "lift-weights",
   "version": "0.1.0",
   "private": true,
+  "author": "Michelle Duer",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/mkduer/lift-weights"
+  },
+  "homepage": "https://github.com/mkduer/lift-weights/blob/master/README.md",
+  "license": "Apache-2.0",
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
