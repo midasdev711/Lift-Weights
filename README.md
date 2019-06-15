@@ -17,7 +17,7 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 * install latest stable version of node (`v10.16.0 Latest LTS: Dudnium` was used for this project)  
 `nvm install 10.16.0 ` 
 
-* check that you have the correct version  
+* Close terminal and open a new one to ensure changes are applied. Check that you have the correct version  
 `node -v  `
 
 
@@ -30,4 +30,5 @@ An open source project to create a full-stack app for weight-lifting exercises, 
   `cd weight-lifting `  
   `npm start`  
 
-  
+* your browser should open with the app OR you can visit `localhost:3000'  
+
