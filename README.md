@@ -7,7 +7,7 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 `nvm -v`  
 `node -v`  
 
-* if versions are not available, then install `nvm` source: (nvm repo)[https://github.com/nvm-sh/nvm]  
+* if versions are not available, then install `nvm` source: [nvm repo](https://github.com/nvm-sh/nvm)   
 `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash`  
 
 * view the latest versions for `nvm `  
