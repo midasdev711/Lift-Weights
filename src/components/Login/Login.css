@@ -1,0 +1,19 @@
+.Login {
+    margin: 0 auto;
+}
+
+.Login p {
+    color: #333333;
+    text-align: center;
+}
+
+.Login input {
+    color: #333333;
+    text-align: center;
+}
+
+.Login button {
+    background-color: #18A839;
+    color: #ffffff;
+    text-align: center;
+}

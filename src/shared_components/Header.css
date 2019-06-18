@@ -1,0 +1,9 @@
+.Header {
+  font-family: 'Black Ops One', Sans-Serif;
+  font-size: 36px;
+  color: #E09330;
+  text-align: center;
+  letter-spacing: 0.75px;
+  -webkit-text-stroke-width: 0.75px; 
+  -webkit-text-stroke-color: #795218;
+}
