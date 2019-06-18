@@ -1,23 +1,32 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import './Footer.css';
 
-class Footer extends Component {
-    render() {
-        let date = new Date();
-        let thisYear = date.getFullYear();
-        let startYear = '2019';
-        let endYear = '';
+const Footer = props => {
 
-        if (startYear !== thisYear.toString()) {
-            endYear = ' - ' + thisYear;
-        }
+    let date = new Date();
+    let {
+        startYear = '2019',
+        currYear = date.getFullYear(),
+        endYear = ''
+    } = props;
 
-        return (
-            <div className="Footer">
-                <p>&#x24B8; {startYear}{endYear} Lift Weights by Michelle Duer</p>
-            </div>
-        );
+    if (startYear !== currYear.toString()) {
+        endYear = ' - ' + currYear;
     }
+
+    return (
+        <div className="Footer">
+            <p>&#x24B8; {startYear}{endYear} Lift Weights by Michelle Duer</p>
+        </div>
+    );
 }
+
+Footer.propTypes = {
+    startYear: PropTypes.string.isRequired,
+    currYear: PropTypes.number.isRequired,
+    endYear: PropTypes.string,
+};
 
 export default Footer;
