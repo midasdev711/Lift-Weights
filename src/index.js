@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import Login from './components/Login/Login';
+import Footer from './shared_components/Footer';
+import Header from './shared_components/Header';
+import './index.css';
 
-class App extends React.Component {
+class App extends Component {
 
     render() {
         return (
-            <div>
-                <input id="name" type="text" />
-                <input id="password" type="password" />
-                <button id="login">Login</button>
+            <div className="App">
+                <Header />
+                <Login />
+                <Footer />
             </div>
         );
     }
