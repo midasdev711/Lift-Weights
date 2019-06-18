@@ -1,9 +1,13 @@
 .Header {
   font-family: 'Black Ops One', Sans-Serif;
   font-size: 36px;
-  color: #E09330;
+  /* color: #E09330; Orange color */ 
+  color: #333333; 
   text-align: center;
   letter-spacing: 0.75px;
-  -webkit-text-stroke-width: 0.75px; 
-  -webkit-text-stroke-color: #795218;
+  -webkit-text-stroke-width: 0.7px; 
+  /* TODO: decide final color later on */
+  /* -webkit-text-stroke-color: #071FEC; /* electric-blue outline */
+  /* -webkit-text-stroke-color: #795218; /* orange outline */
+  -webkit-text-stroke-color: #3579EC; /* light-blue outline */
 }
