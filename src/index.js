@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import Login from './components/Login/Login';
-import Footer from './shared_components/Footer';
 import Header from './shared_components/Header';
+import Footer from './shared_components/Footer';
+import Login from './components/Login/Login';
+import Profile from './components/Profile/Profile';
 import './index.css';
 
 class App extends Component {
@@ -11,6 +12,7 @@ class App extends Component {
         return (
             <div className="App">
                 <Header />
+                <Profile />
                 <Login />
                 <Footer />
             </div>
