@@ -24,8 +24,8 @@ const Footer = props => {
 }
 
 Footer.propTypes = {
-    startYear: PropTypes.string.isRequired,
-    currYear: PropTypes.number.isRequired,
+    startYear: PropTypes.string,
+    currYear: PropTypes.number,
     endYear: PropTypes.string,
 };
 
