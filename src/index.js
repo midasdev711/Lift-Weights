@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Header from './shared_components/Header';
 import Footer from './shared_components/Footer';
 import Login from './components/Login/Login';
