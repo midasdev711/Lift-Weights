@@ -1,11 +1,11 @@
 ## **lift**-weights
-An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. The client-side of this project was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](/server/client/react_bootstrap.md).   Various tutorials and resources were used to learn the new languages and tools (e.g. react.js, reactstrap, node/express) and are listed below in the (#resources) section.
+An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. The client-side of this project was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](/server/client/react_bootstrap.md).   Various tutorials and resources were used to learn the new languages and tools (e.g. react.js, reactstrap, node/express) and are listed below in the [resrouces](#resources) section.
 
 
 
 ---
 
-#### environment setup
+#### [environment setup](#setup)
 
 * check if `nvm` (nodejs version manager) and `nodejs` are installed  
 `nvm -v`  
@@ -25,7 +25,7 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 
 ---
 
-### build
+### [build](#build)
 
 * clone the repository   
 `git clone git@github.com:mkduer/weight-lifting-app.git ` 
@@ -36,7 +36,7 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 
 ---
 
-#### general deadlines
+#### [general deadlines](#deadlines)
 
 - [x] **June 30th (Sunday)**: Create MySQL Database and setup login page (research ReactStrap as an alternative to Bootstrap, which would counter the lighter-weight React model).
 - [x] **July 1st (Monday)**: Create backend with Node.js (using Express framework). Run React and Express Servers using concurrently package.
@@ -51,7 +51,7 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 - [ ] **August 8th (Thursday)**: Focus on scalability and, given extra time, add statistical models to represent data.
 - [ ] **August 12th (Monday)**: Prep presentation details and any documentation.  
 
-#### extra time
+#### [extra time](#extras)
 - [ ] setup user authentication
 - [ ] allow registration with email 
 - [ ] add statistical models using highchart.js or equivalent  
@@ -68,7 +68,7 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 
 ---
 
-#### License
+#### [License](#license)
 
 Copyright © 2019 Michelle Duer
 Licensed as an Open Source Project under the "MIT License" 
