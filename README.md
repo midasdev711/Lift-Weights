@@ -1,6 +1,5 @@
 ## **lift**-weights
-
-An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. This project was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](/server/client/react_bootstrap.md).   
+An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. The client-side of this project was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](/server/client/react_bootstrap.md).   Various tutorials and resources were used to learn the new languages and tools (e.g. react.js, reactstrap, node/express) and are listed below in the (#resources) section.
 
 
 
@@ -58,7 +57,7 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 - [ ] add statistical models using highchart.js or equivalent  
 ---
 
-#### resources
+#### [resources](#resources)
 
 [1] Facebook Open Source, "React.js Tutorial," 2019. [Online]. Available: [https://reactjs.org/tutorial/tutorial.html](https://reactjs.org/tutorial/tutorial.html)  
 [2] C. S. Roldán, *React Cookbook*. Birmingham, UK: Pakt Publishing Ltd, 2018.  
