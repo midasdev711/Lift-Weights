@@ -1,5 +1,4 @@
 ## **lift**-weights
-
 An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. The client-side of this project was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](/server/client/react_bootstrap.md).   Various tutorials and resources were used to learn the new languages and tools (e.g. react.js, reactstrap, node/express) and are listed below in the (#resources) section.
 
 
