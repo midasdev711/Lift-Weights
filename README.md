@@ -1,6 +1,6 @@
 ## **lift**-weights
 
-An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. This project was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](react_bootstrap.md).  
+An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. This project was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](/server/client/react_bootstrap.md).   
 
 
 
@@ -37,19 +37,25 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 
 ---
 
-#### planning
+#### general deadlines
 
 - [x] **June 30th (Sunday)**: Create MySQL Database and setup login page (research ReactStrap as an alternative to Bootstrap, which would counter the lighter-weight React model).
-- [ ] **July 4th (Thursday)**: Create backend with Node.js (using Express framework). Connect backend to frontend by running the app successfully from login, registration to logout. Write tests for database/login.
-- [ ] **July 5th (Friday)**: Start user profile page. 
+- [x] **July 1st (Monday)**: Create backend with Node.js (using Express framework). Run React and Express Servers using concurrently package.
+- [ ] **July 3rd (Wednesday)**: Setup registration page. Connect to database to register a member. Setup login/logout with registered member.
+- [ ] **July 5th (Friday)**: Test login, registration, logout, and delete account. Write tests for database/login.
+- [ ] **July 6th (Saturday)**: Start user profile page. 
 - [ ] **July 7th (Sunday)**: Create templates for main sections. Link from user profile page.
 - [ ] **July 9th (Tuesday)**: PROTOTYPE of project (to demonstrate viability).
 - [ ] **July 18th (Thursday)**: Create at least one “example data” for each section and use these same components to complete the user profile page.
 - [ ] **July 30th (Tuesday)**: MVP (minimum viable product) that compiles and is ready for demoing.
 - [ ] **August 1st (Thursday)**: Focus on adding more data, testing and adding tests through components. 
-- [ ] **August 8th (Thursday)**: Focus on scalability and statistical models of data (possibly using highchart.js or an equivalent).
+- [ ] **August 8th (Thursday)**: Focus on scalability and, given extra time, add statistical models to represent data.
 - [ ] **August 12th (Monday)**: Prep presentation details and any documentation.  
 
+#### extra time
+- [ ] setup user authentication
+- [ ] allow registration with email 
+- [ ] add statistical models using highchart.js or equivalent  
 ---
 
 #### resources
