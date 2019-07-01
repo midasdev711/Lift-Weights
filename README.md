@@ -32,7 +32,7 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 
 
 ### planning
-- [ ] **June 30th (Sunday)**: Create MySQL Database and setup login page (research ReactStrap as an alternative to Bootstrap, which would counter the lighter-weight React model).
+- [x] **June 30th (Sunday)**: Create MySQL Database and setup login page (research ReactStrap as an alternative to Bootstrap, which would counter the lighter-weight React model).
 - [ ] **July 4th (Thursday)**: Create backend with Node.js (using Express framework). Connect backend to frontend by running the app successfully from login, registration to logout. Write tests for database/login.
 - [ ] **July 5th (Friday)**: Start user profile page. 
 - [ ] **July 7th (Sunday)**: Create templates for main sections. Link from user profile page.
