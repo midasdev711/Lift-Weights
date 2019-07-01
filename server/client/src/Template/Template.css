@@ -1,0 +1,4 @@
+/* Replace Template with new Component name and style properties */
+.Template p {
+    font-size: 14px;
+}
