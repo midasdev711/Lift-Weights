@@ -32,7 +32,7 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 `git clone git@github.com:mkduer/weight-lifting-app.git ` 
 * run the app in the browser  
   `cd weight-lifting `  
-  `npm start`  
+  `npm run dev`  
 * your browser should open with the app OR you can visit `localhost:3000'  
 
 ---
