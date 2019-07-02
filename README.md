@@ -1,5 +1,7 @@
 ## **lift**-weights
-An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. The client-side of this project was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](/server/client/react_bootstrap.md).   Various tutorials and resources were used to learn the new languages and tools (e.g. react.js, reactstrap, node/express) and are listed below in the [resrouces](#resources) section.
+An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. The client-side of this project was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](/server/client/react_bootstrap.md).   
+
+Various tutorials and resources were used to learn the stack -- ***front-end*** react.js and reactstrap, ***backend***: node.js with express framework and MySQL database; the sources are listed below in the [resources](#resources) section.
 
 
 
@@ -11,7 +13,7 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 `nvm -v`  
 `node -v`  
 
-* if versions are not available, then install `nvm` source: [nvm repo](https://github.com/nvm-sh/nvm)   
+* if versions are not available, then install `nvm` (code source: [nvm repo](https://github.com/nvm-sh/nvm))   
 `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash`  
 
 * view the latest versions for `nvm `  
@@ -40,7 +42,8 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 
 - [x] **June 30th (Sunday)**: Create MySQL Database and setup login page (research ReactStrap as an alternative to Bootstrap, which would counter the lighter-weight React model).
 - [x] **July 1st (Monday)**: Create backend with Node.js (using Express framework). Run React and Express Servers using concurrently package.
-- [ ] **July 3rd (Wednesday)**: Setup registration page. Connect to database to register a member. Setup login/logout with registered member.
+- [ ] **July 3rd (Wednesday)**: Create DB connection. Login with user and check for membership in database -- handle success (redirect to profile page) and failure (option to redirect to registration page).
+- [ ] **July 4th (Thursday)**: Setup registration page and handle success (registering user and redirecting to profile page) and possible failures (user/email already taken, any other error handling).
 - [ ] **July 5th (Friday)**: Test login, registration, logout, and delete account. Write tests for database/login.
 - [ ] **July 6th (Saturday)**: Start user profile page. 
 - [ ] **July 7th (Sunday)**: Create templates for main sections. Link from user profile page.
@@ -54,6 +57,7 @@ An open source project to create a full-stack app for weight-lifting exercises, 
 #### [extra time](#extras)
 - [ ] setup user authentication
 - [ ] allow registration with email 
+- [ ] handle password reset with email
 - [ ] add statistical models using highchart.js or equivalent  
 ---
 
