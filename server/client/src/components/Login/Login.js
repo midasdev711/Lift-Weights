@@ -8,14 +8,14 @@ class Login extends Component {
             <div className="Login">
                 <Form>
                     <FormGroup row>
-                        <Label for="loginUsername" id="loginLabel" sm="4">Username</Label>
-                        <Col sm="4">
+                        <Label for="loginUsername" id="loginLabel" sm={4}>Username</Label>
+                        <Col sm={4}>
                             <Input type="username" name="username" id="loginUsername"/>
                         </Col>
                     </FormGroup>
                     <FormGroup row>
-                        <Label for="loginPassword" id="loginLabel" sm="4" >Password</Label>
-                        <Col sm="4">
+                        <Label for="loginPassword" id="loginLabel" sm={4} >Password</Label>
+                        <Col sm={4}>
                             <Input type="password" name="password" id="loginPassword" />
                         </Col>
                     </FormGroup>
