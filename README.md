@@ -34,7 +34,7 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 * run the app in the browser  
   `cd weight-lifting `  
   `npm run dev`  
-* your browser should open with the app OR you can visit `localhost:3000'  
+* your browser should open with the application OR you can visit `localhost:3000`
 
 ---
 
@@ -42,11 +42,10 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 
 - [x] **June 30th (Sunday)**: Create MySQL Database and setup login page (research ReactStrap as an alternative to Bootstrap, which would counter the lighter-weight React model).
 - [x] **July 1st (Monday)**: Create backend with Node.js (using Express framework). Run React and Express Servers using concurrently package.
-- [ ] **July 3rd (Wednesday)**: Create DB connection. Login with user and check for membership in database -- handle success (redirect to profile page) and failure (option to redirect to registration page).
-- [ ] **July 4th (Thursday)**: Setup registration page and handle success (registering user and redirecting to profile page) and possible failures (user/email already taken, any other error handling).
-- [ ] **July 5th (Friday)**: Test login, registration, logout, and delete account. Write tests for database/login.
-- [ ] **July 6th (Saturday)**: Start user profile page. 
-- [ ] **July 7th (Sunday)**: Create templates for main sections. Link from user profile page.
+- [ ] **July 4th (Thursday)**: Create DB connection. Login with user and check for membership in database -- handle success (redirect to profile page) and failure (option to redirect to registration page). 
+- [ ] **July 5th (Friday)**: Setup registration page and handle success (registering user and redirecting to profile page) and possible failures (user/email already taken, any other error handling).
+- [ ] **July 6th (Saturday)**: Test login, registration, logout, and delete account. Write tests for database/login.
+- [ ] **July 7th (Sunday)**: Start user profile page and include links to secondary pages (e.g. workouts, exercises, measurements). Have secondary pages re-use components as overall design should be similar. 
 - [ ] **July 9th (Tuesday)**: PROTOTYPE of project (to demonstrate viability).
 - [ ] **July 18th (Thursday)**: Create at least one “example data” for each section and use these same components to complete the user profile page.
 - [ ] **July 30th (Tuesday)**: MVP (minimum viable product) that compiles and is ready for demoing.
@@ -59,20 +58,22 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 - [ ] allow registration with email 
 - [ ] handle password reset with email
 - [ ] add statistical models using highchart.js or equivalent  
+- [ ] make things prettier (i.e. acceptable for a presentation)
 ---
 
 #### [resources](#resources)
 
-[1] Facebook Open Source, "React.js Tutorial," 2019. [Online]. Available: [https://reactjs.org/tutorial/tutorial.html](https://reactjs.org/tutorial/tutorial.html)  
+[1] Facebook Open Source, "React.js Tutorial," 2019. [Online]. Available: [https://reactjs.org/tutorial/tutorial.html](https://reactjs.org/tutorial/tutorial.html).  
+
 [2] C. S. Roldán, *React Cookbook*. Birmingham, UK: Pakt Publishing Ltd, 2018.  
 
-[3] S. Grider, "Modern React with Redux [2019 Update]," May 2019. [Online]. Available: [https://www.udemy.com/react-redux/](https://www.udemy.com/react-redux/).
+[3] S. Grider, "Modern React with Redux [2019 Update]," May 2019. [Online]. Available: [https://www.udemy.com/react-redux/](https://www.udemy.com/react-redux/).  
 
-[4] S. Grider, "Node with React: Fullstack Web," June 2019. [Online]. Available: [https://www.udemy.com/node-with-react-fullstack-web-development/](https://www.udemy.com/node-with-react-fullstack-web-development/).
+[4] S. Grider, "Node with React: Fullstack Web," June 2019. [Online]. Available: [https://www.udemy.com/node-with-react-fullstack-web-development/](https://www.udemy.com/node-with-react-fullstack-web-development/).  
 
 ---
 
-#### [License](#license)
+#### [license](#license)
 
-Copyright © 2019 Michelle Duer
+Copyright © 2019 Michelle Duer  
 Licensed as an Open Source Project under the "MIT License" 

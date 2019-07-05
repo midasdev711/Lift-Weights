@@ -24,32 +24,61 @@ db.connect(err => {
 app.use(cors());                                
 
 // request handler for '/' page that redirects to '/login' page
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
     res.status(302);
     res.set({
         'Content-Type':'text/html',
         'Location':'/login'
     });
-    res.send('go to /login page');
     res.end();
 });
 
 // request handler for '/login' page
 app.get("/login", (req, res) => {
-    res.status(200);
-    const q = 'SELECT * FROM members';
-    db.query(q, (err, results)  => {
+    const { username, password } = req.query;
+    console.log(username, password)
+    const q_select = `SELECT id FROM members WHERE username='${username}' AND password='${password}'`;
+                      
+    db.query(q_select, (err, results)  => {
+        if(err) {
+            return res.send(err);
+                   res.status(200);
+        } else {
+            return (
+                res.status(302);
+                res.redirect('/profile');
+            )
+        }
+    });
+});
+
+// request handler for '/register' page
+app.get("/register", (_, res) => {
+    res.status(202);
+});
+
+// add a user
+app.get("/register/add", (req, res) => {
+    const { username, email, password } = req.query;
+    console.log(username, email, password)
+    const q_insert_user = `INSERT INTO members (username, email, password) \
+                           VALUES('${username}', '${email}', '${password}')`;
+                           
+    db.query(q_insert_user, (err, results)  => {
         if(err) {
             return res.send(err)
         } else {
-            return res.json({
-                data: results
-            })
+            return res.send('successfully added member' + results)
         }
     });
-
-    // res.render("/login"); // TODO
 });
+
+// request handler for '/profile' page
+app.get("/profile", (_, res) => {
+    res.send("hello profile page");
+    res.status(202);
+});
+
 
 // listen on specified port
 const PORT = process.env.PORT || 5000;

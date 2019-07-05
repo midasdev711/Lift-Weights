@@ -1,10 +1,10 @@
-.Login {
+.Register {
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.Login button {
+.Register button {
     margin: 10px;
     background-color: #000000;
     color: #ffffff;
