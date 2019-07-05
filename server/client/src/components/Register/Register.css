@@ -1,0 +1,13 @@
+.Register {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Register button {
+    margin: 10px;
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    border-color: #3579EC;
+}
