@@ -4,10 +4,6 @@
     margin-right: auto;
 }
 
-.Login label {
-    text-align: right;
-}
-
 .Login button {
     margin: 10px;
     background-color: #000000;
