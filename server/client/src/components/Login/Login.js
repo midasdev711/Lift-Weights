@@ -18,7 +18,7 @@ class Login extends Component {
         const { member } = this.state;
         alert('Submision made: ' + member.username + ', ' + 
                                    member.password);
-        fetch(`http://localhost:5000/login/add?username=${member.username}&password=${member.password}`)
+        fetch(`http://localhost:5000/login/match?username=${member.username}&password=${member.password}`)
         event.preventDefault();
     }
 
