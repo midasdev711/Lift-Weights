@@ -35,19 +35,30 @@ app.get("/", (_, res) => {
 
 // request handler for '/login' page
 app.get("/login", (req, res) => {
+    res.status(202);
+});
+
+// request handler for '/login/match' page
+app.get("/login/match", (req, res) => {
     const { username, password } = req.query;
-    console.log(username, password)
-    const q_select = `SELECT id FROM members WHERE username='${username}' AND password='${password}'`;
-                      
+
+    const q_select = `SELECT username, id FROM members WHERE username='${username}' AND password='${password}'`;
     db.query(q_select, (err, results)  => {
         if(err) {
-            return res.send(err);
-                   res.status(200);
+            return res.error(err);
+        } 
+        if (results.length > 0) {
+            // redirect to profile page if a valid user was found
+            return res.json({
+                data: {
+                    id: results[0].id,
+                    member: results[0].username
+                }
+            });
+            // return res.redirect('/profile');
         } else {
-            return (
-                res.status(302);
-                res.redirect('/profile');
-            )
+            // otherwise, redirect to login page if credentials were invalid
+            return res.send('Invalid Credentials');
         }
     });
 });
@@ -60,25 +71,24 @@ app.get("/register", (_, res) => {
 // add a user
 app.get("/register/add", (req, res) => {
     const { username, email, password } = req.query;
-    console.log(username, email, password)
+
     const q_insert_user = `INSERT INTO members (username, email, password) \
                            VALUES('${username}', '${email}', '${password}')`;
                            
     db.query(q_insert_user, (err, results)  => {
         if(err) {
-            return res.send(err)
+            return res.send('Failed to register user')
         } else {
-            return res.send('successfully added member' + results)
+            return res.redirect('/profile');
         }
     });
 });
 
 // request handler for '/profile' page
-app.get("/profile", (_, res) => {
-    res.send("hello profile page");
-    res.status(202);
+app.get("/profile", (req, res) => {
+    res.send("hello from profile page");
+    res.status("202");
 });
-
 
 // listen on specified port
 const PORT = process.env.PORT || 5000;
