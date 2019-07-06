@@ -42,11 +42,12 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 
 - [x] **June 30th (Sunday)**: Create MySQL Database and setup login page (research ReactStrap as an alternative to Bootstrap, which would counter the lighter-weight React model).
 - [x] **July 1st (Monday)**: Create backend with Node.js (using Express framework). Run React and Express Servers using concurrently package.
-- [ ] **July 4th (Thursday)**: Create DB connection. Login with user and check for membership in database -- handle success (redirect to profile page) and failure (option to redirect to registration page). 
-- [ ] **July 5th (Friday)**: Setup registration page and handle success (registering user and redirecting to profile page) and possible failures (user/email already taken, any other error handling).
-- [ ] **July 6th (Saturday)**: Test login, registration, logout, and delete account. Write tests for database/login.
-- [ ] **July 7th (Sunday)**: Start user profile page and include links to secondary pages (e.g. workouts, exercises, measurements). Have secondary pages re-use components as overall design should be similar. 
-- [ ] **July 9th (Tuesday)**: PROTOTYPE of project (to demonstrate viability).
+- [x] **July 4th (Thursday)**: Create DB connection. Login with user and check for membership in database -- handle success (redirect to profile page) and failure (error message on backend). 
+- [x] **July 5th (Friday)**: Setup registration page and handle success (registering user and redirecting to profile page) and failure (error message on backend).
+- [ ] **July 7th (Sunday)**: Research route-handling with front-end server and implement client-side of login/registration pages.
+- [ ] **July 8th (Monday)**: Test login, registration (user/email already taken, any other error handling), logout, and delete account. Write tests for database/login.
+- [ ] **July 9th (Tuesday)**: Start user profile page and include links to secondary pages (e.g. workouts, exercises, measurements). Have secondary pages re-use components as overall design should be similar. 
+- [ ] **July 11th (Thursday)**: PROTOTYPE of project (to demonstrate viability).
 - [ ] **July 18th (Thursday)**: Create at least one “example data” for each section and use these same components to complete the user profile page.
 - [ ] **July 30th (Tuesday)**: MVP (minimum viable product) that compiles and is ready for demoing.
 - [ ] **August 1st (Thursday)**: Focus on adding more data, testing and adding tests through components. 
