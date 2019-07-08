@@ -11,15 +11,13 @@ class Login extends Component {
                 password: '' 
             }
         }
-        this.handleLogin = this.handleLogin.bind(this);
     }
 
-    handleLogin(event) {
-        const { member } = this.state;
-        alert('Submision made: ' + member.username + ', ' + 
-                                   member.password);
-        fetch(`http://localhost:5000/login/match?username=${member.username}&password=${member.password}`)
-        event.preventDefault();
+    handleLogin = (e) => {
+        e.preventDefault();
+        alert('Submision made: ' + this.state.member.username + ', ' + 
+                                   this.state.member.password);
+        fetch(`http://localhost:5000/login/match?username=${this.state.member.username}&password=${this.state.member.password}`)
     }
 
     render() {
@@ -44,7 +42,7 @@ class Login extends Component {
                         <Col sm={4}>
                             <Input type="password" 
                                    name="password" 
-                                   id="loginUsername"
+                                   id="loginPassword"
                                    value={this.state.member.password}
                                    onChange={e => this.setState({ member: {...member, password: e.target.value }})}
                             />

@@ -16,16 +16,14 @@ class Register extends Component {
                 password: '' 
             }
         }
-        this.handleRegister = this.handleRegister.bind(this);
     }
 
-    handleRegister(event) {
-        const { member } = this.state;
-        alert('Submision made: ' + member.username + ', ' + 
-                                   member.email + ', ' + 
-                                   member.password);
-        fetch(`http://localhost:5000/register/add?username=${member.username}&email=${member.email}&password=${member.password}`)
-        event.preventDefault();
+    handleRegister = (e) => {
+        e.preventDefault();
+        alert('Submision made: ' + this.state.member.username + ', ' + 
+                                   this.state.member.email + ', ' + 
+                                   this.state.member.password);
+        fetch(`http://localhost:5000/register/add?username=${this.state.member.username}&email=${this.state.member.email}&password=${this.state.member.password}`)
     }
 
     render() {
@@ -49,7 +47,7 @@ class Register extends Component {
                         <Col sm={4}>
                             <Input type="email" 
                                    name="email" 
-                                   id="registerUsername"
+                                   id="registerEmail"
                                    value={this.state.member.email}
                                    onChange={e => this.setState({ member: { ...member, email: e.target.value}})} 
                             />
@@ -60,7 +58,7 @@ class Register extends Component {
                         <Col sm={4}>
                             <Input type="password" 
                                    name="password" 
-                                   id="registerUsername"
+                                   id="registerPassword"
                                    value={this.state.member.password}
                                    onChange={e => this.setState({ member: { ...member, password: e.target.value}})} 
                             />
