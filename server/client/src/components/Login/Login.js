@@ -7,8 +7,8 @@ class Login extends Component {
         super(props);
         this.state = {
             member: {
-                username: undefined,
-                password: undefined 
+                username: '',
+                password: '' 
             }
         }
         this.handleLogin = this.handleLogin.bind(this);
@@ -24,6 +24,7 @@ class Login extends Component {
 
     render() {
         const { member } = this.state;
+
         return (
             <div className="Login">
                 <Form>
@@ -33,7 +34,7 @@ class Login extends Component {
                             <Input type="username" 
                                    name="username" 
                                    id="loginUsername"
-                                   value={member.username}
+                                   value={this.state.member.username}
                                    onChange={e => this.setState({ member: {...member, username: e.target.value }})}
                             />
                         </Col>
@@ -44,7 +45,7 @@ class Login extends Component {
                             <Input type="password" 
                                    name="password" 
                                    id="loginUsername"
-                                   value={member.password}
+                                   value={this.state.member.password}
                                    onChange={e => this.setState({ member: {...member, password: e.target.value }})}
                             />
                         </Col>

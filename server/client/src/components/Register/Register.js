@@ -11,9 +11,9 @@ class Register extends Component {
         super(props);
         this.state = {
             member: {
-                username: undefined,
-                email: undefined,
-                password: undefined 
+                username: '',
+                email: '',
+                password: '' 
             }
         }
         this.handleRegister = this.handleRegister.bind(this);
@@ -39,7 +39,7 @@ class Register extends Component {
                             <Input type="username" 
                                    name="username" 
                                    id="registerUsername"
-                                   value={member.username}
+                                   value={this.state.member.username}
                                    onChange={e => this.setState({ member: { ...member, username: e.target.value}})} 
                             />
                         </Col>
@@ -50,7 +50,7 @@ class Register extends Component {
                             <Input type="email" 
                                    name="email" 
                                    id="registerUsername"
-                                   value={member.email}
+                                   value={this.state.member.email}
                                    onChange={e => this.setState({ member: { ...member, email: e.target.value}})} 
                             />
                         </Col>
@@ -61,7 +61,7 @@ class Register extends Component {
                             <Input type="password" 
                                    name="password" 
                                    id="registerUsername"
-                                   value={member.password}
+                                   value={this.state.member.password}
                                    onChange={e => this.setState({ member: { ...member, password: e.target.value}})} 
                             />
                         </Col>
