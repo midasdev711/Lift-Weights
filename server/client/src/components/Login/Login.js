@@ -7,23 +7,22 @@ class Login extends Component {
         super(props);
         this.state = {
             member: {
-                username: undefined,
-                password: undefined 
+                username: '',
+                password: '' 
             }
         }
-        this.handleLogin = this.handleLogin.bind(this);
     }
 
-    handleLogin(event) {
-        const { member } = this.state;
-        alert('Submision made: ' + member.username + ', ' + 
-                                   member.password);
-        fetch(`http://localhost:5000/login/match?username=${member.username}&password=${member.password}`)
-        event.preventDefault();
+    handleLogin = (e) => {
+        e.preventDefault();
+        alert('Submision made: ' + this.state.member.username + ', ' + 
+                                   this.state.member.password);
+        fetch(`http://localhost:5000/login/match?username=${this.state.member.username}&password=${this.state.member.password}`)
     }
 
     render() {
         const { member } = this.state;
+
         return (
             <div className="Login">
                 <Form>
@@ -33,7 +32,7 @@ class Login extends Component {
                             <Input type="username" 
                                    name="username" 
                                    id="loginUsername"
-                                   value={member.username}
+                                   value={this.state.member.username}
                                    onChange={e => this.setState({ member: {...member, username: e.target.value }})}
                             />
                         </Col>
@@ -43,8 +42,8 @@ class Login extends Component {
                         <Col sm={4}>
                             <Input type="password" 
                                    name="password" 
-                                   id="loginUsername"
-                                   value={member.password}
+                                   id="loginPassword"
+                                   value={this.state.member.password}
                                    onChange={e => this.setState({ member: {...member, password: e.target.value }})}
                             />
                         </Col>
