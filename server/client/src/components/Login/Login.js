@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Form, FormGroup, Label, Input, Button, Col } from 'reactstrap';
+import { Button, Form, Grid, Message, Segment } from 'semantic-ui-react';
+
 import './Login.css';
 
 class Login extends Component {
@@ -24,32 +25,43 @@ class Login extends Component {
         const { member } = this.state;
 
         return (
+            // Theme is modified from Semantic UI React's Login Layout
+            // https://github.com/Semantic-Org/Semantic-UI-React/blob/master/docs/src/layouts/LoginLayout.js
             <div className="Login">
-                <Form>
-                    <FormGroup row>
-                        <Label for="loginUsername" id="loginLabel" sm={4}>Username</Label>
-                        <Col sm={4}>
-                            <Input type="username" 
-                                   name="username" 
-                                   id="loginUsername"
-                                   value={this.state.member.username}
-                                   onChange={e => this.setState({ member: {...member, username: e.target.value }})}
-                            />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Label for="loginPassword" id="loginLabel" sm={4} >Password</Label>
-                        <Col sm={4}>
-                            <Input type="password" 
-                                   name="password" 
-                                   id="loginPassword"
-                                   value={this.state.member.password}
-                                   onChange={e => this.setState({ member: {...member, password: e.target.value }})}
-                            />
-                        </Col>
-                    </FormGroup>
-                    <Button id="submitButton" onClick={this.handleLogin}>Login</Button>
-                </Form>
+                <Grid className='Grid' textAlign='center' verticalAlign='middle'>
+                    <Grid.Column className='Column'>
+                    <Form size='large'>
+                        <Segment stacked>
+                        <Form.Input 
+                            fluid icon='child' 
+                            iconPosition='left' 
+                            placeholder='Username' 
+                            type='username'
+                            id="loginUsername"
+                            value={this.state.member.username}
+                            onChange={e => this.setState({ member: {...member, username: e.target.value }})}
+                        />
+                        <Form.Input
+                            fluid
+                            icon='lock'
+                            iconPosition='left'
+                            placeholder='Password'
+                            type='password'
+                            id="loginPassword"
+                            value={this.state.member.password}
+                            onChange={e => this.setState({ member: {...member, password: e.target.value }})}
+                        />
+                
+                        <Button id='submitButton' fluid size='large' onClick={this.handleLogin}>
+                            Login
+                        </Button>
+                        </Segment>
+                    </Form>
+                    <Message>
+                        <a href='/register'>Register</a>
+                    </Message>
+                    </Grid.Column>
+                </Grid>  
             </div>
         );
     }

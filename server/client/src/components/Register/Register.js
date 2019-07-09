@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Form, FormGroup, Label, Input, Button, Col } from 'reactstrap';
+import { Button, Form, Grid, Message, Segment } from 'semantic-ui-react';
 import './Register.css';
 
 class Register extends Component {
@@ -29,43 +29,52 @@ class Register extends Component {
     render() {
         const { member } = this.state;
         return (
+            // Theme is modified from Semantic UI React's Login Layout
+            // https://github.com/Semantic-Org/Semantic-UI-React/blob/master/docs/src/layouts/LoginLayout.js
             <div className="Register">
-                <Form>
-                    <FormGroup row>
-                        <Label for="registerUsername" id="registerLabel" sm={4}>Username</Label>
-                        <Col sm={4}>
-                            <Input type="username" 
-                                   name="username" 
-                                   id="registerUsername"
-                                   value={this.state.member.username}
-                                   onChange={e => this.setState({ member: { ...member, username: e.target.value}})} 
-                            />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Label for="registerEmail" id="registerEmail" sm={4} >Email</Label>
-                        <Col sm={4}>
-                            <Input type="email" 
-                                   name="email" 
-                                   id="registerEmail"
-                                   value={this.state.member.email}
-                                   onChange={e => this.setState({ member: { ...member, email: e.target.value}})} 
-                            />
-                        </Col>
-                    </FormGroup>
-                    <FormGroup row>
-                        <Label for="registerPassword" id="registerLabel" sm={4} >Password</Label>
-                        <Col sm={4}>
-                            <Input type="password" 
-                                   name="password" 
-                                   id="registerPassword"
-                                   value={this.state.member.password}
-                                   onChange={e => this.setState({ member: { ...member, password: e.target.value}})} 
-                            />
-                        </Col>
-                    </FormGroup>
-                    <Button id="submitButton" onClick={this.handleRegister}>Register</Button>
-                </Form>
+                <Grid className='Grid' textAlign='center' verticalAlign='middle'>
+                    <Grid.Column className='Column'>
+                    <Form size='large'>
+                        <Segment stacked>
+                        <Form.Input 
+                            fluid icon='child' 
+                            iconPosition='left' 
+                            placeholder='Username' 
+                            type='username'
+                            id="registerUsername"
+                            value={this.state.member.username}
+                            onChange={e => this.setState({ member: {...member, username: e.target.value }})}
+                        />
+                        <Form.Input 
+                            fluid icon='child' 
+                            iconPosition='left' 
+                            placeholder='Email' 
+                            type='email'
+                            id="registerEmail"
+                            value={this.state.member.email}
+                            onChange={e => this.setState({ member: { ...member, email: e.target.value}})} 
+                        />
+                        <Form.Input
+                            fluid
+                            icon='lock'
+                            iconPosition='left'
+                            placeholder='Password'
+                            type='password'
+                            id="registerPassword"
+                            value={this.state.member.password}
+                            onChange={e => this.setState({ member: {...member, password: e.target.value }})}
+                        />
+                
+                        <Button id="submitButton" fluid size='large' onClick={this.handleRegister}>
+                            Register
+                        </Button>
+                        </Segment>
+                    </Form>
+                    <Message>
+                        <a href='/'>Login</a>
+                    </Message>
+                    </Grid.Column>
+                </Grid>  
             </div>
         );
     }
