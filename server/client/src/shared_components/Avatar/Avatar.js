@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import faker from 'faker';
 
-import './Profile.css';
+import './Avatar.css';
 
-class Profile extends Component {
+class Avatar extends Component {
     render() {
         return (
-            <div className="Profile">
+            <div className="Avatar">
                 <a href="/" className="avatar">
                     <img alt="avatar" src={faker.image.animals()} />
                 </a>
@@ -15,4 +15,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default Avatar;
