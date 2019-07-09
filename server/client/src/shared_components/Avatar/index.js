@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import faker from 'faker';
 
-import './Avatar.css';
+import './index.css';
 
 class Avatar extends Component {
     render() {
