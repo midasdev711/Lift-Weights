@@ -44,10 +44,11 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 - [x] **July 1st (Monday)**: Create backend with Node.js (using Express framework). Run React and Express Servers using concurrently package.
 - [x] **July 4th (Thursday)**: Create DB connection. Login with user and check for membership in database -- handle success (redirect to profile page) and failure (error message on backend). 
 - [x] **July 5th (Friday)**: Setup registration page and handle success (registering user and redirecting to profile page) and failure (error message on backend).
-- [ ] **July 7th (Sunday)**: Research route-handling with front-end server and implement client-side of login/registration pages.
-- [ ] **July 8th (Monday)**: Test login, registration (user/email already taken, any other error handling), logout, and delete account. Write tests for database/login.
+- [x] **July 7th (Sunday)**: Research route-handling with front-end server and implement client-side of login/registration pages.
 - [ ] **July 9th (Tuesday)**: Start user profile page and include links to secondary pages (e.g. workouts, exercises, measurements). Have secondary pages re-use components as overall design should be similar. 
+- [ ] **July 10th (Wednesday)**: Research React testing (possibly with Jest) and create coverage for current code.
 - [ ] **July 11th (Thursday)**: PROTOTYPE of project (to demonstrate viability).
+- [ ] **July 12th (Friday)**: Create more tests, as needed before moving on. Research importing Open Source API data (source: wger) for exercises.
 - [ ] **July 18th (Thursday)**: Create at least one “example data” for each section and use these same components to complete the user profile page.
 - [ ] **July 30th (Tuesday)**: MVP (minimum viable product) that compiles and is ready for demoing.
 - [ ] **August 1st (Thursday)**: Focus on adding more data, testing and adding tests through components. 
