@@ -79,4 +79,4 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 #### [license](#license)
 
 Copyright © 2019 Michelle Duer  
-Licensed as an Open Source Project under the "MIT License" 
+Licensed as an Open Source Project under the "MIT License". The license can be read [here](LICENSE-MIT).
