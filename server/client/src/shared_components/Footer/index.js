@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Footer.css';
+import './index.css';
 
 const Footer = props => {
 
