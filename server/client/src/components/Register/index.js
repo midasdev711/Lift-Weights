@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { Button, Form, Grid, Message, Segment } from 'semantic-ui-react';
+
+import Header from '../../shared_components/Header';
 import './index.css';
 
 class Register extends Component {
@@ -32,6 +34,7 @@ class Register extends Component {
             // Theme is modified from Semantic UI React's Login Layout
             // https://github.com/Semantic-Org/Semantic-UI-React/blob/master/docs/src/layouts/LoginLayout.js
             <div className="Register">
+                <Header />
                 <Grid className='Grid' textAlign='center' verticalAlign='middle'>
                     <Grid.Column className='Column'>
                     <Form size='large'>
