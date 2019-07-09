@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import Nav from '../Nav';
+import Nav from '../../shared_components/Nav';
 import Tabs from '../Tabs';
 
 import './index.css';
