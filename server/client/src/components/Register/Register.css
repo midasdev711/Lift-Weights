@@ -1,13 +1,15 @@
 .Register {
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
+    height: 60vh;
 }
 
-.Register button {
-    margin: 10px;
+.Column {
+    max-width: 352px;
+}
+
+#submitButton {
     background-color: #000000;
     color: #ffffff;
     text-align: center;
     border-color: #3579EC;
+    border-width: 0.7px;
 }
