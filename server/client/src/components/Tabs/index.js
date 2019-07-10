@@ -66,7 +66,7 @@ class Tabs extends Component {
 
         return (
             <div className="Tabs">
-                <Container>
+                <Container className="Container">
                     <Tab panes={this.state.panes} />
                 </Container>
             </div>

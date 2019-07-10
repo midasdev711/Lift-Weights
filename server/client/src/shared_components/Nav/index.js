@@ -12,10 +12,10 @@ class Nav extends Component {
         return (
             <Menu size='large'>
                 <Container>
-                    <Menu.Item as='a' active>
+                    <Menu.Item>
                         A Nice Logo
                     </Menu.Item>
-                    <Menu.Item as='a' active>
+                    <Menu.Item>
                         <Link to="/profile">
                             <Icon name="home" />
                         </Link>
@@ -23,22 +23,36 @@ class Nav extends Component {
                     <Menu.Menu position='right'>
                         <Dropdown text='Options' pointing className='link item'>
                             <Dropdown.Menu>
-                                <Dropdown.Item>Workouts</Dropdown.Item>
-                                <Dropdown.Item>Exercises</Dropdown.Item>
-                                <Dropdown.Item>Measurements</Dropdown.Item>
+                                <Dropdown.Item>
+                                    <Link to='/workouts'>
+                                        Workouts
+                                    </Link>
+                                </Dropdown.Item>
+                                <Dropdown.Item>
+                                    <Link to='/exercises'>
+                                        Exercises
+                                    </Link>
+                                </Dropdown.Item>
+                                <Dropdown.Item>
+                                    <Link to='/measurements'>
+                                        Measurements
+                                    </Link>
+                                </Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item>Logout</Dropdown.Item>
+                                <Dropdown.Item>
+                                    <Link to='/logout'>
+                                        Logout
+                                    </Link>
+                                </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-                        <Menu.Item as='a' active>
+                        <Menu.Item>
                             <Link to="/settings">
                                 Settings <Icon name="cog" />
                             </Link>
                         </Menu.Item>
-                        <Menu.Item as='a' active>
-                            <Link to="/profile">
-                                <Avatar />
-                            </Link>
+                        <Menu.Item>
+                            <Avatar />
                         </Menu.Item>
                     </Menu.Menu>
                 </Container>

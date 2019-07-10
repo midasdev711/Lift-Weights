@@ -8,7 +8,7 @@ import './index.css';
 class Profile extends Component {
     render() {
         return (
-            <div>
+            <div className="Profile" >
                 <Nav />
                 <Tabs />
             </div>
