@@ -1,7 +1,7 @@
 ## **lift**-weights
 An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. The client-side of this project was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](/server/client/react_bootstrap.md).   
 
-Various tutorials and resources were used to learn the stack -- ***front-end*** react.js and reactstrap, ***backend***: node.js with express framework and MySQL database; the sources are listed below in the [resources](#resources) section.
+Various tutorials and resources were used to learn the stack -- ***front-end*** react.js with semanticUI styling, ***backend***: node.js with express framework and MySQL database; the sources are listed below in the [resources](#resources) section.
 
 
 
@@ -63,10 +63,10 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 
 #### [extra time](#extras)
 - [ ] setup user authentication
+- [ ] add statistical models using highchart.js or equivalent
+- [ ] better scaling for smaller (mobile) screens
 - [ ] allow registration with email 
 - [ ] handle password reset with email
-- [ ] add statistical models using highchart.js or equivalent  
-- [ ] make things prettier (i.e. acceptable for a presentation)
 - [ ] convert development code into production code (i.e. the front-end server would be copmiled and the prodcution code would only use one backend server)
 ---
 
@@ -79,6 +79,8 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 [3] S. Grider, "Modern React with Redux [2019 Update]," May 2019. [Online]. Available: [https://www.udemy.com/react-redux/](https://www.udemy.com/react-redux/).  
 
 [4] S. Grider, "Node with React: Fullstack Web," June 2019. [Online]. Available: [https://www.udemy.com/node-with-react-fullstack-web-development/](https://www.udemy.com/node-with-react-fullstack-web-development/).  
+
+[5] Semantic UI Community, "Semantic UI React: The official Semantic-UI-React integration". [Online]. Available: [https://react.semantic-ui.com/](https://react.semantic-ui.com/).
 
 ---
 

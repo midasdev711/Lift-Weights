@@ -1,0 +1,10 @@
+.Logo {
+    font-family: 'Black Ops One', Sans-Serif;
+    color: #ffffff; 
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 2px;
+    text-align: center;
+    -webkit-text-stroke-width: 1.2px; 
+    -webkit-text-stroke-color: #3579EC;
+}

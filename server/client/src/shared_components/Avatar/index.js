@@ -8,8 +8,8 @@ class Avatar extends Component {
     render() {
         return (
             <div className="Avatar">
-                <Link to="/">
-                    <img alt="avatar" src={faker.image.animals()} />
+                <Link to="/profile">
+                    <img alt="Avatar" src={faker.image.cats()} />
                 </Link>
             </div>
         );
