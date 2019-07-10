@@ -50,12 +50,12 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 - [x] **July 4th (Thursday)**: Create DB connection. Login with user and check for membership in database -- handle success (redirect to profile page) and failure (error message on backend). 
 - [x] **July 5th (Friday)**: Setup registration page and handle success (registering user and redirecting to profile page) and failure (error message on backend).
 - [x] **July 7th (Sunday)**: Research route-handling with front-end server and implement client-side of login/registration pages.
-- [ ] **July 9th (Tuesday)**: Start user profile page and include links to secondary pages (e.g. workouts, exercises, measurements).  #28
-- [ ] **July 10th (Wednesday)**: Continue improving user profile page and template out secondary pages (should be re-using components). #28
-- [ ] **July 12th (Friday)**: Research React testing (possibly with Jest) and consider coverage for current code. Also research pulling API data from wger for exercises. #29, #30
-- [ ] **July 13th (Saturday)**: Create more tests, as needed before moving on and populate API data. #29, #30
+- [x] **July 9th (Tuesday)**: Start user profile page and include links to secondary pages (e.g. workouts, exercises, measurements).
+- [ ] **July 10th (Wednesday)**: Continue improving user profile page and template out secondary pages (should be re-using components).
+- [ ] **July 12th (Friday)**: Research React testing (possibly with Jest) and consider coverage for current code. Also research pulling API data from wger for exercises.
+- [ ] **July 13th (Saturday)**: Create more tests, as needed before moving on and populate API data.
 - [ ] **July 16th (Tuesday)**: PROTOTYPE of project (to demonstrate viability). Update README.md with testing details.
-- [ ] **July 18th (Thursday)**: Create at least one “example data” for each section and use these same components to complete the user profile page. #30
+- [ ] **July 18th (Thursday)**: Create at least one “example data” for each section and use these same components to complete the user profile page.
 - [ ] **July 30th (Tuesday)**: MVP (minimum viable product) that compiles and is ready for demoing.
 - [ ] **August 1st (Thursday)**: Focus on adding more data, testing and adding tests through components. 
 - [ ] **August 8th (Thursday)**: Focus on scalability and, given extra time, add statistical models to represent data.
