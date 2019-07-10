@@ -12,14 +12,14 @@ class Nav extends Component {
         return (
             <Menu size='large'>
                 <Container>
-                        <Menu.Item as='a' active>
-                            Logo
-                        </Menu.Item>
-                        <Menu.Item as='a' active>
-                            <Link to="/profile">
-                                <Icon name="home" />
-                            </Link>
-                        </Menu.Item>
+                    <Menu.Item as='a' active>
+                        A Nice Logo
+                    </Menu.Item>
+                    <Menu.Item as='a' active>
+                        <Link to="/profile">
+                            <Icon name="home" />
+                        </Link>
+                    </Menu.Item>
                     <Menu.Menu position='right'>
                         <Dropdown text='Options' pointing className='link item'>
                             <Dropdown.Menu>
