@@ -1,5 +1,19 @@
+.Avatar a {
+    outline: 0;
+    text-decoration: none;
+}
+
+.Avatar a:visited {
+    text-decoration: none;
+}
+
 .Avatar img {
+    margin: 5px;
     width: 90px;
     height: 70px;
     background-size: contain;
+}
+
+.Username {
+    text-decoration: none;
 }

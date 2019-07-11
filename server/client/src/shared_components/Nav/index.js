@@ -27,21 +27,21 @@ class Nav extends Component {
                                 <Dropdown.Menu >
                                     <Dropdown.Item>
                                         <div>
-                                            <Link to='/workouts'>
+                                            <Link to='/profile/workouts' className='Link'>
                                                 <Icon name='list layout' /> Workouts
                                             </Link>
                                         </div>
                                     </Dropdown.Item>
                                     <Dropdown.Item>
                                         <div>
-                                            <Link to='/exercises'>
+                                            <Link to='/profile/exercises' className='Link'>
                                                 <Icon name='unordered list' /> Exercises
                                             </Link>
                                         </div>
                                     </Dropdown.Item>
                                     <Dropdown.Item>
                                         <div>
-                                            <Link to='/measurements'>
+                                            <Link to='/profile/measurements' className='Link'>
                                                 <Icon name='line graph' /> Measurements
                                             </Link>
                                         </div>
@@ -49,14 +49,14 @@ class Nav extends Component {
                                     <Dropdown.Divider />
                                     <Dropdown.Item>
                                         <div>
-                                            <Link to='/settings'>
+                                            <Link to='/profile/settings' className='Link'>
                                                 <Icon name='cog' /> Settings 
                                             </Link>
                                         </div>
                                     </Dropdown.Item>
                                     <Dropdown.Item>
                                         <div>
-                                            <Link to='/logout'>
+                                            <Link to='/logout' className='Link'>
                                                 <Icon name='sign out' /> Logout
                                             </Link>
                                         </div>
