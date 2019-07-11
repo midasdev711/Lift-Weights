@@ -1,2 +1,12 @@
 .Menu {
+    margin-bottom: 50px;
+}
+
+.Link {
+    color: #000000;
+}
+
+.Link:hover {
+    color: #3579EC;
+    text-decoration: none;
 }
