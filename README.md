@@ -9,7 +9,7 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 
 #### [environment setup](#setup)
 
-* check if `nvm` (nodejs version manager) and `nodejs` are installed  
+* check if `nvm` (node.js version manager) and `nodejs` are installed  
 `nvm -v`  
 `node -v`  
 
@@ -51,9 +51,10 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 - [x] **July 5th (Friday)**: Setup registration page and handle success (registering user and redirecting to profile page) and failure (error message on backend).
 - [x] **July 7th (Sunday)**: Research route-handling with front-end server and implement client-side of login/registration pages.
 - [x] **July 9th (Tuesday)**: Start user profile page and include links to secondary pages (e.g. workouts, exercises, measurements).
-- [ ] **July 10th (Wednesday)**: Continue improving user profile page and template out secondary pages (should be re-using components).
+- [x] **July 10th (Wednesday)**: Continue improving user profile page and template out secondary pages (should be re-using components).
 - [ ] **July 12th (Friday)**: Research React testing (possibly with Jest) and consider coverage for current code. Also research pulling API data from wger for exercises.
 - [ ] **July 13th (Saturday)**: Create more tests, as needed before moving on and populate API data.
+- [ ] **July 14th (Monday)**: Pass user-specific details through successful login to Profile page
 - [ ] **July 16th (Tuesday)**: PROTOTYPE of project (to demonstrate viability). Update README.md with testing details.
 - [ ] **July 18th (Thursday)**: Create at least one “example data” for each section and use these same components to complete the user profile page.
 - [ ] **July 30th (Tuesday)**: MVP (minimum viable product) that compiles and is ready for demoing.
@@ -67,7 +68,7 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 - [ ] better scaling for smaller (mobile) screens
 - [ ] allow registration with email 
 - [ ] handle password reset with email
-- [ ] convert development code into production code (i.e. the front-end server would be copmiled and the prodcution code would only use one backend server)
+- [ ] convert development code into production code (i.e. the front-end server would be compiled and the production code would only use one backend server)
 ---
 
 #### [resources](#resources)
