@@ -1,7 +1,9 @@
 ## **lift**-weights
-An open source project to create a full-stack app for weight-lifting exercises, workouts, stats, and results. The client-side of this project was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](/server/client/react_bootstrap.md).   
+The main goal of this project was to create an open source full-stack project and learn new languages and tools: react, node/express, jest, import API data, and more.
 
-Various tutorials and resources were used to learn the stack -- ***front-end*** react.js with semanticUI styling, ***backend***: node.js with express framework and MySQL database; the sources are listed below in the [resources](#resources) section.
+The client-side was built with react, react-semanticUI and was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](/server/client/react_bootstrap.md). The backend is composed with node using an express framework and MySQL database. The various tutorials and resources used in this project are available in the [resources](#resources) section below.
+
+This application tracks and supports an individual's weight-lifting goals, allowing for customized workout routines of various exercises, body and exercise measurements, basic account management, and a long-term goal of scalability, providing statistics, and encouraging results.
 
 
 
@@ -69,6 +71,7 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 - [ ] allow registration with email 
 - [ ] handle password reset with email
 - [ ] convert development code into production code (i.e. the front-end server would be compiled and the production code would only use one backend server)
+- [ ] update to use React hooks
 ---
 
 #### [resources](#resources)
@@ -88,4 +91,4 @@ Various tutorials and resources were used to learn the stack -- ***front-end*** 
 #### [license](#license)
 
 Copyright © 2019 Michelle Duer  
-Licensed as an Open Source Project under the "MIT License". The license can be read [here](LICENSE-MIT).
+Licensed as an Open Source Project under the "MIT License" and can be read [here](LICENSE-MIT).
