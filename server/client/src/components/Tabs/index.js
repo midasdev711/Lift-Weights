@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import { Container, Tab } from 'semantic-ui-react'
+import { Container, Tab } from 'semantic-ui-react';
 
-import Overview from '../Overview'
-import Workouts from '../Workouts'
-import Exercises from '../Exercises'
-import Measurements from '../Measurements'
+import Overview from '../Overview';
+import Workouts from '../Workouts';
+import Exercises from '../Exercises';
+import Measurements from '../Measurements';
 
 import './index.css';
 
