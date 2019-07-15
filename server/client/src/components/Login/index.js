@@ -17,8 +17,6 @@ class Login extends Component {
 
     handleLogin = (e) => {
         e.preventDefault();
-        alert('Submision made: ' + this.state.member.username + ', ' + 
-                                   this.state.member.password);
         fetch(`http://localhost:5000/login/match?username=${this.state.member.username}&password=${this.state.member.password}`)
     }
 
