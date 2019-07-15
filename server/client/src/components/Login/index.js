@@ -28,7 +28,7 @@ class Login extends Component {
         return (
             // Theme is modified from Semantic UI React's Login Layout
             // https://github.com/Semantic-Org/Semantic-UI-React/blob/master/docs/src/layouts/LoginLayout.js
-            <div className="Login">
+            <div className='Login'>
                 <Header />
                 <Grid className='Grid' textAlign='center' verticalAlign='middle'>
                     <Grid.Column className='Column'>
@@ -39,7 +39,7 @@ class Login extends Component {
                             iconPosition='left' 
                             placeholder='Username' 
                             type='username'
-                            id="loginUsername"
+                            id='loginUsername'
                             value={this.state.member.username}
                             onChange={e => this.setState({ member: {...member, username: e.target.value }})}
                         />
@@ -49,7 +49,7 @@ class Login extends Component {
                             iconPosition='left'
                             placeholder='Password'
                             type='password'
-                            id="loginPassword"
+                            id='loginPassword'
                             value={this.state.member.password}
                             onChange={e => this.setState({ member: {...member, password: e.target.value }})}
                         />
