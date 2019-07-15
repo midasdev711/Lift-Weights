@@ -1,7 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { Grid } from 'semantic-ui-react';
 
 import wger from '../../api/wger';
 import Search from '../../shared_components/Search';
+import ExerciseList from '../../shared_components/ExerciseList';
 import './index.css';
 
 class Exercises extends Component {
@@ -17,8 +19,19 @@ class Exercises extends Component {
     render() {
         return (
             <div className='Exercises'>
-                <Search onSearch={this.onSearch} />
-                Found: {this.state.exercises.length} exercises
+                <Grid className='Grid' textAlign='center'>
+                    <Grid.Column className='Column' rows={3}>
+                        <Grid.Row className='RowSearch'>
+                            <Search onSearch={this.onSearch} />
+                        </Grid.Row>
+                        <Grid.Row className='RowFound'>
+                            Found: {this.state.exercises.length} exercises
+                        </Grid.Row>
+                        <Grid.Row className='RowList'>
+                            <ExerciseList exercises={this.state.exercises} />
+                        </Grid.Row>
+                    </Grid.Column>
+                </Grid>
             </div>
         );
     }

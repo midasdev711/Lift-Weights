@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { Form, Grid } from 'semantic-ui-react';
+import React, { Component } from 'react';
+import { Form } from 'semantic-ui-react';
 import './index.css';
 
 class Search extends Component {
@@ -14,18 +14,14 @@ class Search extends Component {
     render() {
         return (
             <div className='Search'>
-                <Grid className='Grid' textAlign='center' verticalAlign='middle'>
-                    <Grid.Column className='Column'>
-                    <Form size='large' onSubmit={this.onFormSubmit}>
-                        <Form.Input 
-                            placeholder='Search' 
-                            type='text'
-                            value={this.state.search}
-                            onChange={e => this.setState({ search: e.target.value })}
-                        />
-                    </Form>
-                    </Grid.Column>
-                </Grid>
+                <Form size='large' onSubmit={this.onFormSubmit}>
+                    <Form.Input 
+                        placeholder='Search for Exercise' 
+                        type='text'
+                        value={this.state.search}
+                        onChange={e => this.setState({ search: e.target.value })}
+                    />
+                </Form>
             </div>
         );
     }
