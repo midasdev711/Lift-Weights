@@ -1,20 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './index.css';
 
 
-class ExerciseList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { exerciseList: [] };
-    }
+const ExerciseList = props => {
+    const exerciseList = props.exercises.map((exercise) => {
+        return <div>{exercise.data.name}</div>
+    });
 
-    render() {
-        this.state.exerciseList = this.props.exercises.map((exercise) => {
-            return <div key={exercise.data.id}>{exercise.data.name}</div>
-        });
-
-        return <div>{this.state.exerciseList}</div>;
-    }
+    return <div>{exerciseList}</div>;
 }
 
 export default ExerciseList;
