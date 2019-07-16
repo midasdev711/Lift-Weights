@@ -54,12 +54,12 @@ This application tracks and supports an individual's weight-lifting goals, allow
 - [x] **July 7th (Sunday)**: Research route-handling with front-end server and implement client-side of login/registration pages.
 - [x] **July 9th (Tuesday)**: Start user profile page and include links to secondary pages (e.g. workouts, exercises, measurements).
 - [x] **July 10th (Wednesday)**: Continue improving user profile page and template out secondary pages (should be re-using components).
-- [ ] **July 12th (Friday)**: Research React testing (possibly with Jest) and consider coverage for current code. Also research pulling API data from wger for exercises.
-- [ ] **July 13th (Saturday)**: Create more tests, as needed before moving on and populate API data.
-- [ ] **July 14th (Monday)**: Pass user-specific details through successful login to Profile page
-- [ ] **July 16th (Tuesday)**: PROTOTYPE of project (to demonstrate viability). Update README.md with testing details.
-- [ ] **July 18th (Thursday)**: Create at least one “example data” for each section and use these same components to complete the user profile page.
-- [ ] **July 30th (Tuesday)**: MVP (minimum viable product) that compiles and is ready for demoing.
+- [x] **July 12th (Friday)**: Research React testing (possibly with Jest) and consider coverage for current code. Also research pulling API data from wger for exercises.
+- [x] **July 13th (Saturday)**: Populate API data using wger.
+- [ ] **July 17th (Thursday)**: Complete display of exercises on exercise page
+- [ ] **July 20th (Saturday)**: Pass user-specific details through successful login to Profile page to allow for custom workouts to be created
+- [ ] **July 22nd (Monday)**: Begin creating a workout	
+- [ ] **July 30th (Tuesday)**: MVP (minimum viable product) that compiles and is ready for demoing. Update README.md as needed.
 - [ ] **August 1st (Thursday)**: Focus on adding more data, testing and adding tests through components. 
 - [ ] **August 8th (Thursday)**: Focus on scalability and, given extra time, add statistical models to represent data.
 - [ ] **August 12th (Monday)**: Prep presentation details and any documentation (final updates for README.md)

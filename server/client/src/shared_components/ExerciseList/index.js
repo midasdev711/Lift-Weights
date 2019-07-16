@@ -1,20 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Segment, List, Image } from 'semantic-ui-react';
 import './index.css';
 
 
-class ExerciseList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { exerciseList: [] };
-    }
+const ExerciseList = props => {
+    const exerciseList = props.exercises.map((exercise) => {
+        return (
+            <List.Item className="ExerciseItem" key={exercise.data.id}>
+                <Image className="ExerciseImage" src={exercise.data.image} verticalAlign="middle" />
+                <List.Content>
+                    <List.Header>{exercise.data.name}</List.Header>
+                    <p>{exercise.data.category}</p>
+                </List.Content>
+            </List.Item>
+        );
+    });
 
-    render() {
-        this.state.exerciseList = this.props.exercises.map((exercise) => {
-            return <div key={exercise.data.id}>{exercise.data.name}</div>
-        });
-
-        return <div>{this.state.exerciseList}</div>;
-    }
+    return (
+        <div className="ExerciseList">
+            <Image.Group size="mini">
+                <Segment>
+                    <List divided relaxed>
+                        {exerciseList}
+                    </List>
+                </Segment>
+            </Image.Group>
+        </div>
+    );
 }
 
 export default ExerciseList;

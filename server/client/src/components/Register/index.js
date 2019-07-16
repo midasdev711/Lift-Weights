@@ -22,9 +22,6 @@ class Register extends Component {
 
     handleRegister = (e) => {
         e.preventDefault();
-        alert('Submision made: ' + this.state.member.username + ', ' + 
-                                   this.state.member.email + ', ' + 
-                                   this.state.member.password);
         fetch(`http://localhost:5000/register/add?username=${this.state.member.username}&email=${this.state.member.email}&password=${this.state.member.password}`)
     }
 

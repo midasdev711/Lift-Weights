@@ -1,12 +1,7 @@
 .Exercises {
-    color: brown;
-}
-
-.RowFound {
     color: black;
 }
 
-.RowList {
-    color: green;
-    text-align: left;
+.Row #Found {
+    margin-top: 10px;
 }
