@@ -22,7 +22,7 @@ class Tabs extends Component {
                         content: 'Overview'
                     },
                     render: () => 
-                        <Tab.Pane>
+                        <Tab.Pane className="TabPane">
                             <Overview />
                         </Tab.Pane>,
                 },
@@ -33,7 +33,7 @@ class Tabs extends Component {
                         content: 'Workouts'
                     },
                     render: () => 
-                        <Tab.Pane>
+                        <Tab.Pane className="TabPane">
                             <Workouts />
                         </Tab.Pane>,
                 },
@@ -44,7 +44,7 @@ class Tabs extends Component {
                         content: 'Exercises'
                     },
                     render: () =>
-                        <Tab.Pane>
+                        <Tab.Pane className="TabPane">
                             <Exercises />
                         </Tab.Pane>,
                 },
@@ -55,13 +55,14 @@ class Tabs extends Component {
                         content: 'Measurements'
                     },
                     render: () =>
-                        <Tab.Pane>
+                        <Tab.Pane className="TabPane">
                             <Measurements />
                         </Tab.Pane>,
                 }
             ]
         }
     }
+
     render() {
 
         return (
