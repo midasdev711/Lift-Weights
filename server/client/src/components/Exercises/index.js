@@ -10,23 +10,23 @@ class Exercises extends Component {
     state = { 
         exercises: [],
         visible: false,
+        exerciseList: <div></div>,
         foundStatement: <p id="Found"></p>,
-        exerciseList: <div></div>
     };
 
     onSearch = async search => {
         const response = await wger.get('/exercise/search', {
             params: { term: search }, 
         });
-        await this.setState({ exercises: response.data.suggestions, visible: true });
+        await this.setState({ exercises: response.data.suggestions, 
+                              visible: true });
         await this.updateVisibility();
-        console.log('set visibility state to: ' + this.state.visible);
     };
 
     updateVisibility = () => {
         if (this.state.visible === true) {
-            this.setState({ foundStatement: <p id="Found">Found: {this.state.exercises.length} exercises</p>,
-                            exerciseList: <ExerciseList exercises={this.state.exercises} />
+            this.setState({ exerciseList: <ExerciseList exercises={this.state.exercises} />,
+                            foundStatement: <p id="Found">Found: {this.state.exercises.length} exercises</p>
             });
         }
     };
@@ -41,7 +41,7 @@ class Exercises extends Component {
                             {this.state.foundStatement}
                         </Grid.Column>
                     </Grid.Row>
-                    <Grid.Row className='Row' columns={1}>
+                    <Grid.Row className='Row'>
                         <Grid.Column className='Column'>
                             {this.state.exerciseList}
                         </Grid.Column>
