@@ -7,12 +7,16 @@ import ExerciseList from '../../shared_components/ExerciseList';
 import './index.css';
 
 class Exercises extends Component {
-    state = { 
-        exercises: [],
-        visible: false,
-        exerciseList: <div></div>,
-        foundStatement: <p id="Found"></p>,
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = { 
+            exercises: [],
+            visible: false,
+            exerciseList: <div></div>,
+            foundStatement: <p id="Found"></p>,
+        };
+    }
 
     onSearch = async search => {
         const response = await wger.get('/exercise/search', {
@@ -32,18 +36,19 @@ class Exercises extends Component {
     };
 
     render() {
+        const { foundStatement, exerciseList } = this.state;
         return (
             <div className='Exercises'>
                 <Grid className='Grid' textAlign='center' divided='vertically'>
                     <Grid.Row className='Row'>
                         <Grid.Column className='Column'>
                             <Search onSearch={this.onSearch} />
-                            {this.state.foundStatement}
+                            {foundStatement}
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row className='Row'>
                         <Grid.Column className='Column'>
-                            {this.state.exerciseList}
+                            {exerciseList}
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

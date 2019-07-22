@@ -9,8 +9,6 @@ import Measurements from '../Measurements';
 import './index.css';
 
 class Tabs extends Component {
-    // Theme is modified from Semantic UI React's Tabs Layout
-    // https://github.com/Semantic-Org/Semantic-UI-React/blob/master/docs/src/layouts/TabsLayout.js
     constructor(props) {
         super(props);
         this.state = {
