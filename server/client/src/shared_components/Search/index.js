@@ -3,8 +3,11 @@ import { Form } from 'semantic-ui-react';
 import './index.css';
 
 class Search extends Component {
+    constructor(props) {
+        super(props);
 
-    state = { search: '' };
+        this.state = {search: ''}
+    }
 
     onFormSubmit = (e) => {
         e.preventDefault();
