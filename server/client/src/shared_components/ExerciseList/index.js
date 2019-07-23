@@ -1,18 +1,13 @@
 import React from 'react';
 import { Segment, List, Image } from 'semantic-ui-react';
-import './index.css';
 
+import ExerciseItem from '../ExerciseItem';
+import './index.css';
 
 const ExerciseList = props => {
     const exerciseList = props.exercises.map((exercise) => {
         return (
-            <List.Item className="ExerciseItem" key={exercise.data.id}>
-                <Image className="ExerciseImage" src={exercise.data.image} verticalAlign="middle" />
-                <List.Content>
-                    <List.Header>{exercise.data.name}</List.Header>
-                    <p>{exercise.data.category}</p>
-                </List.Content>
-            </List.Item>
+            <ExerciseItem className="ExerciseItem" key={exercise.data.id} exercise={exercise.data}/>
         );
     });
 
