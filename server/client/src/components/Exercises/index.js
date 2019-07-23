@@ -18,6 +18,7 @@ class Exercises extends Component {
         };
     }
 
+    // search for exercise results
     onSearch = async search => {
         const response = await wger.get('/exercise/search', {
             params: { term: search }, 
@@ -25,7 +26,13 @@ class Exercises extends Component {
         await this.setState({ exercises: response.data.suggestions, 
                               visible: true });
         await this.updateVisibility();
+        await this.updatePadding();
     };
+
+    // pass total exercise length up for dynamically changing bottom margin of Tab
+    updatePadding = () => {
+        this.props.updateBottomPadding(this.state.exercises.length);
+    }
 
     updateVisibility = () => {
         if (this.state.visible === true) {

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import { Container, Tab } from 'semantic-ui-react';
 
 import Overview from '../Overview';
@@ -8,10 +8,11 @@ import Measurements from '../Measurements';
 
 import './index.css';
 
-class Tabs extends Component {
+class Tabs extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
+            paddingBottom: '0px',
             panes: [
                 {
                     menuItem: {
@@ -42,8 +43,8 @@ class Tabs extends Component {
                         content: 'Exercises'
                     },
                     render: () =>
-                        <Tab.Pane className="TabPane">
-                            <Exercises />
+                        <Tab.Pane className="TabPane" style={{paddingBottom:`${this.state.paddingBottom}px`}}>
+                            <Exercises updateBottomPadding={this.updateBottomPadding}/>
                         </Tab.Pane>,
                 },
                 {
@@ -61,8 +62,12 @@ class Tabs extends Component {
         }
     }
 
-    render() {
+    // updates the value of paddingBottom 
+    updateBottomPadding = async length => {
+        await this.setState({paddingBottom: (length * 45) + 10})
+    }
 
+    render() {
         return (
             <div className="Tabs">
                 <Container className="Container">
