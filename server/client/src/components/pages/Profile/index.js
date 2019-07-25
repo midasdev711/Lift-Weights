@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 
-import Nav from '../../shared_components/Nav';
-import Tabs from '../Tabs';
-import Workouts from '../Workouts';
-import Exercises from '../Exercises';
-import Measurements from '../Measurements';
-import Settings from '../Settings';
+import Nav from '../../../shared_components/Nav';
+import Tabs from '../../tabContent/Tabs';
+import Workouts from '../../tabContent/Workouts';
+import Exercises from '../../tabContent/Exercises';
+import Measurements from '../../tabContent/Measurements';
+import Settings from '../../pages/Settings';
 import Logout from '../Logout';
 
 import './index.css';
