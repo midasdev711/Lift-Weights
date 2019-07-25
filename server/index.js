@@ -2,7 +2,6 @@ const express = require('express');     // express framework
 const passport = require('passport');   // passport for user authentication
 const GoogleStrategy = require('passport-google-oauth20').Strategy;  // passport strategy for signing-in with Google
 const keys = require('./config/keys');  // keys for accessing different strategies
-
 const mysql = require('mysql');         // mysql database
 const cors = require('cors');           // cross-origin requirements middleware
 const app = express();                  // running express application object
@@ -24,18 +23,12 @@ passport.use(
         console.log(refreshToken);
         console.log('profile: ');
         console.log(profile);
-        User.findOrCreate({ googleId: profile.id }, function(err, user) {
-            return done(err, user);
-        });
     }
 ));
 
 // user is passed over to passport for authentication
 app.get(
     '/auth/google',
-    // TODO: 
-    // scope: ['https://www.googleapis.com/auth/plus.login'] 
-
     passport.authenticate(
         'google', { 
         scope: ['profile', 'email'] 
