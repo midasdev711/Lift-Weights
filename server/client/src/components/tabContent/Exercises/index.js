@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 
-import wger from '../../api/wger';
-import Search from '../../shared_components/Search';
-import ExerciseList from '../../shared_components/ExerciseList';
+import wger from '../../../api/wger';
+import Search from '../../../shared_components/Search';
+import ExerciseList from '../../../shared_components/ExerciseList';
 import './index.css';
 
 class Exercises extends Component {

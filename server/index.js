@@ -55,7 +55,7 @@ app.get("/login/match", (req, res) => {
                     member: results[0].username
                 }
             });
-            // return res.redirect('/profile');
+            return res.redirect('/profile');
         } else {
             // otherwise, redirect to login page if credentials were invalid
             return res.send('Invalid Credentials');
