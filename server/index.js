@@ -1,7 +1,35 @@
-const express = require('express');  // express framework
-const mysql = require('mysql');      // mysql database
-const cors = require('cors');        // cross-origin requirements middleware
-const app = express();               // running express application object
+const express = require('express');     // express framework
+const passport = require('passport');   // passport for user authentication
+const GoogleStrategy = require('passport-google-oauth20');  // passport strategy for signing-in with Google
+const mysql = require('mysql');         // mysql database
+const cors = require('cors');           // cross-origin requirements middleware
+const app = express();                  // running express application object
+
+
+// create a Google strategy for authentication
+// source: http://www.passportjs.org/docs/google/
+passport.use(new GoogleStrategy({
+    clientID: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: 'http://localhost:5000/autho/google/callback'
+    },
+    function(accessToken, refreshToken, profile, done) {
+        User.findOrCreate({ googleId: profile.id }, function(err, user) {
+            return done(err, user);
+        });
+    }
+));
+
+app.get('/auth/google',
+    passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] })
+);
+
+app.get('/auth/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function(req, res) {
+        res.redirect('/');
+    }
+);
 
 // create a database connection
 var db = mysql.createConnection({
