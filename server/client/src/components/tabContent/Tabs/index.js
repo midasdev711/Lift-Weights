@@ -64,7 +64,7 @@ class Tabs extends PureComponent {
 
     // updates the value of paddingBottom 
     updateBottomPadding = async length => {
-        await this.setState({paddingBottom: (length * 45) + 10})
+        await this.setState({paddingBottom: (length * 52) + 10})
     }
 
     render() {
