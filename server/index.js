@@ -1,31 +1,45 @@
 const express = require('express');     // express framework
 const passport = require('passport');   // passport for user authentication
-const GoogleStrategy = require('passport-google-oauth20');  // passport strategy for signing-in with Google
+const GoogleStrategy = require('passport-google-oauth20').Strategy;  // passport strategy for signing-in with Google
+const keys = require('./config/keys');  // keys for accessing different strategies
 const mysql = require('mysql');         // mysql database
 const cors = require('cors');           // cross-origin requirements middleware
 const app = express();                  // running express application object
 
 
 // create a Google strategy for authentication
-// source: http://www.passportjs.org/docs/google/
-passport.use(new GoogleStrategy({
-    clientID: GOOGLE_CLIENT_ID,
-    clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: 'http://localhost:5000/autho/google/callback'
-    },
-    function(accessToken, refreshToken, profile, done) {
-        User.findOrCreate({ googleId: profile.id }, function(err, user) {
-            return done(err, user);
-        });
+// source: http://www.passportjs.org/docs/g/
+// source: 'Node with React: Fullstack Web Development' (Section 3) by Stepehn Grider
+passport.use(
+    new GoogleStrategy({
+        clientID: keys.googleClientID,
+        clientSecret: keys.googleClientSecret,
+        callbackURL: '/auth/google/callback',
+        passReqToCallback: true
+    }, (accessToken, refreshToken, profile, done) => {
+        console.log('accessToken: ');
+        console.log(accessToken);
+        console.log('refreshToken: ');
+        console.log(refreshToken);
+        console.log('profile: ');
+        console.log(profile);
     }
 ));
 
-app.get('/auth/google',
-    passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] })
+// user is passed over to passport for authentication
+app.get(
+    '/auth/google',
+    passport.authenticate(
+        'google', { 
+        scope: ['profile', 'email'] 
+    })
 );
 
-app.get('/auth/google/callback', 
-    passport.authenticate('google', { failureRedirect: '/login' }),
+app.get(
+    '/auth/google/callback', 
+    passport.authenticate('google', { 
+        failureRedirect: '/login' 
+    }),
     function(req, res) {
         res.redirect('/');
     }
