@@ -9,13 +9,12 @@ const app = express();                  // running express application object
 
 // create a Google strategy for authentication
 // source: http://www.passportjs.org/docs/g/
-// source: 'Node with React: Fullstack Web Development' (Section 3) by Stepehn Grider
+// source: 'Node with React: Fullstack Web Development' (Section 3) by Stephen Grider
 passport.use(
     new GoogleStrategy({
         clientID: keys.googleClientID,
         clientSecret: keys.googleClientSecret,
         callbackURL: '/auth/google/callback',
-        passReqToCallback: true
     }, (accessToken, refreshToken, profile, done) => {
         console.log('accessToken: ');
         console.log(accessToken);
