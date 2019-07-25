@@ -1,7 +1,56 @@
-const express = require('express');  // express framework
-const mysql = require('mysql');      // mysql database
-const cors = require('cors');        // cross-origin requirements middleware
-const app = express();               // running express application object
+const express = require('express');     // express framework
+const passport = require('passport');   // passport for user authentication
+const GoogleStrategy = require('passport-google-oauth20').Strategy;  // passport strategy for signing-in with Google
+const keys = require('./config/keys');  // keys for accessing different strategies
+
+const mysql = require('mysql');         // mysql database
+const cors = require('cors');           // cross-origin requirements middleware
+const app = express();                  // running express application object
+
+
+// create a Google strategy for authentication
+// source: http://www.passportjs.org/docs/g/
+// source: 'Node with React: Fullstack Web Development' (Section 3) by Stepehn Grider
+passport.use(
+    new GoogleStrategy({
+        clientID: keys.googleClientID,
+        clientSecret: keys.googleClientSecret,
+        callbackURL: '/auth/google/callback',
+        passReqToCallback: true
+    }, (accessToken, refreshToken, profile, done) => {
+        console.log('accessToken: ');
+        console.log(accessToken);
+        console.log('refreshToken: ');
+        console.log(refreshToken);
+        console.log('profile: ');
+        console.log(profile);
+        User.findOrCreate({ googleId: profile.id }, function(err, user) {
+            return done(err, user);
+        });
+    }
+));
+
+// user is passed over to passport for authentication
+app.get(
+    '/auth/google',
+    // TODO: 
+    // scope: ['https://www.googleapis.com/auth/plus.login'] 
+
+    passport.authenticate(
+        'google', { 
+        scope: ['profile', 'email'] 
+    })
+);
+
+app.get(
+    '/auth/google/callback', 
+    passport.authenticate('google', { 
+        failureRedirect: '/login' 
+    }),
+    function(req, res) {
+        res.redirect('/');
+    }
+);
 
 // create a database connection
 var db = mysql.createConnection({
