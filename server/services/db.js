@@ -8,17 +8,4 @@ const db = mysql.createConnection({
     database : keys.mySQLDatabase
 });
 
-// connect to database
-db.connect = (err) => {
-    if(err) {
-        console.log('NOT connected to DB!')
-        return err;
-    }
-    console.log("Connected to DB!")
-
-    // user authorization services
-    require('../services/passport')(db)
-    require('../routes/auth')(app)
-};
-
 module.exports = db;
