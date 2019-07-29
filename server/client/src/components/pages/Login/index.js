@@ -52,7 +52,6 @@ class Login extends Component {
             return (
                 <div className='Login'>
                     <BrowserRouter> 
-                        User {member.username} Logged in!
                         <Route exact path="/" component={App} />
                     </BrowserRouter>
                 </div>
