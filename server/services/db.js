@@ -15,10 +15,6 @@ db.connect = (err) => {
         return err;
     }
     console.log("Connected to DB!")
-
-    // user authorization services
-    require('../services/passport')(db)
-    require('../routes/auth')(app)
 };
 
 module.exports = db;

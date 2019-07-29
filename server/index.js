@@ -1,17 +1,27 @@
-const express = require('express');      // express framework
-const cors = require('cors');            // cross-origin requirements middleware
-const db = require('./services/db');     // database
+const express = require('express');  // express framework
+const mysql = require('mysql');      // mysql database
+const cors = require('cors');        // cross-origin requirements middleware
+const app = express();               // running express application object
 
-// user authorization services
-require('./services/passport')(db)
-require('./routes/auth')(app)
+// create a database connection
+var db = mysql.createConnection({
+    host : 'localhost',
+    user : 'trainer',
+    password : 'session',
+    database : 'gym'
+});
 
-const app = express();                   // running express application object
+// connected to database
+db.connect(err => {
+    if(err) {
+        return err;
+    }
+    console.log("Connected to DB!")
+});
 
 // relax cross-origin policy to account for two servers 
 // using different ports while in development
 app.use(cors());                                
-
 
 // request handler for '/' page that redirects to '/login' page
 app.get("/", (_, res) => {
@@ -33,14 +43,11 @@ app.get("/login/match", (req, res) => {
     const { username, password } = req.query;
 
     const q_select = `SELECT username, id FROM members WHERE username='${username}' AND password='${password}'`;
-    console.log('making query: ' + q_select)
     db.query(q_select, (err, results)  => {
         if(err) {
-            alert('User not found');
             return res.error(err);
         } 
         if (results.length > 0) {
-            alert('User ' + results[0].username + ' found');
             // redirect to profile page if a valid user was found
             return res.json({
                 data: {
@@ -50,7 +57,6 @@ app.get("/login/match", (req, res) => {
             });
             return res.redirect('/profile');
         } else {
-            alert('Invalid Credentials');
             // otherwise, redirect to login page if credentials were invalid
             return res.send('Invalid Credentials');
         }
