@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Button, Form, Grid, Message, Segment } from 'semantic-ui-react';
+import { BrowserRouter, Route } from 'react-router-dom';
 
+import App from '../../App';
 import Header from '../../../shared_components/Header';
 import './index.css';
 
@@ -24,21 +26,22 @@ class Login extends Component {
                 Accept: 'application/json',
             },
         })
-        await console.log(res);
         const user = await res.json()
-        await console.log(user)
-        await this.isValidated(user.data.member);
+        await this.updateValidated(user.data.member);
     }
 
-    isValidated = (user) => {
+    // runs a second check to ensure the retuned username matches
+    // returns boolean true if matching, false otherwise
+    updateValidated = async user => {
         console.log('this.state.member.username = ' + this.state.member.username)
         console.log('user = ' + user)
         if (this.state.member.username === user) {
-            this.setState({ validated: true });
-            console.log('user validation should be true = ' + this.state.validated)
+            await this.setState({ validated: true })
+            await console.log('user validation is = ' + this.state.validated);
+            await this.props.history.push("/profile");
         } else {
-            this.setState({ validated: false });
-            console.log('user validation should be false = ' + this.state.validated)
+            await this.setState({ member: {username: '', password: ''}, validated: false })
+            await this.props.history.push("/login");
         }
     }
 
@@ -46,7 +49,14 @@ class Login extends Component {
         const { member, validated } = this.state;
 
         if (validated === true) {
-            return <div>Validated user</div>
+            return (
+                <div className='Login'>
+                    <BrowserRouter> 
+                        User {member.username} Logged in!
+                        <Route exact path="/" component={App} />
+                    </BrowserRouter>
+                </div>
+            )
 
         } else {
             return (
