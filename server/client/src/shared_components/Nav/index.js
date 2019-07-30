@@ -64,7 +64,7 @@ class Nav extends Component {
                                 </Dropdown.Menu>
                             </Dropdown>
                             <Menu.Item>
-                                <Avatar />
+                                <Avatar user={this.props.user} id={this.props.id} />
                             </Menu.Item>
                         </Menu.Menu>
                     </Container>

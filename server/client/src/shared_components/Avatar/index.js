@@ -11,7 +11,7 @@ class Avatar extends Component {
                 <Link to='/profile'>
                     <img alt='Avatar' src={faker.image.cats()} />
                     <div className='Username'>
-                        <span>Username</span>
+                        <span>{this.props.user}</span>
                     </div>
                 </Link>
             </div>
