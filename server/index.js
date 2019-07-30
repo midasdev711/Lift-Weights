@@ -56,21 +56,21 @@ app.get("/login/match", (req, res) => {
     // check if user exists in database
     const q_select = `SELECT username, id FROM members WHERE username='${username}' AND password='${password}'`;
 
-    db.query(q_select, (err, results)  => {
+    db.query(q_select, (err, res)  => {
         if(err) {
             return res.status(500).error(err);
         } 
-        if (results.length > 0) {
-            req.session.id = results[0].id;
-            req.session.user = results[0].username;
+
+        if (res.length > 0) {
+            req.session.id = res[0].id;
+            req.session.user = res[0].username;
 
             return res.status(200).json({
                 data: {
-                    id: results[0].id,
-                    member: results[0].username
+                    id: res[0].id,
+                    member: res[0].username
                 }
             });
-
         } else {
             // otherwise, redirect to login page if credentials were invalid
             return res.status(404).send('Invalid Credentials');
@@ -84,44 +84,60 @@ app.get("/register", (_, res) => {
 });
 
 // add a user
-app.get("/register/add", (req, res) => {
+app.get("/register/add", async (req, res) => {
     const { username, email, password } = req.query;
+    let new_id = -1;
 
     const q_insert_user = `INSERT INTO members (username, email, password) \
                            VALUES('${username}', '${email}', '${password}')`;
-                           
-    db.query(q_insert_user, (err, results)  => {
+
+    await db.query(q_insert_user, (err, res)  => {
         if(err) {
             return res.status(404).send('Failed to register user')
         } else {
-
-            // confirm successful add by grabbing user details from new entry to db
-            const q_select = `SELECT username, id FROM members WHERE username='${username}' AND password='${password}'`;
-
-            db.query(q_select, (err, results)  => {
-                if(err) {
-                    return res.status(500).error(err);
-                } 
-                if (results.length > 0) {
-                    req.session.id = results[0].id;
-                    req.session.user = results[0].username;
-
-                    return res.status(200).json({
-                        data: {
-                            id: results[0].id,
-                            member: results[0].username
-                        }
-                    });
-
-                } else {
-                    // otherwise, redirect to login page if credentials were invalid
-                    return res.status(404).send('User was not successfully registered');
-                }
-            });
+            new_id = res.insertId;
         }
-    });
-    return res.status(404).send('Registration failed')
+    })
+
+    if (new_id === -1) {
+        new_id = retrieveUser(username, password);
+
+        console.log('new_id: ')
+        console.log(new_id)
+
+        return res.status(202).json({
+            data: {
+                id: new_id,
+                member: username
+            }
+        });
+    } else {
+        return res.status(202).json({
+            data: {
+                id: new_id,
+                member: username
+            }
+        });
+    }
 });
+
+retrieveUser = async (username, password) => {
+    const q_select = await `SELECT username, id FROM members WHERE username='${username}' AND password='${password}'`;
+
+    await db.query(q_select, (err, select_res)  => {
+        if(err) {
+            return select_res.status(500).error(err);
+        }
+
+        if (select_res.length > 0) {
+            console.log('REPEAT QUERY: ' + select_res[0].id)
+            return Promise.resolve(select_res[0].id);
+        } else {
+            // otherwise, redirect to registration page if credentials were invalid
+            return Promise.reject(new Error('Registration failed'))
+        }
+    })
+}
 
 // request handler for '/profile' page
 app.get("/profile", (req, res) => {
