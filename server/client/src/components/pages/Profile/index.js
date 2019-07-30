@@ -17,7 +17,7 @@ class Profile extends Component {
         return (
             <BrowserRouter>                
                 <div className="Profile" >
-                    <Nav />
+                    <Nav user={this.props.location.state.user} id={this.props.location.state.id}/>
                     <Container>
                         <Route exact path="/profile" component={Tabs} />
                         <Route exact path="/profile/workouts" component={Workouts} />

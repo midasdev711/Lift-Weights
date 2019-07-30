@@ -12,6 +12,7 @@ class Login extends Component {
         this.state = {
             member: {
                 username: '',
+                id: '',
                 password: '' 
             },
             validated: false
@@ -27,21 +28,21 @@ class Login extends Component {
             },
         })
         const user = await res.json()
-        await this.updateValidated(user.data.member);
+        await this.updateValidated(user.data.member, user.data.id);
     }
 
     // runs a second check to ensure the retuned username matches
     // returns boolean true if matching, false otherwise
-    updateValidated = async user => {
-        console.log('this.state.member.username = ' + this.state.member.username)
-        console.log('user = ' + user)
+    updateValidated = async (user, id) => {
         if (this.state.member.username === user) {
-            await this.setState({ validated: true })
-            await console.log('user validation is = ' + this.state.validated);
-            await this.props.history.push("/profile");
+            await this.setState({ member: {username: user, id: id }, validated: true })
+            await this.props.history.push({
+                pathname: '/profile', 
+                state: { user: this.state.member.username, id: this.state.member.id}
+            });
         } else {
             await this.setState({ member: {username: '', password: ''}, validated: false })
-            await this.props.history.push("/login");
+            await this.props.history.push('/login');
         }
     }
 
@@ -52,7 +53,6 @@ class Login extends Component {
             return (
                 <div className='Login'>
                     <BrowserRouter> 
-                        User {member.username} Logged in!
                         <Route exact path="/" component={App} />
                     </BrowserRouter>
                 </div>

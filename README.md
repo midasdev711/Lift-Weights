@@ -58,21 +58,21 @@ This application tracks and supports an individual's weight-lifting goals, allow
 - [x] **July 13th (Saturday)**: Populate API data using wger.
 - [x] **July 17th (Thursday)**: Display list of exercises on exercise page based on exercise search. 
 - [x] **July 23rd (Tuesday)**: Dynamically update tab padding after results are returned
-- [ ] **July 25th (Thursday)**: Pass user-specific details through successful login to Profile page to allow for custom workouts to be created.
-- [ ] **July 28th (Sunday)**: Create a workout specific to the user.
-- [ ] **July 30th (Tuesday)**: MVP (minimum viable product) that compiles and is ready for demo-ing. Update README.md as needed.
-- [ ] **August 1st (Thursday)**: Focus on adding more data, testing and adding tests through components. 
-- [ ] **August 8th (Thursday)**: Focus on scalability and, given extra time, add statistical models to represent data.
+- [ ] **July 29th (Monday)**: Pass user-specific details through successful login to Profile page to allow for custom workouts to be created.
+- [ ] **August 2nd (Friday)**: Create a workout specific to the user.
+- [ ] **August 6th (Tuesday)**: MVP (minimum viable product) that compiles and is ready for demo-ing. Update README.md as needed.
+- [ ] **August 9th (Friday)**: Focus on drafting more pages for basic functionality and demo-ing. 
+- [ ] **August 11th (Sunday)**: Given extra time, add statistical models to represent "fake" data.
 - [ ] **August 12th (Monday)**: Prep presentation details and any documentation (final updates for README.md)
 
 #### [extra time](#extras)
-- [ ] setup user authentication
 - [ ] add statistical models using highchart.js or equivalent
-- [ ] better scaling for smaller (mobile) screens
-- [ ] allow registration with email 
-- [ ] handle password reset with email
 - [ ] convert development code into production code (i.e. the front-end server would be compiled and the production code would only use one backend server)
 - [ ] update to use React hooks
+- [ ] better scaling for smaller (mobile) screens
+- [ ] setup user authentication with Google OAuth (sequelize for MySQL or use Mongoose/Mongo)
+- [ ] allow registration with email 
+- [ ] handle password reset with email
 ---
 
 #### [resources](#resources)
