@@ -58,7 +58,7 @@ This application tracks and supports an individual's weight-lifting goals, allow
 - [x] **July 13th (Saturday)**: Populate API data using wger.
 - [x] **July 17th (Thursday)**: Display list of exercises on exercise page based on exercise search. 
 - [x] **July 23rd (Tuesday)**: Dynamically update tab padding after results are returned
-- [ ] **July 29th (Monday)**: Pass user-specific details through successful login to Profile page to allow for custom workouts to be created.
+- [x] **July 29th (Monday)**: Pass user-specific details through successful login to Profile page to allow for custom workouts to be created.
 - [ ] **August 2nd (Friday)**: Create a workout specific to the user.
 - [ ] **August 6th (Tuesday)**: MVP (minimum viable product) that compiles and is ready for demo-ing. Update README.md as needed.
 - [ ] **August 9th (Friday)**: Focus on drafting more pages for basic functionality and demo-ing. 
