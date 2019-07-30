@@ -7,10 +7,6 @@ const keys = require('./config/keys');      // key storage
 // running express application object
 const app = express();               
 
-// relax cross-origin policy to account for two servers 
-// using different ports while in development
-app.use(cors());                                
-
 // create a database connection
 var db = mysql.createConnection({
     host : 'localhost',
@@ -26,6 +22,10 @@ db.connect(err => {
     }
     console.log("Connected to DB!")
 });
+
+// relax cross-origin policy to account for two servers 
+// using different ports while in development
+app.use(cors());                                
 
 // setup session creation
 app.use(session({
@@ -56,19 +56,18 @@ app.get("/login/match", (req, res) => {
     // check if user exists in database
     const q_select = `SELECT username, id FROM members WHERE username='${username}' AND password='${password}'`;
 
-    db.query(q_select, (err, res)  => {
+    db.query(q_select, (err, results)  => {
         if(err) {
             return res.status(500).error(err);
         } 
 
-        if (res.length > 0) {
-            req.session.id = res[0].id;
-            req.session.user = res[0].username;
+        if (results.length > 0) {
+            req.session.user = results[0].username;
 
             return res.status(200).json({
                 data: {
-                    id: res[0].id,
-                    member: res[0].username
+                    id: results[0].id, 
+                    member:  results[0].username
                 }
             });
         } else {
@@ -86,20 +85,21 @@ app.get("/register", (_, res) => {
 // add a user
 app.get("/register/add", async (req, res) => {
     const { username, email, password } = req.query;
-    let new_id = -1;
+    let new_id = '';
 
     const q_insert_user = `INSERT INTO members (username, email, password) \
                            VALUES('${username}', '${email}', '${password}')`;
 
-    await db.query(q_insert_user, (err, res)  => {
+    await db.query(q_insert_user, (err, results)  => {
         if(err) {
             return res.status(404).send('Failed to register user')
         } else {
-            new_id = res.insertId;
+            new_id = results.insertId;
         }
     })
 
-    if (new_id === -1) {
+    console.log('About ot Enter IF Statement: new_id = ' + new_id)
+    if (new_id === '') {
         new_id = retrieveUser(username, password);
 
         console.log('new_id: ')
