@@ -11,9 +11,9 @@ class Exercises extends Component {
         super(props);
 
         this.state = { 
-            exercises: [],
+            exercises: [],              // API results
+            exerciseResults: <div></div>,  // JSX list
             visible: false,
-            exerciseList: <div></div>,
             foundStatement: <p id="Found"></p>,
         };
     }
@@ -36,14 +36,18 @@ class Exercises extends Component {
 
     updateVisibility = () => {
         if (this.state.visible === true) {
-            this.setState({ exerciseList: <ExerciseList exercises={this.state.exercises} />,
+            this.setState({ exerciseResults: <ExerciseList 
+                                                exercises={this.state.exercises} 
+                                                addOption={false} 
+                                          />,
                             foundStatement: <p id="Found">Found: {this.state.exercises.length} exercises</p>
             });
         }
     };
 
     render() {
-        const { foundStatement, exerciseList } = this.state;
+        const { foundStatement, exerciseResults } = this.state;
+
         return (
             <div className='Exercises'>
                 <Grid className='Grid' textAlign='center' divided='vertically'>
@@ -55,7 +59,7 @@ class Exercises extends Component {
                     </Grid.Row>
                     <Grid.Row className='Row'>
                         <Grid.Column className='Column'>
-                            {exerciseList}
+                            {exerciseResults}
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
