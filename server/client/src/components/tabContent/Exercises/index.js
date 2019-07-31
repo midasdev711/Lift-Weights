@@ -29,7 +29,7 @@ class Exercises extends Component {
         await this.updatePadding();
     };
 
-    // pass total exercise length up for dynamically changing bottom margin of Tab
+    // pass total exercise length up for dynamically changing bottom padding
     updatePadding = () => {
         this.props.updateBottomPadding(this.state.exercises.length);
     }

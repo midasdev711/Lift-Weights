@@ -98,12 +98,8 @@ app.get("/register/add", async (req, res) => {
         }
     })
 
-    console.log('About ot Enter IF Statement: new_id = ' + new_id)
     if (new_id === '') {
         new_id = retrieveUser(username, password);
-
-        console.log('new_id: ')
-        console.log(new_id)
 
         return res.status(202).json({
             data: {
