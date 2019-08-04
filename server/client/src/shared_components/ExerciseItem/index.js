@@ -4,48 +4,82 @@ import './index.css';
 
 
 class ExerciseItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            addOption: this.props.addOption
-        }
-    }
 
     handleClick = async e => {
         e.preventDefault();
-        await this.props.addExercise(this.props.exercise);
+        const { addOption, removeOption } = this.props;
+
+        if (addOption === true && removeOption === false) {
+            await this.props.addExercise(this.props.exercise);
+        } else if (removeOption === true && addOption === false) {
+            await this.props.removeExercise(this.props.exercise.data.id);
+        }
     }
 
-    render() {
-        const { image, name, category } = this.props.exercise.data;
+    addImage = () => {
+        const { image } = this.props.exercise.data;
 
-        if (this.state.addOption === false) {
-            return (
-                <List.Item>
-                    <Image className="ExerciseImage" src={image} verticalAlign="middle" floated='right' />
-                    <List.Content floated='left'>
-                        <List.Header>{name}</List.Header>
-                        <p>{category}</p>
-                    </List.Content>
-                </List.Item>
-            );
-
+        if (this.props.addOption === true || this.props.removeOption === true) {
+            return <Image className="ExerciseImage" src={image} verticalAlign="middle" floated='left' />;
         } else {
+            return <Image className="ExerciseImage" src={image} verticalAlign="middle" floated='right' />;
+        }
+    }
+
+    addOrRemoveIcons = () => {
+
+        const { addOption, removeOption } = this.props;
+
+        if (addOption === true && removeOption === false) {
             return (
-                <List.Item>
-                    <Image className="ExerciseImage" src={image} verticalAlign="middle" floated='left' />
-                    <List.Content floated='left'>
-                        <List.Header>{name}</List.Header>
-                        <p>{category}</p>
-                    </List.Content>
-                    <List.Content floated='right'>
-                        <Button inverted color='green' size='tiny' onClick={this.handleClick}>
-                            <Icon name='plus'/> Add Exercise
-                        </Button>
-                    </List.Content>
-                </List.Item>
+                <List.Content floated='right'>
+                    <Button inverted color='green' size='tiny' onClick={this.handleClick} >
+                        <Icon name='plus'/> Add Exercise
+                    </Button>
+                </List.Content>
+            );
+        } 
+        
+        if (removeOption === true && addOption === false) {
+            return (
+                <List.Content floated='right'>
+                    <Button inverted color='red' size='tiny' onClick={this.handleClick} >
+                        <Icon name='minus'/> Remove Exercise
+                    </Button>
+                </List.Content>
+            );
+        } 
+        
+        if (removeOption === true && addOption === true) {
+            return (
+                <List.Content floated='right'>
+                    <Button inverted color='green' size='tiny' onClick={this.handleClick} >
+                        <Icon name='plus'/> Add 
+                    </Button>
+                    <Button inverted color='red' size='tiny' onClick={this.handleClick} >
+                        <Icon name='minus'/> Remove 
+                    </Button>
+                </List.Content>
             );
         }
+
+        return <div />;
+    }
+ 
+
+    render() {
+        const { name, category } = this.props.exercise.data;
+
+        return (
+            <List.Item>
+                {this.addImage()}
+                <List.Content floated='left'>
+                    <List.Header>{name}</List.Header>
+                    <p>{category}</p>
+                </List.Content>
+                {this.addOrRemoveIcons()}
+            </List.Item>
+        );
     }
 }
 

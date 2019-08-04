@@ -5,19 +5,17 @@ import ExerciseItem from '../ExerciseItem';
 import './index.css';
 
 class ExerciseList extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            addOption: props.addOption,
-        }
-    }
 
     addExercise = (exercise) => {
         this.props.addExercise(exercise);
     }
 
+    removeExercise = (id) => {
+        this.props.removeExercise(id);
+    }
+
     render() {
+
         return (
             <div className='ExerciseList'>
                 <Image.Group size='mini'>
@@ -29,8 +27,10 @@ class ExerciseList extends Component {
                                         className='ExerciseItem' 
                                         key={exercise.data.id} 
                                         exercise={exercise} 
-                                        addOption={this.state.addOption}
+                                        addOption={this.props.addOption}
+                                        removeOption={this.props.removeOption}
                                         addExercise={this.addExercise}
+                                        removeExercise={this.removeExercise}
                                     />
                                 );
                             })}

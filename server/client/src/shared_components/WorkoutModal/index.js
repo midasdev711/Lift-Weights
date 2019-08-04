@@ -37,6 +37,7 @@ class WorkoutModal extends Component {
             this.setState({ exerciseResults: <ExerciseList 
                                                 exercises={this.state.exercises} 
                                                 addOption={true} 
+                                                removeOption={false} 
                                                 addExercise={this.addExercise} 
                                           />,
                             foundStatement: <p id='Found'>Found: {this.state.exercises.length} exercises</p>
@@ -49,8 +50,21 @@ class WorkoutModal extends Component {
         await this.setState({ workoutList: <ExerciseList 
                                                 exercises={this.state.workoutExercises} 
                                                 addOption={false} 
+                                                removeOption={true} 
                                                 addExercise={this.addExercise} 
-                                                workout={true}
+                                                removeExercise={this.removeExercise} 
+                                           />
+        });
+    }
+
+    removeExercise = async id => {
+        await this.setState({ workoutExercises: this.state.workoutExercises.filter(exercise => exercise.data.id !== id) });
+        await this.setState({ workoutList: <ExerciseList 
+                                                exercises={this.state.workoutExercises} 
+                                                addOption={false} 
+                                                removeOption={true} 
+                                                addExercise={this.addExercise} 
+                                                removeExercise={this.removeExercise} 
                                            />
         });
     }
