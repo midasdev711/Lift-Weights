@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Modal, Button, Icon } from 'semantic-ui-react';
+import { Modal, Button, Icon, Form, Image, List, Divider, Header } from 'semantic-ui-react';
 
 import wger from '../../api/wger';
 import Search from '../Search';
-import Workout from '../Workout';
 import ExerciseList from '../ExerciseList';
 import './index.css';
 
@@ -13,10 +12,12 @@ class WorkoutModal extends Component {
 
         this.state = { 
             workoutList: <div></div>,   // JSX list of workouts
-            exercises: [],
+            workoutExercises: [],
             visible: false,
+            exercises: [],
             exerciseResults: <div></div>,
-            foundStatement: <p id="Found"></p>,
+            foundStatement: <p id='Found'></p>,
+            modalTopHalfHeight: '0px'
         };
     }
 
@@ -38,34 +39,64 @@ class WorkoutModal extends Component {
                                                 addOption={true} 
                                                 addExercise={this.addExercise} 
                                           />,
-                            foundStatement: <p id="Found">Found: {this.state.exercises.length} exercises</p>
+                            foundStatement: <p id='Found'>Found: {this.state.exercises.length} exercises</p>
             });
         }
     };
 
-    addExercise = exercise => {
-        console.log('append Exercise ' + exercise.name + ' in WorkoutModal')
-        console.log('pass Exercise to Workout')
+    addExercise = async exercise => {
+        await this.state.workoutExercises.push(exercise);
+        await this.setState({ workoutList: <ExerciseList 
+                                                exercises={this.state.workoutExercises} 
+                                                addOption={false} 
+                                                addExercise={this.addExercise} 
+                                                workout={true}
+                                           />
+        });
     }
 
     render() {
-        const { exerciseResults, exercises } = this.state;
+        const { exerciseResults, workoutList } = this.state;
 
         return (
             <div className='WorkoutModal'>
-                <Modal size='tiny' trigger={ <Button><Icon name='plus' /> Create New Workout</Button> } closeIcon >
+                <Modal size='tiny' trigger={ <Button><Icon name='plus' /> Create New Workout</Button> } closeIcon>
                     <Modal.Header>
                         Create New Workout
                     </Modal.Header>
-                    <Modal.Content image>
+                    <Modal.Content style={{height:`${200}px`}}>
                         <Modal.Description>
-                            <Workout exercises={exercises} />
+                            <Image.Group size='mini'>
+                                <Form onSubmit={this.handleSave} size='large'>
+                                    <Form.Input 
+                                        label='Workout Name'
+                                        placeholder='Workout Name' 
+                                        value={this.props.workoutName}
+                                        onChange={e => this.setState({ workoutName: e.target.value })}
+                                    />
+                                    <List celled animated verticalAlign='middle'>
+                                        <List.Header>Exercises</List.Header>
+                                        {workoutList}
+                                        <List.Item>
+                                            <Form.Button color='blue' floated='right'>
+                                                <Icon name='checkmark' />  Save
+                                            </Form.Button>
+                                        </List.Item>
+                                    </List>
+                                </Form>
+                            </Image.Group>
                         </Modal.Description>
                     </Modal.Content>
-                    <Modal.Actions>
+                    <Modal.Content>
+                        <Divider horizontal>
+                            <Header as='h4'>
+                                <Icon name='search plus' />
+                                Search for Exercises
+                            </Header>
+                        </Divider>
                         <Search onSearch={this.onSearch} />
                         {exerciseResults}
-                    </Modal.Actions>
+                    </Modal.Content>
                 </Modal>
             </div>
         );

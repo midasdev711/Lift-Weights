@@ -13,12 +13,11 @@ class ExerciseItem extends Component {
 
     handleClick = async e => {
         e.preventDefault();
-        await console.log('trying to add ' + this.props.exercise.name + ' from ExerciseItem')
         await this.props.addExercise(this.props.exercise);
     }
 
     render() {
-        const { image, name, category } = this.props.exercise;
+        const { image, name, category } = this.props.exercise.data;
 
         if (this.state.addOption === false) {
             return (

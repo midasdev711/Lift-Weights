@@ -14,7 +14,6 @@ class ExerciseList extends Component {
     }
 
     addExercise = (exercise) => {
-        console.log('received exercise ' + exercise + ' in ExerciseList')
         this.props.addExercise(exercise);
     }
 
@@ -29,7 +28,7 @@ class ExerciseList extends Component {
                                     <ExerciseItem 
                                         className='ExerciseItem' 
                                         key={exercise.data.id} 
-                                        exercise={exercise.data} 
+                                        exercise={exercise} 
                                         addOption={this.state.addOption}
                                         addExercise={this.addExercise}
                                     />

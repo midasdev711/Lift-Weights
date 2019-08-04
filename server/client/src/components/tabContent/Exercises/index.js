@@ -23,6 +23,7 @@ class Exercises extends Component {
         const response = await wger.get('/exercise/search', {
             params: { term: search }, 
         });
+
         await this.setState({ exercises: response.data.suggestions, 
                               visible: true });
         await this.updateVisibility();
@@ -39,8 +40,8 @@ class Exercises extends Component {
             this.setState({ exerciseResults: <ExerciseList 
                                                 exercises={this.state.exercises} 
                                                 addOption={false} 
-                                          />,
-                            foundStatement: <p id="Found">Found: {this.state.exercises.length} exercises</p>
+                                             />,
+                             foundStatement: <p id="Found">Found: {this.state.exercises.length} exercises</p>
             });
         }
     };
