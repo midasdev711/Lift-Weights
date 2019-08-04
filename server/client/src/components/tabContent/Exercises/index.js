@@ -40,6 +40,7 @@ class Exercises extends Component {
             this.setState({ exerciseResults: <ExerciseList 
                                                 exercises={this.state.exercises} 
                                                 addOption={false} 
+                                                removeOption={false} 
                                              />,
                              foundStatement: <p id="Found">Found: {this.state.exercises.length} exercises</p>
             });
