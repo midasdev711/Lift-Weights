@@ -13,6 +13,7 @@ class Tabs extends PureComponent {
         super(props);
         this.state = {
             paddingBottom: '0px',
+            itemPadding: 64,
             panes: [
                 {
                     menuItem: {
@@ -64,7 +65,7 @@ class Tabs extends PureComponent {
 
     // updates the value of paddingBottom 
     updateBottomPadding = async length => {
-        await this.setState({paddingBottom: (length * 52) + 10})
+        await this.setState({paddingBottom: (length * this.state.itemPadding) + 10})
     }
 
     render() {
