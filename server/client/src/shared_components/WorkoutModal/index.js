@@ -11,11 +11,12 @@ class WorkoutModal extends Component {
         super(props);
 
         this.state = { 
-            workoutList: <div></div>,   // JSX list of workouts
-            workoutExercises: [],
-            visible: false,
+            workoutName: '',
+            exercisesJSX: <div></div>,
             exercises: [],
-            exerciseResults: <div></div>,
+            visible: false,
+            exerciseResultsJSX: <div></div>,
+            exerciseSearchResults: [],
             foundStatement: <p id='Found'></p>,
             modalTopHalfHeight: '0px'
         };
@@ -26,7 +27,7 @@ class WorkoutModal extends Component {
         const response = await wger.get('/exercise/search', {
             params: { term: search }, 
         });
-        await this.setState({ exercises: response.data.suggestions, 
+        await this.setState({ exerciseSearchResults: response.data.suggestions, 
                               visible: true });
         await this.updateVisibility();
     };
@@ -34,21 +35,21 @@ class WorkoutModal extends Component {
     // show results from search
     updateVisibility = () => {
         if (this.state.visible === true) {
-            this.setState({ exerciseResults: <ExerciseList 
-                                                exercises={this.state.exercises} 
+            this.setState({ exerciseResultsJSX: <ExerciseList 
+                                                exercises={this.state.exerciseSearchResults} 
                                                 addOption={true} 
                                                 removeOption={false} 
                                                 addExercise={this.addExercise} 
                                           />,
-                            foundStatement: <p id='Found'>Found: {this.state.exercises.length} exercises</p>
+                            foundStatement: <p id='Found'>Found: {this.state.exerciseSearchResults.length} exercises</p>
             });
         }
     };
 
     addExercise = async exercise => {
-        await this.state.workoutExercises.push(exercise);
-        await this.setState({ workoutList: <ExerciseList 
-                                                exercises={this.state.workoutExercises} 
+        await this.state.exercises.push(exercise);
+        await this.setState({ exercisesJSX: <ExerciseList 
+                                                exercises={this.state.exercises} 
                                                 addOption={false} 
                                                 removeOption={true} 
                                                 addExercise={this.addExercise} 
@@ -58,9 +59,9 @@ class WorkoutModal extends Component {
     }
 
     removeExercise = async id => {
-        await this.setState({ workoutExercises: this.state.workoutExercises.filter(exercise => exercise.data.id !== id) });
-        await this.setState({ workoutList: <ExerciseList 
-                                                exercises={this.state.workoutExercises} 
+        await this.setState({ exercises: this.state.exercises.filter(exercise => exercise.data.id !== id) });
+        await this.setState({ exercisesJSX: <ExerciseList 
+                                                exercises={this.state.exercises} 
                                                 addOption={false} 
                                                 removeOption={true} 
                                                 addExercise={this.addExercise} 
@@ -69,8 +70,16 @@ class WorkoutModal extends Component {
         });
     }
 
+    handleSave = e => {
+        e.preventDefault();
+        console.log('Exercises in WorkoutModal: ')
+        console.log(this.state.exercises)
+        //fetch(`http://localhost:5000/workout/new?userId=${this.props.userId}&workoutName=${this.state.workoutName}`);
+        fetch(`http://localhost:5000/workout/new?userId=${this.props.userId}&workoutName=${this.state.workoutName}&exercises=${this.state.exercises}`);
+    }
+
     render() {
-        const { exerciseResults, workoutList } = this.state;
+        const { exerciseResultsJSX, exercisesJSX } = this.state;
 
         return (
             <div className='WorkoutModal'>
@@ -85,12 +94,13 @@ class WorkoutModal extends Component {
                                     <Form.Input 
                                         label='Workout Name'
                                         placeholder='Workout Name' 
-                                        value={this.props.workoutName}
+                                        id="workoutName"
+                                        value={this.state.workoutName}
                                         onChange={e => this.setState({ workoutName: e.target.value })}
                                     />
                                     <List celled animated verticalAlign='middle'>
                                         <List.Header>Exercises</List.Header>
-                                        {workoutList}
+                                        {exercisesJSX}
                                         <List.Item>
                                             <Form.Button color='blue' floated='right'>
                                                 <Icon name='checkmark' />  Save
@@ -109,7 +119,7 @@ class WorkoutModal extends Component {
                             </Header>
                         </Divider>
                         <Search onSearch={this.onSearch} />
-                        {exerciseResults}
+                        {exerciseResultsJSX}
                     </Modal.Content>
                 </Modal>
             </div>

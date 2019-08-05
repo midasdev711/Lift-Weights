@@ -9,6 +9,7 @@ class Workouts extends Component {
         super(props);
 
         this.state = { 
+            userId: this.props.userId,
             workouts: [],
             workoutList: <div></div>,
         };
@@ -17,7 +18,7 @@ class Workouts extends Component {
     render() {
         return (
             <div className='Workouts'>
-                <WorkoutModal />
+                <WorkoutModal userId={this.state.userId} />
             </div>
         );
     }

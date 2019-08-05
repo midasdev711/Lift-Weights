@@ -34,6 +34,38 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// add a workout
+app.get("/workout/new", (req, res) => {
+
+    const { userId, workoutName, exercises } = req.query;
+    const exercisesStr = JSON.stringify(exercises)
+    console.log('exercises: ')
+    console.log(exercisesStr)
+
+    return res.json({
+        data: {
+            userId: userId,
+            workoutName: workoutName,
+            exercises: exercisesStr
+        }
+
+    });
+
+    /*
+    exercises.forEach(function(exercise) {
+        console.log('e: ')
+        console.log(exercise)
+    })
+    */ 
+    // const q_insert_workout = `INSERT INTO workouts (userId, workoutName) VALUES('${userId}', '${workout}')`;
+    // TODO: query for workout to make sure it was successfully added
+    // TODO: grab the workoutId
+    // TODO: add exercises to the unique workout
+    // TODO: for loop through all exercises using exercises.forEach(function(exercise) { // grab exerciseId, exerciseName })
+    // const q_insert_exercise = `INSERT INTO workouts (workoutId, exerciseName, exerciseId) VALUES('${workoutId}', '${exerciseName}', '${exerciseId}')`;
+
+});
+
 // request handler for '/' page that redirects to '/login' page
 app.get("/", (_, res) => {
     res.status(302);
@@ -117,6 +149,7 @@ app.get("/register/add", async (req, res) => {
     }
 });
 
+// confirm successful registration by retrieving added user for account access
 retrieveUser = async (username, password) => {
     const q_select = await `SELECT username, id FROM members WHERE username='${username}' AND password='${password}'`;
 

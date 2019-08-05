@@ -7,7 +7,7 @@ import './index.css';
 class Register extends Component {
     // code source for implementing connection between frontend and backend servers
     // https://www.youtube.com/watch?v=HPIjjFGYSJ4
-    // controlled component source for later:
+    // controlled component source:
     // https://reactjs.org/docs/forms.html#controlled-components
     constructor(props) {
         super(props);
@@ -37,10 +37,6 @@ class Register extends Component {
     // runs a second check to ensure the retuned username matches
     // returns boolean true if matching, false otherwise
     updateValidated = async (user, id) => {
-
-        console.log('FRONT-END id and user:')
-        console.log(id + ', ' + user)
-
 
         if (this.state.member.username === user) {
             await this.setState({ member: {username: user, id: id }, validated: true })

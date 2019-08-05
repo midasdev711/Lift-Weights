@@ -12,6 +12,7 @@ class Tabs extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
+            userId: this.props.userId,
             paddingBottom: '0px',
             itemPadding: 64,
             panes: [
@@ -34,7 +35,7 @@ class Tabs extends PureComponent {
                     },
                     render: () => 
                         <Tab.Pane className="TabPane">
-                            <Workouts />
+                            <Workouts userId={this.state.userId} />
                         </Tab.Pane>,
                 },
                 {
