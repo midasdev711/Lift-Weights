@@ -16,7 +16,9 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            logout: false
+            logout: false,
+            userId: this.props.location.state.id,
+            userName: this.props.location.state.user
         }
     }
 
@@ -25,6 +27,8 @@ class Profile extends Component {
     }
 
     render() {
+        const { userId, userName } = this.state;
+
         if (this.state.logout === true) {
             return (
                 <Logout onLogout={this.onLogout} />
@@ -33,13 +37,18 @@ class Profile extends Component {
             return (
                 <BrowserRouter>                
                     <div className="Profile" >
-                        <Nav user={this.props.location.state.user} id={this.props.location.state.id} onLogout={this.onLogout} />
+                        <Nav user={userName} id={userId} onLogout={this.onLogout} />
                         <Container>
-                            <Route exact path="/profile" component={Tabs} />
-                            <Route exact path="/profile/workouts" component={Workouts} />
-                            <Route exact path="/profile/exercises" component={Exercises} />
-                            <Route exact path="/profile/measurements" component={Measurements} />
-                            <Route exact path="/profile/settings" component={Settings} />
+                            <Route exact path="/profile" 
+                                         render={(props) => <Tabs {...props} userId={userId} />}/>
+                            <Route exact path="/profile/workouts" 
+                                         render={(props) => <Workouts {...props} userId={userId} />}/>
+                            <Route exact path="/profile/exercises"
+                                         render={(props) => <Exercises {...props} userId={userId} />}/>
+                            <Route exact path="/profile/measurements"
+                                         render={(props) => <Measurements {...props} userId={userId} />}/>
+                            <Route exact path="/profile/settings" 
+                                         render={(props) => <Settings {...props} userId={userId} />}/>
                             <Route exact path="/logout" component={Logout} />
                         </Container>
                     </div>
