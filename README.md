@@ -3,7 +3,7 @@ The main goal of this project was to create an open source full-stack project an
 
 The client-side was built with react, react-semanticUI and was bootstrapped with facebook's [Create React App](https://github.com/facebook/create-react-app) -- more information is available in [react\_bootstrap.md](/server/client/react_bootstrap.md). The backend is composed with node using an express framework and MySQL database. The various tutorials and resources used in this project are available in the [resources](#resources) section below.
 
-This application tracks and supports an individual's weight-lifting goals, allowing for customized workout routines of various exercises, body and exercise measurements, basic account management, and a long-term goal of scalability, providing statistics, and encouraging results.
+This app tracks and supports an individual's weight-lifting goals, allowing for customized workout routines of various exercises, body and exercise measurements, basic account management, and a long-term goal of scalability, providing statistics, and encouraging results.
 
 
 
@@ -59,8 +59,9 @@ This application tracks and supports an individual's weight-lifting goals, allow
 - [x] **July 17th (Thursday)**: Display list of exercises on exercise page based on exercise search. 
 - [x] **July 23rd (Tuesday)**: Dynamically update tab padding after results are returned
 - [x] **July 29th (Monday)**: Pass user-specific details through successful login to Profile page to allow for custom workouts to be created.
-- [ ] **August 2nd (Friday)**: Create a workout specific to the user.
-- [ ] **August 6th (Tuesday)**: MVP (minimum viable product) that compiles and is ready for demo-ing. Update README.md as needed.
+- [x] **August 4th (Monday)**: Create a workout specific to the user (front-end)
+- [ ] **August 5th (Tuesday)**: Design overall database. Create DB tables per design.
+- [ ] **August 8th (Thursday)**: Finish creating a workout (back-end). Display workout(s) on Workout Page.  Update README.md as needed.  MVP (minimum viable product) that compiles and is ready for demo-ing. 
 - [ ] **August 9th (Friday)**: Focus on drafting more pages for basic functionality and demo-ing. 
 - [ ] **August 11th (Sunday)**: Given extra time, add statistical models to represent "fake" data.
 - [ ] **August 12th (Monday)**: Prep presentation details and any documentation (final updates for README.md)
