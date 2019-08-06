@@ -40,7 +40,7 @@ class WorkoutModal extends Component {
                                                 addOption={true} 
                                                 removeOption={false} 
                                                 addExercise={this.addExercise} 
-                                          />,
+                                                />,
                             foundStatement: <p id='Found'>Found: {this.state.exerciseSearchResults.length} exercises</p>
             });
         }
@@ -54,7 +54,7 @@ class WorkoutModal extends Component {
                                                 removeOption={true} 
                                                 addExercise={this.addExercise} 
                                                 removeExercise={this.removeExercise} 
-                                           />
+                                            />
         });
     }
 
@@ -66,16 +66,14 @@ class WorkoutModal extends Component {
                                                 removeOption={true} 
                                                 addExercise={this.addExercise} 
                                                 removeExercise={this.removeExercise} 
-                                           />
+                                            />
         });
     }
 
     handleSave = e => {
         e.preventDefault();
-        console.log('Exercises in WorkoutModal: ')
-        console.log(this.state.exercises)
-        //fetch(`http://localhost:5000/workout/new?userId=${this.props.userId}&workoutName=${this.state.workoutName}`);
-        fetch(`http://localhost:5000/workout/new?userId=${this.props.userId}&workoutName=${this.state.workoutName}&exercises=${this.state.exercises}`);
+        let exercises = JSON.stringify(this.state.exercises);
+        fetch(`http://localhost:5000/workout/new?userId=${this.props.userId}&workoutName=${this.state.workoutName}&exercises=${exercises}`);
     }
 
     render() {
