@@ -38,9 +38,7 @@ app.use(session({
 app.get("/workout/new", (req, res) => {
 
     const { userId, workoutName, exercises } = req.query;
-    const exercisesStr = JSON.stringify(exercises)
-    console.log('exercises: ')
-    console.log(exercisesStr)
+    const exercisesStr = JSON.parse(exercises)
 
     return res.json({
         data: {
@@ -51,12 +49,6 @@ app.get("/workout/new", (req, res) => {
 
     });
 
-    /*
-    exercises.forEach(function(exercise) {
-        console.log('e: ')
-        console.log(exercise)
-    })
-    */ 
     // const q_insert_workout = `INSERT INTO workouts (userId, workoutName) VALUES('${userId}', '${workout}')`;
     // TODO: query for workout to make sure it was successfully added
     // TODO: grab the workoutId
