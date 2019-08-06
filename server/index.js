@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');  // express framework
 const mysql = require('mysql');      // mysql database
 const cors = require('cors');        // cross-origin requirements middleware
@@ -35,28 +37,55 @@ app.use(session({
 }));
 
 // add a workout
-app.get("/workout/new", (req, res) => {
+app.get("/workout/new", async (req, res) => {
 
-    const { userId, workoutName, exercises } = req.query;
-    const exercisesStr = JSON.parse(exercises)
+    const { userId, workoutName, exercises } = await req.query;
+    const exercisesStr = await JSON.parse(exercises)
 
-    return res.json({
-        data: {
-            userId: userId,
-            workoutName: workoutName,
-            exercises: exercisesStr
+    const q_insert_workout = await `INSERT INTO workouts (userId, name, date) VALUES(${userId}, '${workoutName}', NOW())`;
+
+    await db.query(q_insert_workout, async (err, insert_res)  => {
+        if(err) {
+            return res.status(404).send('Failed to add workout');
+        } else {
+            const workoutId = await insert_res.insertId;
+
+            exercisesStr.forEach(async exercise => {
+                if (await insertExercises(workoutId, exercise) === -1) {
+                    return res.status(404).send('Failed to add exercise');
+                } else {
+                    return res.status(202);
+                }
+            })
         }
-
     });
-
-    // const q_insert_workout = `INSERT INTO workouts (userId, workoutName) VALUES('${userId}', '${workout}')`;
-    // TODO: query for workout to make sure it was successfully added
-    // TODO: grab the workoutId
-    // TODO: add exercises to the unique workout
-    // TODO: for loop through all exercises using exercises.forEach(function(exercise) { // grab exerciseId, exerciseName })
-    // const q_insert_exercise = `INSERT INTO workouts (workoutId, exerciseName, exerciseId) VALUES('${workoutId}', '${exerciseName}', '${exerciseId}')`;
-
 });
+
+// insert an exercise
+async function insertExercises(workoutId, exercise) {
+    const q_insert_exercise = await `INSERT INTO exercises (workoutId, name) VALUES(${workoutId}, '${exercise.data.name}')`;
+
+    await db.query(q_insert_exercise, async (err, res)  => {
+        if(err) {
+            return -1;
+        } else {
+            return await insertMuscles(res.insertId, exercise)
+        }
+    });
+}
+
+// insert a muscle
+async function insertMuscles(exerciseId, exercise) {
+    const q_insert_muscle = await `INSERT INTO muscles (exerciseId, bodyLocation) VALUES(${exerciseId}, '${exercise.data.category}')`;
+
+    await db.query(q_insert_muscle, async (err, res)  => {
+        if(err) {
+            return -1;
+        } else {
+            return await res.insertId;
+        }
+    });
+}
 
 // request handler for '/' page that redirects to '/login' page
 app.get("/", (_, res) => {
@@ -108,7 +137,7 @@ app.get("/register", (_, res) => {
 
 // add a user
 app.get("/register/add", async (req, res) => {
-    const { username, email, password } = req.query;
+    const { username, email, password } = await req.query;
     let new_id = '';
 
     const q_insert_user = `INSERT INTO members (username, email, password) \
@@ -142,7 +171,7 @@ app.get("/register/add", async (req, res) => {
 });
 
 // confirm successful registration by retrieving added user for account access
-retrieveUser = async (username, password) => {
+async function retrieveUser(username, password) {
     const q_select = await `SELECT username, id FROM members WHERE username='${username}' AND password='${password}'`;
 
     await db.query(q_select, (err, select_res)  => {
