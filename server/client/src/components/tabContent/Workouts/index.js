@@ -18,7 +18,9 @@ class Workouts extends Component {
     render() {
         return (
             <div className='Workouts'>
-                <WorkoutModal userId={this.state.userId} />
+                <WorkoutModal userId={this.state.userId} modalType="create" />
+                <WorkoutModal userId={this.state.userId} modalType="edit" />
+                <WorkoutModal userId={this.state.userId} modalType="workout" />
             </div>
         );
     }

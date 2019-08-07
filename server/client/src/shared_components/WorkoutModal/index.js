@@ -76,49 +76,86 @@ class WorkoutModal extends Component {
         fetch(`http://localhost:5000/workout/new?userId=${this.props.userId}&workoutName=${this.state.workoutName}&exercises=${exercises}`);
     }
 
+    modalName = () => {
+        if (this.props.modalType === "create") {
+            return "Create New Workout";
+        } else if (this.props.modalType === "edit") {
+            return "Edit Workout";
+        } else {
+            return "Workout";
+        }
+    }
+
+    modalDescription = () => {
+        const { exercisesJSX } = this.state;
+
+        if (this.props.modalType === "create") {
+            return (
+                <Image.Group size='mini'>
+                    <Form onSubmit={this.handleSave} size='large'>
+                        <Form.Input 
+                            label='Workout Name'
+                            placeholder='Workout Name' 
+                            id="workoutName"
+                            value={this.state.workoutName}
+                            onChange={e => this.setState({ workoutName: e.target.value })}
+                        />
+                        <List celled animated verticalAlign='middle'>
+                            <List.Header>Exercises</List.Header>
+                            {exercisesJSX}
+                            <List.Item>
+                                <Form.Button color='blue' floated='right'>
+                                    <Icon name='checkmark' />  Save
+                                </Form.Button>
+                            </List.Item>
+                        </List>
+                    </Form>
+                </Image.Group>
+            );
+        } else if (this.props.modalType === "edit") {
+            return <div>Editing Tools Needed</div>
+        } else {
+            return <div>Workout Description Needed</div>
+        }
+    }
+
+    modalBottom = () => {
+        const { exerciseResultsJSX } = this.state;
+
+        if (this.props.modalType === "create") {
+            return (
+                <Modal.Content>
+                    <Divider horizontal>
+                        <Header as='h4'>
+                            <Icon name='search plus' />
+                            Search for Exercises
+                        </Header>
+                    </Divider>
+                    <Search onSearch={this.onSearch} />
+                    {exerciseResultsJSX}
+                </Modal.Content>
+            );
+        } else if (this.props.modalType === "edit") {
+            return <div>Edit BottomModal TODO</div>
+        } else {
+            return <div>Workout BottomModal TODO</div>
+        }
+    }
+
     render() {
-        const { exerciseResultsJSX, exercisesJSX } = this.state;
 
         return (
             <div className='WorkoutModal'>
-                <Modal size='tiny' trigger={ <Button><Icon name='plus' /> Create New Workout</Button> } closeIcon>
+                <Modal size='tiny' trigger={ <Button><Icon name='plus' /> {this.modalName()}</Button> } closeIcon>
                     <Modal.Header>
-                        Create New Workout
+                        {this.modalName()}
                     </Modal.Header>
                     <Modal.Content style={{height:`${200}px`}}>
                         <Modal.Description>
-                            <Image.Group size='mini'>
-                                <Form onSubmit={this.handleSave} size='large'>
-                                    <Form.Input 
-                                        label='Workout Name'
-                                        placeholder='Workout Name' 
-                                        id="workoutName"
-                                        value={this.state.workoutName}
-                                        onChange={e => this.setState({ workoutName: e.target.value })}
-                                    />
-                                    <List celled animated verticalAlign='middle'>
-                                        <List.Header>Exercises</List.Header>
-                                        {exercisesJSX}
-                                        <List.Item>
-                                            <Form.Button color='blue' floated='right'>
-                                                <Icon name='checkmark' />  Save
-                                            </Form.Button>
-                                        </List.Item>
-                                    </List>
-                                </Form>
-                            </Image.Group>
+                            {this.modalDescription()}
                         </Modal.Description>
                     </Modal.Content>
-                    <Modal.Content>
-                        <Divider horizontal>
-                            <Header as='h4'>
-                                <Icon name='search plus' />
-                                Search for Exercises
-                            </Header>
-                        </Divider>
-                        <Search onSearch={this.onSearch} />
-                        {exerciseResultsJSX}
-                    </Modal.Content>
+                    {this.modalBottom()}
                 </Modal>
             </div>
         );
