@@ -63,7 +63,7 @@ app.get("/workout/new", async (req, res) => {
 
 // insert an exercise
 async function insertExercises(workoutId, exercise) {
-    const q_insert_exercise = await `INSERT INTO exercises (workoutId, name) VALUES(${workoutId}, '${exercise.data.name}')`;
+    const q_insert_exercise = await `INSERT INTO exercises (workoutId, wgerId, name) VALUES(${workoutId}, ${exercise.data.id}, '${exercise.data.name}')`;
 
     await db.query(q_insert_exercise, async (err, res)  => {
         if(err) {
