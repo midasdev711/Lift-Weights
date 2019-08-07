@@ -36,6 +36,42 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// retrieve exercises
+app.get("/exercises/retrieve", async (req, res) => {
+    const { id } = await req.query;
+    const q_select = await `SELECT name, id FROM exercises WHERE workoutId='${id}'`;
+
+    await db.query(q_select, async (err, select_res)  => {
+        if(err) {
+            return await res.status(500).error(err);
+        }
+
+        if (await select_res.length > 0) {
+            return await res.status(202).send(select_res);
+        } else {
+            return await res.status(400).error(err);
+        }
+    })
+})
+
+// retrieve workouts
+app.get("/workouts/retrieve", async (req, res) => {
+    const { id } = await req.query;
+    const q_select = await `SELECT name, id FROM workouts WHERE userId='${id}'`;
+
+    await db.query(q_select, async (err, select_res)  => {
+        if(err) {
+            return await res.status(500).error(err);
+        }
+
+        if (await select_res.length > 0) {
+            return await res.status(202).send(select_res);
+        } else {
+            return await res.status(400).error(err);
+        }
+    })
+})
+
 // add a workout
 app.get("/workout/new", async (req, res) => {
 

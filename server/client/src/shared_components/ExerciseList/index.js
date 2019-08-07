@@ -14,6 +14,15 @@ class ExerciseList extends Component {
         this.props.removeExercise(id);
     }
 
+    // return correct id based on exercise type
+    exerciseId = (exercise) => {
+        if (this.props.display === 'simple') {
+            return exercise[1];
+        } else {
+            return exercise.data.id;
+        }
+    }
+
     render() {
 
         return (
@@ -25,12 +34,13 @@ class ExerciseList extends Component {
                                 return (
                                     <ExerciseItem 
                                         className='ExerciseItem' 
-                                        key={exercise.data.id} 
+                                        key={this.exerciseId(exercise)} 
                                         exercise={exercise} 
                                         addOption={this.props.addOption}
                                         removeOption={this.props.removeOption}
                                         addExercise={this.addExercise}
                                         removeExercise={this.removeExercise}
+                                        display={this.props.display}
                                     />
                                 );
                             })}

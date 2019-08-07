@@ -46,6 +46,7 @@ class WorkoutModal extends Component {
         }
     };
 
+    // add an exercise to ExerciseList
     addExercise = async exercise => {
         await this.state.exercises.push(exercise);
         await this.setState({ exercisesJSX: <ExerciseList 
@@ -58,6 +59,7 @@ class WorkoutModal extends Component {
         });
     }
 
+    // remove an exercise from ExerciseList
     removeExercise = async id => {
         await this.setState({ exercises: this.state.exercises.filter(exercise => exercise.data.id !== id) });
         await this.setState({ exercisesJSX: <ExerciseList 
@@ -70,33 +72,38 @@ class WorkoutModal extends Component {
         });
     }
 
+    // when Save is selected, save the workout details
     handleSave = e => {
         e.preventDefault();
         let exercises = JSON.stringify(this.state.exercises);
         fetch(`http://localhost:5000/workout/new?userId=${this.props.userId}&workoutName=${this.state.workoutName}&exercises=${exercises}`);
     }
 
+    // modal name based on type
     modalName = () => {
-        if (this.props.modalType === "create") {
-            return "Create New Workout";
-        } else if (this.props.modalType === "edit") {
-            return "Edit Workout";
+        if (this.props.modalType === 'create') {
+            return 'Create New Workout';
+        } else if (this.props.modalType === 'edit') {
+            return 'Edit';
+        } else if (this.props.modalType === 'delete') {
+            return 'Delete';
         } else {
-            return "Workout";
+            return 'Select';
         }
     }
 
+    // Workout details in modal
     modalDescription = () => {
         const { exercisesJSX } = this.state;
 
-        if (this.props.modalType === "create") {
+        if (this.props.modalType === 'create') {
             return (
                 <Image.Group size='mini'>
                     <Form onSubmit={this.handleSave} size='large'>
                         <Form.Input 
                             label='Workout Name'
                             placeholder='Workout Name' 
-                            id="workoutName"
+                            id='workoutName'
                             value={this.state.workoutName}
                             onChange={e => this.setState({ workoutName: e.target.value })}
                         />
@@ -112,17 +119,20 @@ class WorkoutModal extends Component {
                     </Form>
                 </Image.Group>
             );
-        } else if (this.props.modalType === "edit") {
+        } else if (this.props.modalType === 'edit') {
             return <div>Editing Tools Needed</div>
+        } else if (this.props.modalType === 'delete') {
+            return <div>Deleting Tools Needed</div>
         } else {
             return <div>Workout Description Needed</div>
         }
     }
 
+    // bottom content in modal
     modalBottom = () => {
         const { exerciseResultsJSX } = this.state;
 
-        if (this.props.modalType === "create") {
+        if (this.props.modalType === 'create') {
             return (
                 <Modal.Content>
                     <Divider horizontal>
@@ -135,10 +145,57 @@ class WorkoutModal extends Component {
                     {exerciseResultsJSX}
                 </Modal.Content>
             );
-        } else if (this.props.modalType === "edit") {
+        } else if (this.props.modalType === 'edit') {
             return <div>Edit BottomModal TODO</div>
+        } else if (this.props.modalType === 'delete') {
+            return <div>Delete BottomModal TODO</div>
         } else {
             return <div>Workout BottomModal TODO</div>
+        }
+    }
+
+    // appearance of trigger button that opens modal
+    triggerButton = () => {
+        if (this.props.modalType === 'create') {
+            return (
+                <Button floated='left' color='green'>
+                    <Icon name='plus' /> 
+                    {this.modalName()}
+                </Button>
+            );
+        } else if (this.props.modalType === 'edit') {
+            return (
+                <Button color='grey' size='small' animated='fade' float='left'>
+                    <Button.Content hidden>
+                        {this.modalName()}
+                    </Button.Content>
+                    <Button.Content visible>
+                        <Icon name='edit outline'/> 
+                    </Button.Content>
+                </Button>
+            );
+        } else if (this.props.modalType === 'delete') {
+            return (
+                <Button color='red' size='small' animated='fade' float='left'>
+                    <Button.Content hidden>
+                        {this.modalName()}
+                    </Button.Content>
+                    <Button.Content visible>
+                        <Icon name='delete'/> 
+                    </Button.Content>
+                </Button>
+            );
+        } else {
+            return (
+                <Button color='blue' size='small' animated='fade' float='left'>
+                    <Button.Content hidden>
+                        {this.modalName()}
+                    </Button.Content>
+                    <Button.Content visible>
+                        <Icon name='right triangle'/> 
+                    </Button.Content>
+                </Button>
+            );
         }
     }
 
@@ -146,7 +203,7 @@ class WorkoutModal extends Component {
 
         return (
             <div className='WorkoutModal'>
-                <Modal size='tiny' trigger={ <Button><Icon name='plus' /> {this.modalName()}</Button> } closeIcon>
+                <Modal size='tiny' trigger={ this.triggerButton() } closeIcon>
                     <Modal.Header>
                         {this.modalName()}
                     </Modal.Header>
