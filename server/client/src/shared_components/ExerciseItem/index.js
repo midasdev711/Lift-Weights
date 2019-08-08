@@ -62,24 +62,34 @@ class ExerciseItem extends Component {
                 </List.Content>
             );
         }
-
         return <div />;
     }
  
 
     render() {
-        const { name, category } = this.props.exercise.data;
 
-        return (
-            <List.Item>
-                {this.addImage()}
-                <List.Content floated='left'>
-                    <List.Header>{name}</List.Header>
-                    <p>{category}</p>
-                </List.Content>
-                {this.addOrRemoveIcons()}
-            </List.Item>
-        );
+        if (this.props.display === 'simple') {
+            return (
+                <List.Item>
+                    <List.Content floated='left'>
+                        <List.Header>{this.props.exercise[0]}</List.Header>
+                    </List.Content>
+                </List.Item>
+            );
+        } else {
+            const { name, category } = this.props.exercise.data;
+
+            return (
+                <List.Item>
+                    {this.addImage()}
+                    <List.Content floated='left'>
+                        <List.Header>{name}</List.Header>
+                        <p>{category}</p>
+                    </List.Content>
+                    {this.addOrRemoveIcons()}
+                </List.Item>
+            );
+        }
     }
 }
 
