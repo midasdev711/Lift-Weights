@@ -49,7 +49,7 @@ app.get("/exercises/retrieve", async (req, res) => {
         if (await select_res.length > 0) {
             return await res.status(202).send(select_res);
         } else {
-            return await res.status(400).error(err);
+            return await res.status(204);
         }
     })
 })

@@ -19,8 +19,6 @@ class WorkoutModal extends Component {
             exerciseSearchResults: [],
             foundStatement: <p id='Found'></p>,
             modalTopHalfHeight: '0px',
-            closeOnEscape: false,
-            closeOnDimmer: false,
             open: false
         };
     }
@@ -79,23 +77,26 @@ class WorkoutModal extends Component {
     // when Save is selected, save the workout details
     handleSave = async (e) => {
         e.preventDefault();
-        this.close();
         let exercises = await JSON.stringify(this.state.exercises);
-        await fetch(`http://localhost:5000/workout/new?userId=${this.props.userId}&workoutName=${this.state.workoutName}&exercises=${exercises}`);
+        await fetch(`http://localhost:5000/workout/new?userId=${this.props.userId}&workoutName=${this.state.workoutName}&exercises=${exercises}`, {
+            method: 'GET',
+        }).then(this.close());
     }
 
+    // close the modal
     close = async () => {
-        await console.log('handling close')
         await this.setState({ open: false });
-        await console.log('open state = ')
-        await console.log(this.state.open)
+        await this.deleteWorkout();
     }
 
-    open = async () => {
-        await console.log('handling open')
-        await this.setState({ open: true });
-        await console.log('open state = ')
-        await console.log(this.state.open)
+    // deletes workout values so the modal is fresh for the next time it is opened
+    deleteWorkout = async () => {
+        await this.setState({ workoutName: '', 
+                              exercises: [], 
+                              exercisesJSX: <div />, 
+                              exerciseSearchResults: [],
+                              exerciseResultsJSX: <div /> 
+        });
     }
 
     // modal name based on type

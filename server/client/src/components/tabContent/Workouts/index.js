@@ -32,6 +32,8 @@ class Workouts extends Component {
         })
 
         const resJSON = await res.json();
+        console.log('resJSON')
+        console.log(resJSON)
 
          resJSON.forEach(async w => {
             await workouts.push([w.name, w.id])
