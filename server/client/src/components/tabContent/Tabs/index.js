@@ -11,10 +11,14 @@ import './index.css';
 class Tabs extends PureComponent {
     constructor(props) {
         super(props);
+
+        this.tabRef =  React.createRef();
+
         this.state = {
             userId: this.props.userId,
             paddingBottom: '0px',
-            itemPadding: 64,
+            exercisePadding: 64,
+            tabWidth: 0,
             panes: [
                 {
                     menuItem: {
@@ -35,7 +39,7 @@ class Tabs extends PureComponent {
                     },
                     render: () => 
                         <Tab.Pane className="TabPane">
-                            <Workouts userId={this.state.userId} />
+                            <Workouts userId={this.state.userId} fullWidth={this.getWidth} />
                         </Tab.Pane>,
                 },
                 {
@@ -46,7 +50,7 @@ class Tabs extends PureComponent {
                     },
                     render: () =>
                         <Tab.Pane className="TabPane" style={{paddingBottom:`${this.state.paddingBottom}px`}}>
-                            <Exercises updateBottomPadding={this.updateBottomPadding}/>
+                            <Exercises updateExercisePadding={this.updateExercisePadding}/>
                         </Tab.Pane>,
                 },
                 {
@@ -64,16 +68,30 @@ class Tabs extends PureComponent {
         }
     }
 
+    componentDidMount = () => {
+        console.log('this.tabRef.current')
+        console.log(this.tabRef.current)
+        /*
+        const rect = this.tabRef.current.getBoundingClientRef();
+        console.log('rect')
+        console.log(rect)
+        */
+    }
+
+    getWidth = () => {
+        this.setState({ tabwidth: this.tabRef })
+    }
+
     // updates the value of paddingBottom 
-    updateBottomPadding = async length => {
-        await this.setState({paddingBottom: (length * this.state.itemPadding) + 10})
+    updateExercisePadding = async length => {
+        await this.setState({paddingBottom: (length * this.state.exercisePadding) + 10})
     }
 
     render() {
         return (
             <div className="Tabs">
                 <Container className="Container">
-                    <Tab panes={this.state.panes} />
+                    <Tab ref={this.tabRef} panes={this.state.panes} />
                 </Container>
             </div>
         );

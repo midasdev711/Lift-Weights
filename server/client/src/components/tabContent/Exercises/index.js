@@ -27,13 +27,8 @@ class Exercises extends Component {
         await this.setState({ exercises: response.data.suggestions, 
                               visible: true });
         await this.updateVisibility();
-        await this.updatePadding();
+        await this.props.updateExercisePadding(this.state.exercises.length);
     };
-
-    // pass total exercise length up for dynamically changing bottom padding
-    updatePadding = () => {
-        this.props.updateBottomPadding(this.state.exercises.length);
-    }
 
     updateVisibility = () => {
         if (this.state.visible === true) {
