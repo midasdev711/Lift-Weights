@@ -23,7 +23,6 @@ class WorkoutModal extends Component {
         };
     }
 
-
     // search for exercise results
     onSearch = async search => {
         const response = await wger.get('/exercise/search', {
@@ -80,7 +79,8 @@ class WorkoutModal extends Component {
         let exercises = await JSON.stringify(this.state.exercises);
         await fetch(`http://localhost:5000/workout/new?userId=${this.props.userId}&workoutName=${this.state.workoutName}&exercises=${exercises}`, {
             method: 'GET',
-        }).then(this.close());
+        }).then(this.props.addWorkout()
+        ).then(this.close());
     }
 
     // close the modal
