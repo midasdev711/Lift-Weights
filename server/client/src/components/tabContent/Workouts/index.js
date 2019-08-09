@@ -48,6 +48,8 @@ class Workouts extends Component {
         if (await this.state.workouts.length > 0) {
             await this.setState({ workoutsJSX: <WorkoutCardList workouts={this.state.workouts} /> })
         }
+        await console.log('tabWidth = ')
+        await console.log(this.props.fullWidth)
     }
 
     render() {
