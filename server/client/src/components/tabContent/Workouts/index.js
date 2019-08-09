@@ -32,8 +32,6 @@ class Workouts extends Component {
         })
 
         const resJSON = await res.json();
-        console.log('resJSON')
-        console.log(resJSON)
 
          resJSON.forEach(async w => {
             await workouts.push([w.name, w.id])
@@ -41,7 +39,10 @@ class Workouts extends Component {
         await this.setState({ workouts: workouts });
         await this.renderWorkouts();
     }
-        
+
+    addWorkout = async () => {
+        await this.getWorkouts();
+    }
 
     renderWorkouts = async () => {
         if (await this.state.workouts.length > 0) {
@@ -55,7 +56,7 @@ class Workouts extends Component {
                 <Container fluid>
                     <Grid>
                         <Grid.Row>
-                            <WorkoutModal userId={this.state.userId} modalType="create" />
+                            <WorkoutModal userId={this.state.userId} modalType="create" addWorkout={this.addWorkout} />
                         </Grid.Row>
                         <Divider horizontal>
                             <Header as='h3'>
