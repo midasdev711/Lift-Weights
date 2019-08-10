@@ -18,7 +18,7 @@ class WorkoutModal extends Component {
             exerciseResultsJSX: <div></div>,
             exerciseSearchResults: [],
             foundStatement: <p id='Found'></p>,
-            modalTopHalfHeight: '0px',
+            modalTopHalfHeight: '400px',
             open: false
         };
     }
@@ -86,11 +86,11 @@ class WorkoutModal extends Component {
     // close the modal
     close = async () => {
         await this.setState({ open: false });
-        await this.deleteWorkout();
+        await this.resetWorkout();
     }
 
-    // deletes workout values so the modal is fresh for the next time it is opened
-    deleteWorkout = async () => {
+    // resets workout values so the modal is fresh for the next time it is opened
+    resetWorkout = async () => {
         await this.setState({ workoutName: '', 
                               exercises: [], 
                               exercisesJSX: <div />, 
@@ -128,14 +128,12 @@ class WorkoutModal extends Component {
                             onChange={e => this.setState({ workoutName: e.target.value })}
                         />
                         <List celled animated verticalAlign='middle'>
-                            <List.Header>Exercises</List.Header>
+                            <List.Header as='h3'>Exercises</List.Header>
                             {exercisesJSX}
-                            <List.Item>
-                                <Form.Button color='blue' floated='right'>
-                                    <Icon name='checkmark' />  Save
-                                </Form.Button>
-                            </List.Item>
                         </List>
+                        <Form.Button color='blue' floated='right' className='saveButton'>
+                            <Icon name='checkmark' />  Save
+                        </Form.Button>
                     </Form>
                 </Image.Group>
             );
@@ -233,7 +231,7 @@ class WorkoutModal extends Component {
                     <Modal.Header>
                         {this.modalName()}
                     </Modal.Header>
-                    <Modal.Content style={{height:`${200}px`}}>
+                    <Modal.Content className='modalDescription' style={{height:`${this.state.modalTopHalfHeight}px`}}>
                         <Modal.Description>
                             {this.modalDescription()}
                         </Modal.Description>
