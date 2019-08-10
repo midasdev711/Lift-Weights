@@ -3,11 +3,11 @@
 }
 
 .createExerciseList {
-    padding-bottom: 30px;
+    padding-bottom: 100px;
 }
 
-.saveButton {
-    padding: 30px;
+.formButtonGroup {
+    padding-top: 40px;
 }
 
 .bottomModalButtons {

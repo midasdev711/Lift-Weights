@@ -47,7 +47,7 @@ class WorkoutCard extends Component {
     render() {
 
         return (
-            <Card className='workoutCard' color='blue'>
+            <Card className='workoutCard' color='grey'>
                 <Card.Content className='cardHeader'>
                     <Header as='h3' color='blue'>
                         {this.props.name}

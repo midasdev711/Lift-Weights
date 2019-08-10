@@ -130,9 +130,14 @@ class WorkoutModal extends Component {
                         <List celled animated verticalAlign='middle'>
                             {exercisesJSX}
                         </List>
-                        <Form.Button color='blue' floated='right' className='saveButton'>
-                            <Icon name='checkmark' />  Save
-                        </Form.Button>
+                        <Button.Group floated='left' className='formButtonGroup'>
+                            <Button color='grey' content='Cancel' onClick={() => this.close} />
+                        </Button.Group>
+                        <Button.Group floated='right' className='formButtonGroup'>
+                            <Button color='blue' className='formSaveButton'>
+                                <Icon name='checkmark' />  Save
+                            </Button>
+                        </Button.Group>
                     </Form>
                 </Image.Group>
             );
@@ -168,21 +173,10 @@ class WorkoutModal extends Component {
                     {exerciseResultsJSX}
                 </Modal.Content>
             );
-        } else if (this.props.modalType === 'edit') {
-            return (
-                <Button.Group size='large' floated='right' className='bottomModalButtons'>
-                    <Button color='grey' id='leftButton'>
-                        Cancel
-                    </Button>
-                    <Button color='blue' id='rightButton'>
-                        Save 
-                    </Button>
-                </Button.Group>
-            );
         } else if (this.props.modalType === 'delete') {
             return (
                 <Button.Group size='large' floated='right' className='bottomModalButtons'>
-                    <Button color='green' id='leftButton'>
+                    <Button color='green' id='leftButton' onClick={() => this.setState({ open: false })}>
                         Keep Workout
                     </Button>
                     <Button color='red' id='rightButton'>
@@ -190,10 +184,21 @@ class WorkoutModal extends Component {
                     </Button>
                 </Button.Group>
             );
+        } else if (this.props.modalType === 'edit') {
+            return (
+                <Button.Group size='large' floated='right' className='bottomModalButtons'>
+                    <Button color='grey' id='leftButton' onClick={() => this.close}>
+                        Cancel
+                    </Button>
+                    <Button color='blue' id='rightButton'>
+                        Save 
+                    </Button>
+                </Button.Group>
+            );
         } else {
             return (
                 <Button.Group size='large' floated='right' className='bottomModalButtons'>
-                    <Button color='teal' id='leftButton'>
+                    <Button color='teal' id='leftButton' onClick={() => this.setState({ open: false })}>
                         Close
                     </Button>
                     <Button color='blue' id='rightButton'>
