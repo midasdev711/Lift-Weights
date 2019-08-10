@@ -213,17 +213,6 @@ class WorkoutModal extends Component {
                     {this.modalName()}
                 </Button>
             );
-        } else if (this.props.modalType === 'edit') {
-            return (
-                <Button color='grey' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
-                    <Button.Content hidden>
-                        {this.modalName()}
-                    </Button.Content>
-                    <Button.Content visible>
-                        <Icon name='edit outline'/> 
-                    </Button.Content>
-                </Button>
-            );
         } else if (this.props.modalType === 'delete') {
             return (
                 <Button color='red' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
@@ -232,6 +221,17 @@ class WorkoutModal extends Component {
                     </Button.Content>
                     <Button.Content visible>
                         <Icon name='delete'/> 
+                    </Button.Content>
+                </Button>
+            );
+        } else if (this.props.modalType === 'edit') {
+            return (
+                <Button color='teal' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
+                    <Button.Content hidden>
+                        {this.modalName()}
+                    </Button.Content>
+                    <Button.Content visible>
+                        <Icon name='edit outline'/> 
                     </Button.Content>
                 </Button>
             );
