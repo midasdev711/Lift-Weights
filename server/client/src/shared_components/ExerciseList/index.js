@@ -14,33 +14,43 @@ class ExerciseList extends Component {
         this.props.removeExercise(id);
     }
 
-    // return correct id based on exercise type
-    exerciseId = (exercise) => {
-        if (this.props.display === 'simple') {
-            return exercise[1];
-        } else {
-            return exercise.data.id;
-        }
-    }
-
     render() {
+        const { exercises, addOption, removeOption, display } = this.props;
+        let count = 0;
 
         return (
             <div className='ExerciseList'>
                 <Image.Group size='mini'>
                     <Segment>
                         <List divided relaxed='very' animated verticalAlign='middle'>
-                            {this.props.exercises.map((exercise) => {
+                            {exercises.map((exercise) => {
+                                count += 1;
+                                if (display === 'minimal' && count > 4) {
+                                    if (count > 4) return null;
+                                } else if (display === 'minimal' && count <= 4) {
+                                    return (
+                                        <ExerciseItem 
+                                            className='ExerciseItem' 
+                                            key={exercise[1]} 
+                                            exercise={exercise} 
+                                            addOption={addOption}
+                                            removeOption={removeOption}
+                                            addExercise={this.addExercise}
+                                            removeExercise={this.removeExercise}
+                                            display={display}
+                                        />
+                                    );
+                                }
                                 return (
                                     <ExerciseItem 
                                         className='ExerciseItem' 
-                                        key={this.exerciseId(exercise)} 
+                                        key={exercise.data.id} 
                                         exercise={exercise} 
-                                        addOption={this.props.addOption}
-                                        removeOption={this.props.removeOption}
+                                        addOption={addOption}
+                                        removeOption={removeOption}
                                         addExercise={this.addExercise}
                                         removeExercise={this.removeExercise}
-                                        display={this.props.display}
+                                        display={display}
                                     />
                                 );
                             })}

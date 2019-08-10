@@ -68,7 +68,7 @@ class ExerciseItem extends Component {
 
     render() {
 
-        if (this.props.display === 'simple') {
+        if (this.props.display === 'minimal') {
             return (
                 <List.Item>
                     <List.Content floated='left'>
@@ -83,8 +83,7 @@ class ExerciseItem extends Component {
                 <List.Item>
                     {this.addImage()}
                     <List.Content floated='left'>
-                        <List.Header>{name}</List.Header>
-                        <p>{category}</p>
+                        <List.Header>{name} ({category})</List.Header>
                     </List.Content>
                     {this.addOrRemoveIcons()}
                 </List.Item>
