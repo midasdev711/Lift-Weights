@@ -99,15 +99,15 @@ class WorkoutModal extends Component {
     }
 
     // modal name based on type
-    modalName = () => {
+    modalHeader = () => {
         if (this.props.modalType === 'create') {
             return 'Create New Workout';
         } else if (this.props.modalType === 'edit') {
-            return 'Edit';
+            return 'Edit Workout';
         } else if (this.props.modalType === 'delete') {
-            return 'Delete';
+            return 'Delete Workout';
         } else {
-            return 'Select';
+            return 'Workout';
         }
     }
 
@@ -130,9 +130,14 @@ class WorkoutModal extends Component {
                         <List celled animated verticalAlign='middle'>
                             {exercisesJSX}
                         </List>
-                        <Form.Button color='blue' floated='right' className='saveButton'>
-                            <Icon name='checkmark' />  Save
-                        </Form.Button>
+                        <Button.Group floated='left' className='formButtonGroup'>
+                            <Button color='grey' content='Cancel' onClick={() => this.close} />
+                        </Button.Group>
+                        <Button.Group floated='right' className='formButtonGroup'>
+                            <Button color='blue' className='formSaveButton'>
+                                <Icon name='checkmark' />  Save
+                            </Button>
+                        </Button.Group>
                     </Form>
                 </Image.Group>
             );
@@ -168,21 +173,10 @@ class WorkoutModal extends Component {
                     {exerciseResultsJSX}
                 </Modal.Content>
             );
-        } else if (this.props.modalType === 'edit') {
-            return (
-                <Button.Group size='large' floated='right' className='bottomModalButtons'>
-                    <Button color='grey' id='leftButton'>
-                        Cancel
-                    </Button>
-                    <Button color='blue' id='rightButton'>
-                        Save 
-                    </Button>
-                </Button.Group>
-            );
         } else if (this.props.modalType === 'delete') {
             return (
                 <Button.Group size='large' floated='right' className='bottomModalButtons'>
-                    <Button color='green' id='leftButton'>
+                    <Button color='green' id='leftButton' onClick={() => this.setState({ open: false })}>
                         Keep Workout
                     </Button>
                     <Button color='red' id='rightButton'>
@@ -190,10 +184,21 @@ class WorkoutModal extends Component {
                     </Button>
                 </Button.Group>
             );
+        } else if (this.props.modalType === 'edit') {
+            return (
+                <Button.Group size='large' floated='right' className='bottomModalButtons'>
+                    <Button color='grey' id='leftButton' onClick={() => this.close}>
+                        Cancel
+                    </Button>
+                    <Button color='blue' id='rightButton'>
+                        Save 
+                    </Button>
+                </Button.Group>
+            );
         } else {
             return (
                 <Button.Group size='large' floated='right' className='bottomModalButtons'>
-                    <Button color='teal' id='leftButton'>
+                    <Button color='teal' id='leftButton' onClick={() => this.setState({ open: false })}>
                         Close
                     </Button>
                     <Button color='blue' id='rightButton'>
@@ -210,14 +215,14 @@ class WorkoutModal extends Component {
             return (
                 <Button color='green' float='left' onClick={() => this.setState({ open: true })}>
                     <Icon name='plus' /> 
-                    {this.modalName()}
+                    Create New Workout
                 </Button>
             );
         } else if (this.props.modalType === 'delete') {
             return (
                 <Button color='red' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
-                        {this.modalName()}
+                        Delete
                     </Button.Content>
                     <Button.Content visible>
                         <Icon name='delete'/> 
@@ -228,7 +233,7 @@ class WorkoutModal extends Component {
             return (
                 <Button color='teal' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
-                        {this.modalName()}
+                        Edit
                     </Button.Content>
                     <Button.Content visible>
                         <Icon name='edit outline'/> 
@@ -239,7 +244,7 @@ class WorkoutModal extends Component {
             return (
                 <Button color='blue' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
-                        {this.modalName()}
+                        Select
                     </Button.Content>
                     <Button.Content visible>
                         <Icon name='right triangle'/> 
@@ -261,7 +266,7 @@ class WorkoutModal extends Component {
                     onClose={this.close}
                 >
                     <Modal.Header>
-                        {this.modalName()}
+                        {this.modalHeader()}
                     </Modal.Header>
                     <Modal.Content className='modalDescription'>
                         <Modal.Description>
