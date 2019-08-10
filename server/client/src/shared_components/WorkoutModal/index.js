@@ -18,7 +18,6 @@ class WorkoutModal extends Component {
             exerciseResultsJSX: <div></div>,
             exerciseSearchResults: [],
             foundStatement: <p id='Found'></p>,
-            modalTopHalfHeight: '400px',
             open: false
         };
     }
@@ -231,7 +230,7 @@ class WorkoutModal extends Component {
                     <Modal.Header>
                         {this.modalName()}
                     </Modal.Header>
-                    <Modal.Content className='modalDescription' style={{height:`${this.state.modalTopHalfHeight}px`}}>
+                    <Modal.Content className='modalDescription'>
                         <Modal.Description>
                             {this.modalDescription()}
                         </Modal.Description>
