@@ -9,7 +9,7 @@ class WorkoutCardList extends Component {
     render() {
 
         return (
-            <Card.Group itemsPerRow='3' className='cardGroup'>
+            <Card.Group itemsPerRow='4' className='cardGroup'>
                 {this.props.workouts.map((workout) => {
                     return (
                         <WorkoutCard 

@@ -2,6 +2,14 @@
     margin: 30px;
 }
 
+.createExerciseList {
+    padding-bottom: 30px;
+}
+
+.saveButton {
+    padding: 30px;
+}
+
 .bottomModalButtons {
     padding: 15px;
     padding-bottom: 25px;

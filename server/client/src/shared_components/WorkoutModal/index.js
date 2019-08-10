@@ -118,7 +118,7 @@ class WorkoutModal extends Component {
         if (this.props.modalType === 'create') {
             return (
                 <Image.Group size='mini'>
-                    <Form onSubmit={this.handleSave} size='large'>
+                    <Form onSubmit={this.handleSave} size='large' className='createExerciseList'>
                         <Form.Input 
                             label='Workout Name'
                             placeholder='Workout Name' 
@@ -126,8 +126,8 @@ class WorkoutModal extends Component {
                             value={this.state.workoutName}
                             onChange={e => this.setState({ workoutName: e.target.value })}
                         />
+                        <Header as='h3'>Exercises</Header>
                         <List celled animated verticalAlign='middle'>
-                            <List.Header as='h3'>Exercises</List.Header>
                             {exercisesJSX}
                         </List>
                         <Form.Button color='blue' floated='right' className='saveButton'>
@@ -208,14 +208,14 @@ class WorkoutModal extends Component {
     triggerButton = () => {
         if (this.props.modalType === 'create') {
             return (
-                <Button floated='left' color='green' onClick={() => this.setState({ open: true })}>
+                <Button color='green' float='left' onClick={() => this.setState({ open: true })}>
                     <Icon name='plus' /> 
                     {this.modalName()}
                 </Button>
             );
         } else if (this.props.modalType === 'edit') {
             return (
-                <Button color='grey' size='small' animated='fade' float='left' onClick={() => this.setState({ open: true })}>
+                <Button color='grey' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
                         {this.modalName()}
                     </Button.Content>
@@ -226,7 +226,7 @@ class WorkoutModal extends Component {
             );
         } else if (this.props.modalType === 'delete') {
             return (
-                <Button color='red' size='small' animated='fade' float='left' onClick={() => this.setState({ open: true })}>
+                <Button color='red' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
                         {this.modalName()}
                     </Button.Content>
@@ -237,7 +237,7 @@ class WorkoutModal extends Component {
             );
         } else {  // Select button opens select modal
             return (
-                <Button color='blue' size='small' animated='fade' float='left' onClick={() => this.setState({ open: true })}>
+                <Button color='blue' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
                         {this.modalName()}
                     </Button.Content>
