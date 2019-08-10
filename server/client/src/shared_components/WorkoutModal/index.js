@@ -137,11 +137,17 @@ class WorkoutModal extends Component {
                 </Image.Group>
             );
         } else if (this.props.modalType === 'edit') {
-            return <div>Editing Tools Needed</div>
+            return (
+                <Header as='h3' textAlign='center'>Remove / Add Exercises</Header>
+            );
         } else if (this.props.modalType === 'delete') {
-            return <div>Deleting Tools Needed</div>
+            return (
+                <Header as='h3' textAlign='center'>Are you sure you want to delete this workout?</Header>
+            );
         } else {
-            return <div>Workout Description Needed</div>
+            return (
+                <Header as='h3' textAlign='center'>Exercises</Header>
+            );
         }
     }
 
@@ -163,11 +169,38 @@ class WorkoutModal extends Component {
                 </Modal.Content>
             );
         } else if (this.props.modalType === 'edit') {
-            return <div>Edit BottomModal TODO</div>
+            return (
+                <Button.Group size='large' floated='right' className='bottomModalButtons'>
+                    <Button color='grey' id='leftButton'>
+                        Cancel
+                    </Button>
+                    <Button color='blue' id='rightButton'>
+                        Save 
+                    </Button>
+                </Button.Group>
+            );
         } else if (this.props.modalType === 'delete') {
-            return <div>Delete BottomModal TODO</div>
+            return (
+                <Button.Group size='large' floated='right' className='bottomModalButtons'>
+                    <Button color='green' id='leftButton'>
+                        Keep Workout
+                    </Button>
+                    <Button color='red' id='rightButton'>
+                        Delete
+                    </Button>
+                </Button.Group>
+            );
         } else {
-            return <div>Workout BottomModal TODO</div>
+            return (
+                <Button.Group size='large' floated='right' className='bottomModalButtons'>
+                    <Button color='teal' id='leftButton'>
+                        Close
+                    </Button>
+                    <Button color='blue' id='rightButton'>
+                        Start
+                    </Button>
+                </Button.Group>
+            );
         }
     }
 
@@ -202,9 +235,9 @@ class WorkoutModal extends Component {
                     </Button.Content>
                 </Button>
             );
-        } else {
+        } else {  // Select button opens select modal
             return (
-                <Button color='blue' size='small' animated='fade' float='left'>
+                <Button color='blue' size='small' animated='fade' float='left' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
                         {this.modalName()}
                     </Button.Content>
@@ -235,7 +268,9 @@ class WorkoutModal extends Component {
                             {this.modalDescription()}
                         </Modal.Description>
                     </Modal.Content>
-                    {this.modalBottom()}
+                    <Modal.Actions>
+                        {this.modalBottom()}
+                    </Modal.Actions>
                 </Modal>
             </div>
         );
