@@ -25,9 +25,9 @@ class ExerciseList extends Component {
                         <List divided relaxed='very' animated verticalAlign='middle'>
                             {exercises.map((exercise) => {
                                 count += 1;
-                                if (display === 'minimal' && count > 4) {
-                                    if (count > 4) return null;
-                                } else if (display === 'minimal' && count <= 4) {
+                                if (display === 'minimal' && count > 3) {
+                                    return null;
+                                } else if (display === 'minimal' && count <= 3) {
                                     return (
                                         <ExerciseItem 
                                             className='ExerciseItem' 

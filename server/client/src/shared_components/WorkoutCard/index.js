@@ -47,15 +47,13 @@ class WorkoutCard extends Component {
     render() {
 
         return (
-            <Card className='workoutCard'>
-                <Card.Content>
+            <Card className='workoutCard' color='blue'>
+                <Card.Content className='cardHeader'>
                     <Header as='h3' color='blue'>
                         {this.props.name}
                     </Header>
-                </Card.Content>
-                <Card.Content>
                     {this.state.exercisesJSX}
-                    <Grid columns='equal'>
+                    <Grid columns='equal' className='cardButtons'>
                         <Grid.Row columns={3}>
                             <Grid.Column width={4}>
                                 <WorkoutModal userId={this.state.userId} modalType='delete' />

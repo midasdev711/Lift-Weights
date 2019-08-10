@@ -1,0 +1,8 @@
+/*
+*  source for figuring out how to modify semantic UI elements (must be overriden)
+*  https://stackoverflow.com/questions/45642391/how-to-change-the-color-of-a-cards-content-in-semantic-ui
+*/
+.workoutCard,
+.ui.cards > .card {
+  background-color: white;
+}
