@@ -99,15 +99,15 @@ class WorkoutModal extends Component {
     }
 
     // modal name based on type
-    modalName = () => {
+    modalHeader = () => {
         if (this.props.modalType === 'create') {
             return 'Create New Workout';
         } else if (this.props.modalType === 'edit') {
-            return 'Edit';
+            return 'Edit Workout';
         } else if (this.props.modalType === 'delete') {
-            return 'Delete';
+            return 'Delete Workout';
         } else {
-            return 'Select';
+            return 'Workout';
         }
     }
 
@@ -210,14 +210,14 @@ class WorkoutModal extends Component {
             return (
                 <Button color='green' float='left' onClick={() => this.setState({ open: true })}>
                     <Icon name='plus' /> 
-                    {this.modalName()}
+                    Create New Workout
                 </Button>
             );
         } else if (this.props.modalType === 'delete') {
             return (
                 <Button color='red' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
-                        {this.modalName()}
+                        Delete
                     </Button.Content>
                     <Button.Content visible>
                         <Icon name='delete'/> 
@@ -228,7 +228,7 @@ class WorkoutModal extends Component {
             return (
                 <Button color='teal' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
-                        {this.modalName()}
+                        Edit
                     </Button.Content>
                     <Button.Content visible>
                         <Icon name='edit outline'/> 
@@ -239,7 +239,7 @@ class WorkoutModal extends Component {
             return (
                 <Button color='blue' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
-                        {this.modalName()}
+                        Select
                     </Button.Content>
                     <Button.Content visible>
                         <Icon name='right triangle'/> 
@@ -261,7 +261,7 @@ class WorkoutModal extends Component {
                     onClose={this.close}
                 >
                     <Modal.Header>
-                        {this.modalName()}
+                        {this.modalHeader()}
                     </Modal.Header>
                     <Modal.Content className='modalDescription'>
                         <Modal.Description>
