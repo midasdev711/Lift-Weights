@@ -1,3 +1,12 @@
 .WorkoutModal {
     margin: 30px;
 }
+
+.bottomModalButtons {
+    padding: 15px;
+    padding-bottom: 25px;
+}
+
+#rightButton {
+    margin-left: 10px;
+}
