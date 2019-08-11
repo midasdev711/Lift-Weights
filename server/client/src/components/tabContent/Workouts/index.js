@@ -55,21 +55,8 @@ class Workouts extends Component {
     render() {
         return (
             <div className='Workouts'>
-                <Container fluid>
-                    <Grid>
-                        <Grid.Row>
-                            <WorkoutModal userId={this.state.userId} modalType="create" updateWorkout={this.updateWorkout} />
-                        </Grid.Row>
-                        <Divider horizontal>
-                            <Header as='h3'>
-                                Workouts
-                            </Header>
-                        </Divider>
-                        <Grid.Row>
-                            {this.state.workoutsJSX}
-                        </Grid.Row>
-                    </Grid>
-                </Container>
+                <WorkoutModal userId={this.state.userId} modalType="create" updateWorkout={this.updateWorkout} />
+                {this.state.workoutsJSX}
             </div>
         );
     }

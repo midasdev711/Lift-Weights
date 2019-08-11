@@ -55,10 +55,11 @@ class WorkoutCard extends Component {
         return (
             <Card className='workoutCard' color='grey'>
                 <Card.Content className='cardHeader'>
-                    <Header as='h3' color='blue'>
+                    <Header as='h5' color='blue'>
                         {this.props.name}
                     </Header>
                     {this.state.exercisesJSX}
+                </Card.Content>
                     <Grid columns='equal' className='cardButtons'>
                         <Grid.Row columns={3}>
                             <Grid.Column width={4}>
@@ -72,7 +73,6 @@ class WorkoutCard extends Component {
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
-                </Card.Content>
             </Card>
         );
     }
