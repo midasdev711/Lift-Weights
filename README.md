@@ -61,10 +61,10 @@ This app tracks and supports an individual's weight-lifting goals, allowing for 
 - [x] **July 29th (Monday)**: Pass user-specific details through successful login to Profile page to allow for custom workouts to be created.
 - [x] **August 4th (Monday)**: Create a workout specific to the user (front-end)
 - [x] **August 5th (Tuesday)**: Design overall database. Create DB tables per design.
-- [ ] **August 8th (Thursday)**: Finish creating a workout (back-end). Display workout(s) on Workout Page.  Update README.md as needed.  MVP (minimum viable product) that compiles and is ready for demo-ing. 
-- [ ] **August 9th (Friday)**: Focus on drafting more pages for basic functionality and demo-ing. 
-- [ ] **August 11th (Sunday)**: Given extra time, add statistical models to represent "fake" data.
-- [ ] **August 12th (Monday)**: Prep presentation details and any documentation (final updates for README.md)
+- [x] **August 10th (Saturday)**: Finish creating a workout (back-end). Display workout(s) on Workout Page.  
+- [ ] **August 11th (Sunday)**: Update README.md as needed.  MVP (minimum viable product) that compiles and is ready for demo-ing. 
+- [ ] **August 12th (Monday)**: Prep presentation details, screencasts, and update README.md if needed
+- [ ] **August 13-15th (Tuesday-Thursday)**: Presentations
 
 #### [extra time](#extras)
 - [ ] add statistical models using highchart.js or equivalent
