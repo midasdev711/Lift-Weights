@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Modal, Button, Icon, Form, Image, List, Divider, Header } from 'semantic-ui-react';
+import { Modal, Button, Icon, Form, Image, List, Divider, Header, Grid } from 'semantic-ui-react';
+import moment from 'moment';
 
 import wger from '../../api/wger';
 import Search from '../Search';
@@ -18,7 +19,10 @@ class WorkoutModal extends Component {
             exerciseResultsJSX: <div></div>,
             exerciseSearchResults: [],
             foundStatement: <p id='Found'></p>,
-            open: false
+            open: false,
+            startTime: '',
+            finishTime: '',
+            date: ''
         };
     }
 
@@ -110,9 +114,6 @@ class WorkoutModal extends Component {
     handleSelect = async (e) => {
         e.preventDefault()
         await this.setState({ open: true })
-        await console.log('workoutId:')
-        await console.log(this.props.workoutId)
-        await console.log('implement start workout function')
 
         // retrieve workout exercises from database
         let exercises = [];
@@ -124,14 +125,18 @@ class WorkoutModal extends Component {
         })
 
         const resJSON = await res.json();
-        await console.log('WORKOUT\'s EXERCISES: ');
-        await console.log(resJSON)
 
         resJSON.forEach(async e => {
             await exercises.push([e.name, e.id, e.equipment, e.sets, e.reps, e.weights, e.rpe, e.duration, this.props.userId])
         })
         await this.setState({ exercises: exercises });
         await this.renderExercises();
+    }
+
+    // select workout
+    handleStart = async (e) => {
+        e.preventDefault()
+        await this.setState({ open: true, startTime: moment().format('LT'), date: moment().format('L') })
     }
 
     // renders exercises
@@ -163,6 +168,12 @@ class WorkoutModal extends Component {
             return (
                 <Header color='red'>
                     Delete Workout
+                </Header>
+            );
+        } else if (this.props.modalType === 'select') {
+            return (
+                <Header color='blue'>
+                    {this.props.workoutName}
                 </Header>
             );
         } else {
@@ -204,19 +215,26 @@ class WorkoutModal extends Component {
                     </Form>
                 </Image.Group>
             );
-        } else if (this.props.modalType === 'edit') {
-            return (
-                <Header as='h3' textAlign='center'>Remove / Add Exercises</Header>
-            );
         } else if (this.props.modalType === 'delete') {
             return (
                 <Header as='h3' textAlign='center'>Are you sure you want to delete this workout?</Header>
             );
-        } else {
+        } else if (this.props.modalType === 'edit') {
+            return (
+                <Header as='h3' textAlign='center'>Remove / Add Exercises</Header>
+            );
+        } else if (this.props.modalType === 'select') {
             return (
                 <div>
                     <Header as='h3' textAlign='center'>Exercises</Header>
                     {this.state.exercisesJSX}
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    {this.props.exercisesJSX}
+                    <Header as='h4'>Start: {this.state.startTime}</Header>
                 </div>
             );
         }
@@ -253,7 +271,7 @@ class WorkoutModal extends Component {
         } else if (this.props.modalType === 'edit') {
             return (
                 <Button.Group size='large' floated='right' className='bottomModalButtons'>
-                    <Button color='grey' id='leftButton' onClick={() => this.close}>
+                    <Button color='grey' id='leftButton' onClick={() => this.close()}>
                         Cancel
                     </Button>
                     <Button color='blue' id='rightButton'>
@@ -261,14 +279,35 @@ class WorkoutModal extends Component {
                     </Button>
                 </Button.Group>
             );
-        } else {
+        } else if (this.props.modalType === 'select') {
+            return (
+                <Grid>
+                    <Grid.Row columns={2} className='startWorkoutButtonRow'>
+                        <Grid.Column className='cancelWorkoutButtonColumn'>
+                            <Button color='red' size='large' floated='left' onClick={() => this.setState({ open: false })}>
+                                Cancel
+                            </Button>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <WorkoutModal 
+                                userId={this.props.userId} 
+                                modalType="start" 
+                                workoutId={this.props.workoutId}
+                                workoutName={this.props.workoutName}
+                                exercisesJSX={this.state.exercisesJSX}
+                            />
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+            );
+        } else {  // bottom Modal buttons for Start workout modal
             return (
                 <Button.Group size='large' floated='right' className='bottomModalButtons'>
-                    <Button color='teal' id='leftButton' onClick={() => this.setState({ open: false })}>
-                        Close
+                    <Button color='grey' id='leftButton' onClick={() => this.close}>
+                        Cancel
                     </Button>
-                    <Button color='blue' id='rightButton' onClick={(e) => this.handleStart(e)}>
-                        Start
+                    <Button color='blue' id='rightButton'>
+                        Finish 
                     </Button>
                 </Button.Group>
             );
@@ -306,7 +345,7 @@ class WorkoutModal extends Component {
                     </Button.Content>
                 </Button>
             );
-        } else {  // Select button opens select modal
+        } else if (this.props.modalType === 'select') {
             return (
                 <Button color='blue' size='mini' animated='fade' onClick={(e) => this.handleSelect(e)}>
                     <Button.Content hidden>
@@ -315,6 +354,12 @@ class WorkoutModal extends Component {
                     <Button.Content visible>
                         <Icon name='right triangle'/> 
                     </Button.Content>
+                </Button>
+            );
+        } else {  // Start button opens start workout modal
+            return (
+                <Button color='blue' size='large' onClick={(e) => this.handleStart(e)}>
+                    Start
                 </Button>
             );
         }

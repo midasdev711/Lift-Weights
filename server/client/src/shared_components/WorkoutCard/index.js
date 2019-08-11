@@ -73,7 +73,7 @@ class WorkoutCard extends Component {
                             <WorkoutModal userId={this.state.userId} modalType='edit' workoutId={this.state.id} updateWorkout={this.updateWorkout} />
                         </Grid.Column>
                         <Grid.Column>
-                            <WorkoutModal userId={this.state.userId} modalType='workout' workoutId={this.state.id} updateWorkout={this.updateWorkout} workoutName={this.props.name} />
+                            <WorkoutModal userId={this.state.userId} modalType='select' workoutId={this.state.id} updateWorkout={this.updateWorkout} workoutName={this.props.name} />
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
