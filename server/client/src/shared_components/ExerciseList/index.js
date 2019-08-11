@@ -46,8 +46,6 @@ class ExerciseList extends Component {
                                     );
                                 } else if (display === 'full') {
                                     // for displaying all personalized exercise details from DB (e.g. reps, sets, etc)
-                                    console.log('ExerciseList exercise')
-                                    console.log(exercise)
                                     return (
                                         <ExerciseItem 
                                             className='ExerciseItem' 
