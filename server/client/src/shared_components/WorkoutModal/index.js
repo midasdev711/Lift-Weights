@@ -106,8 +106,8 @@ class WorkoutModal extends Component {
         await this.close();
     }
 
-    // start workout
-    handleStart = async (e) => {
+    // select workout
+    handleSelect = async (e) => {
         e.preventDefault();
         await console.log('workoutId:')
         await console.log(this.props.workoutId)
@@ -230,14 +230,14 @@ class WorkoutModal extends Component {
     triggerButton = () => {
         if (this.props.modalType === 'create') {
             return (
-                <Button color='green' float='left' onClick={() => this.setState({ open: true })}>
+                <Button color='blue' size='medium' float='left' onClick={() => this.setState({ open: true })}>
                     <Icon name='plus' /> 
                     Create New Workout
                 </Button>
             );
         } else if (this.props.modalType === 'delete') {
             return (
-                <Button color='red' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
+                <Button color='red' size='mini' animated='fade' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
                         Delete
                     </Button.Content>
@@ -248,7 +248,7 @@ class WorkoutModal extends Component {
             );
         } else if (this.props.modalType === 'edit') {
             return (
-                <Button color='teal' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
+                <Button color='teal' size='mini' animated='fade' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
                         Edit
                     </Button.Content>
@@ -259,7 +259,7 @@ class WorkoutModal extends Component {
             );
         } else {  // Select button opens select modal
             return (
-                <Button color='blue' size='small' animated='fade' onClick={() => this.setState({ open: true })}>
+                <Button color='blue' size='mini' animated='fade' onClick={() => this.setState({ open: true })}>
                     <Button.Content hidden>
                         Select
                     </Button.Content>

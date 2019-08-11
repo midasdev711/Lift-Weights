@@ -22,7 +22,7 @@ class ExerciseList extends Component {
             <div className='ExerciseList'>
                 <Image.Group size='mini'>
                     <Segment>
-                        <List divided relaxed='very' animated verticalAlign='middle'>
+                        <List size='mini' divided relaxed='very' animated verticalAlign='middle'>
                             {exercises.map((exercise) => {
                                 count += 1;
                                 if (display === 'minimal' && count > 3) {
