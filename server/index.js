@@ -54,6 +54,19 @@ app.get("/exercises/retrieve", async (req, res) => {
     })
 })
 
+// delete workouts
+app.get("/workouts/delete", async (req, res) => {
+    const { userId, id } = await req.query;
+    const q_delete = await `DELETE FROM workouts WHERE userId='${userId}' AND id='${id}'`;
+
+    await db.query(q_delete, async (err, delete_res)  => {
+        if(err) {
+            return await res.status(500).send(err);
+        }
+        return await res.status(202).send('Deleted ' + delete_res.affectedRows + ' workout(s)');
+    })
+})
+
 // retrieve workouts
 app.get("/workouts/retrieve", async (req, res) => {
     const { id } = await req.query;
@@ -90,7 +103,7 @@ app.get("/workout/new", async (req, res) => {
                 if (await insertExercises(workoutId, exercise) === -1) {
                     return res.status(404).send('Failed to add exercise');
                 } else {
-                    return res.status(202);
+                    return res.status(202).send(insert_res);
                 }
             })
         }

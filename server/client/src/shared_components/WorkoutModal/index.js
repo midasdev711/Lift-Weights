@@ -78,7 +78,7 @@ class WorkoutModal extends Component {
         let exercises = await JSON.stringify(this.state.exercises);
         await fetch(`http://localhost:5000/workout/new?userId=${this.props.userId}&workoutName=${this.state.workoutName}&exercises=${exercises}`, {
             method: 'GET',
-        }).then(this.props.addWorkout()
+        }).then(this.props.updateWorkout()
         ).then(this.close());
     }
 
@@ -97,6 +97,23 @@ class WorkoutModal extends Component {
                               exerciseResultsJSX: <div /> 
         });
     }
+
+    // delete workout
+    handleDelete = async (e) => {
+        e.preventDefault();
+        await fetch(`http://localhost:5000/workouts/delete?userId=${this.props.userId}&id=${this.props.workoutId}`);
+        await this.props.updateWorkout();
+        await this.close();
+    }
+
+    // start workout
+    handleStart = async (e) => {
+        e.preventDefault();
+        await console.log('workoutId:')
+        await console.log(this.props.workoutId)
+        await console.log('implement start workout function')
+    }
+
 
     // modal name based on type
     modalHeader = () => {
@@ -179,7 +196,7 @@ class WorkoutModal extends Component {
                     <Button color='green' id='leftButton' onClick={() => this.setState({ open: false })}>
                         Keep Workout
                     </Button>
-                    <Button color='red' id='rightButton'>
+                    <Button color='red' id='rightButton' onClick={(e) => this.handleDelete(e)}>
                         Delete
                     </Button>
                 </Button.Group>
@@ -201,7 +218,7 @@ class WorkoutModal extends Component {
                     <Button color='teal' id='leftButton' onClick={() => this.setState({ open: false })}>
                         Close
                     </Button>
-                    <Button color='blue' id='rightButton'>
+                    <Button color='blue' id='rightButton' onClick={(e) => this.handleStart(e)}>
                         Start
                     </Button>
                 </Button.Group>
