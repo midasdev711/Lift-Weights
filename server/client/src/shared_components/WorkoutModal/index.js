@@ -259,7 +259,7 @@ class WorkoutModal extends Component {
             );
         } else if (this.props.modalType === 'delete') {
             return (
-                <Button.Group size='large' floated='right' className='bottomModalButtons'>
+                <Button.Group size='medium' floated='right' className='bottomModalButtons'>
                     <Button color='green' id='leftButton' onClick={() => this.setState({ open: false })}>
                         Keep Workout
                     </Button>
@@ -270,7 +270,7 @@ class WorkoutModal extends Component {
             );
         } else if (this.props.modalType === 'edit') {
             return (
-                <Button.Group size='large' floated='right' className='bottomModalButtons'>
+                <Button.Group size='medium' floated='right' className='bottomModalButtons'>
                     <Button color='grey' id='leftButton' onClick={() => this.close()}>
                         Cancel
                     </Button>
@@ -284,7 +284,7 @@ class WorkoutModal extends Component {
                 <Grid>
                     <Grid.Row columns={2} className='startWorkoutButtonRow'>
                         <Grid.Column className='cancelWorkoutButtonColumn'>
-                            <Button color='red' size='large' floated='left' onClick={() => this.setState({ open: false })}>
+                            <Button color='red' size='medium' floated='left' onClick={() => this.setState({ open: false })}>
                                 Cancel
                             </Button>
                         </Grid.Column>
@@ -302,7 +302,7 @@ class WorkoutModal extends Component {
             );
         } else {  // bottom Modal buttons for Start workout modal
             return (
-                <Button.Group size='large' floated='right' className='bottomModalButtons'>
+                <Button.Group size='medium' floated='right' className='bottomModalButtons'>
                     <Button color='grey' id='leftButton' onClick={() => this.close}>
                         Cancel
                     </Button>
@@ -352,13 +352,13 @@ class WorkoutModal extends Component {
                         Select
                     </Button.Content>
                     <Button.Content visible>
-                        <Icon name='right triangle'/> 
+                        <Icon name='play'/> 
                     </Button.Content>
                 </Button>
             );
         } else {  // Start button opens start workout modal
             return (
-                <Button color='blue' size='large' onClick={(e) => this.handleStart(e)}>
+                <Button color='blue' size='medium' onClick={(e) => this.handleStart(e)}>
                     Start
                 </Button>
             );
