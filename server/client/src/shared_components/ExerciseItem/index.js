@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { List, Image, Button, Icon } from 'semantic-ui-react';
+import { Grid, List, Image, Button, Icon, Header, Label, Input } from 'semantic-ui-react';
 import './index.css';
 
 
@@ -64,6 +64,48 @@ class ExerciseItem extends Component {
         }
         return <div />;
     }
+
+    renderInputs = () => {
+        const { set, reps, weights, rpe, duration } = this.props;
+        return (
+            <List.Description>
+                <Grid columns='equal' className='measurement'>
+                    <Grid.Row columns={5}>
+                        <Grid.Column width={2}>
+                            <Label className='tinyLabel'>
+                                reps
+                            </Label>
+                            <Input type='text' placeholder={reps}  className='tinyInput' />
+                        </Grid.Column>
+                        <Grid.Column width={2}>
+                            <Label className='tinyLabel'>
+                                set
+                            </Label>
+                            <Input type='text' placeholder={set}  className='tinyInput' />
+                        </Grid.Column>
+                        <Grid.Column width={3}>
+                            <Label className='smallLabel'>
+                                weights
+                            </Label>
+                            <Input type='text' placeholder={weights}  className='smallInput' />
+                        </Grid.Column>
+                        <Grid.Column width={2}>
+                            <Label className='tinyLabel'>
+                                rpe
+                            </Label>
+                            <Input type='text' placeholder={rpe}  className='tinyInput' />
+                        </Grid.Column>
+                        <Grid.Column width={3}>
+                            <Label className='smallLabel'>
+                                duration
+                            </Label>
+                            <Input type='text' placeholder={duration}  className='smallInput' />
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+            </List.Description>
+        );
+    }
  
 
     render() {
@@ -72,8 +114,15 @@ class ExerciseItem extends Component {
             return (
                 <List.Item>
                     <List.Content floated='left'>
-                        <List.Header>{this.props.exercise[0]}</List.Header>
+                        <List.Header>{this.props.name}</List.Header>
                     </List.Content>
+                </List.Item>
+            );
+        } else if (this.props.display === 'full') {
+            return (
+                <List.Item>
+                    <Header as='h4'>{this.props.name}</Header>
+                    {this.renderInputs()}
                 </List.Item>
             );
         } else {
