@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import { Grid, List, Image, Button, Icon, Header, Label, Input } from 'semantic-ui-react';
+import { List, Image, Button, Icon, Header } from 'semantic-ui-react';
+
+import ExerciseDataForm from '../ExerciseDataForm';
 import './index.css';
 
 
@@ -65,64 +67,34 @@ class ExerciseItem extends Component {
         return <div />;
     }
 
-    renderInputs = () => {
-        const { set, reps, weights, rpe, duration } = this.props;
-        return (
-            <List.Description>
-                <Grid columns='equal' className='measurement'>
-                    <Grid.Row columns={5}>
-                        <Grid.Column width={2}>
-                            <Label className='tinyLabel'>
-                                reps
-                            </Label>
-                            <Input type='text' placeholder={reps}  className='tinyInput' />
-                        </Grid.Column>
-                        <Grid.Column width={2}>
-                            <Label className='tinyLabel'>
-                                set
-                            </Label>
-                            <Input type='text' placeholder={set}  className='tinyInput' />
-                        </Grid.Column>
-                        <Grid.Column width={3}>
-                            <Label className='smallLabel'>
-                                weights
-                            </Label>
-                            <Input type='text' placeholder={weights}  className='smallInput' />
-                        </Grid.Column>
-                        <Grid.Column width={2}>
-                            <Label className='tinyLabel'>
-                                rpe
-                            </Label>
-                            <Input type='text' placeholder={rpe}  className='tinyInput' />
-                        </Grid.Column>
-                        <Grid.Column width={3}>
-                            <Label className='smallLabel'>
-                                duration
-                            </Label>
-                            <Input type='text' placeholder={duration}  className='smallInput' />
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-            </List.Description>
-        );
-    }
- 
-
     render() {
 
         if (this.props.display === 'minimal') {
             return (
                 <List.Item>
                     <List.Content floated='left'>
-                        <List.Header>{this.props.name}</List.Header>
+                        <List.Header>
+                            {this.props.name}
+                        </List.Header>
                     </List.Content>
                 </List.Item>
             );
         } else if (this.props.display === 'full') {
             return (
                 <List.Item>
-                    <Header as='h4'>{this.props.name}</Header>
-                    {this.renderInputs()}
+                    <Header as='h4' className='exerciseName'>
+                        {this.props.name}
+                    </Header>
+                     <ExerciseDataForm 
+                        name={this.props.name} 
+                        id={this.props.id} 
+                        equipment={this.props.equipment} 
+                        set={this.props.set} 
+                        reps={this.props.reps} 
+                        weights={this.props.weights} 
+                        rpe={this.props.rpe} 
+                        duration={this.props.duration} 
+                    />
                 </List.Item>
             );
         } else {
@@ -132,7 +104,9 @@ class ExerciseItem extends Component {
                 <List.Item>
                     {this.addImage()}
                     <List.Content floated='left'>
-                        <List.Header>{name} ({category})</List.Header>
+                        <List.Header>
+                            {name} ({category})
+                        </List.Header>
                     </List.Content>
                     {this.addOrRemoveIcons()}
                 </List.Item>
