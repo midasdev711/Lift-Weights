@@ -6,3 +6,7 @@
 .ui.cards > .card {
   background-color: white;
 }
+
+.cardButtons {
+  width: 80%;
+}

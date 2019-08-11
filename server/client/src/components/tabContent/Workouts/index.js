@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Grid, Container, Divider, Header } from 'semantic-ui-react';
 
 import WorkoutCardList from '../../../shared_components/WorkoutCardList';
 import WorkoutModal from '../../../shared_components/WorkoutModal';
@@ -24,7 +23,7 @@ class Workouts extends Component {
     // retrieve user's workouts from database upon first render
     getWorkouts = async () => {
         let workouts = [];
-        const res = await fetch(`http://localhost:5000/workouts/retrieve?id=${this.props.userId}`, {
+        const res = await fetch(`http://localhost:5000/workouts/retrieve-all?id=${this.props.userId}`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',

@@ -36,10 +36,10 @@ class WorkoutModal extends Component {
     updateVisibility = () => {
         if (this.state.visible === true) {
             this.setState({ exerciseResultsJSX: <ExerciseList 
-                                                exercises={this.state.exerciseSearchResults} 
-                                                addOption={true} 
-                                                removeOption={false} 
-                                                addExercise={this.addExercise} 
+                                                    exercises={this.state.exerciseSearchResults} 
+                                                    addOption={true} 
+                                                    removeOption={false} 
+                                                    addExercise={this.addExercise} 
                                                 />,
                             foundStatement: <p id='Found'>Found: {this.state.exerciseSearchResults.length} exercises</p>
             });
@@ -108,23 +108,69 @@ class WorkoutModal extends Component {
 
     // select workout
     handleSelect = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
+        await this.setState({ open: true })
         await console.log('workoutId:')
         await console.log(this.props.workoutId)
         await console.log('implement start workout function')
+
+        // retrieve workout exercises from database
+        let exercises = [];
+        const res = await fetch(`http://localhost:5000/workout/retrieve?id=${this.props.workoutId}`, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+            },
+        })
+
+        const resJSON = await res.json();
+        await console.log('WORKOUT\'s EXERCISES: ');
+        await console.log(resJSON)
+
+        resJSON.forEach(async e => {
+            await exercises.push([e.name, e.id, e.equipment, e.sets, e.reps, e.weights, e.rpe, e.duration, this.props.userId])
+        })
+        await this.setState({ exercises: exercises });
+        await this.renderExercises();
     }
 
+    // renders exercises
+    renderExercises = async () => {
+        if (await this.state.exercises.length > 0) {
+            await this.setState({ exercisesJSX: <ExerciseList 
+                                                    exercises={this.state.exercises} 
+                                                    display='full' 
+                                                /> 
+            })
+        }
+    }
 
     // modal name based on type
     modalHeader = () => {
         if (this.props.modalType === 'create') {
-            return 'Create New Workout';
+            return (
+                <Header color='blue'>
+                    Create New Workout
+                </Header>
+            );
         } else if (this.props.modalType === 'edit') {
-            return 'Edit Workout';
+            return (
+                <Header color='blue'>
+                    Edit Workout
+                </Header>
+            );
         } else if (this.props.modalType === 'delete') {
-            return 'Delete Workout';
+            return (
+                <Header color='red'>
+                    Delete Workout
+                </Header>
+            );
         } else {
-            return 'Workout';
+            return (
+                <Header color='blue'>
+                    {this.props.workoutName}
+                </Header>
+            );
         }
     }
 
@@ -168,7 +214,10 @@ class WorkoutModal extends Component {
             );
         } else {
             return (
-                <Header as='h3' textAlign='center'>Exercises</Header>
+                <div>
+                    <Header as='h3' textAlign='center'>Exercises</Header>
+                    {this.state.exercisesJSX}
+                </div>
             );
         }
     }
@@ -230,7 +279,7 @@ class WorkoutModal extends Component {
     triggerButton = () => {
         if (this.props.modalType === 'create') {
             return (
-                <Button color='blue' size='medium' float='left' onClick={() => this.setState({ open: true })}>
+                <Button color='green' size='medium' float='left' onClick={() => this.setState({ open: true })}>
                     <Icon name='plus' /> 
                     Create New Workout
                 </Button>
@@ -259,7 +308,7 @@ class WorkoutModal extends Component {
             );
         } else {  // Select button opens select modal
             return (
-                <Button color='blue' size='mini' animated='fade' onClick={() => this.setState({ open: true })}>
+                <Button color='blue' size='mini' animated='fade' onClick={(e) => this.handleSelect(e)}>
                     <Button.Content hidden>
                         Select
                     </Button.Content>
@@ -282,9 +331,7 @@ class WorkoutModal extends Component {
                     closeIcon
                     onClose={this.close}
                 >
-                    <Modal.Header>
-                        {this.modalHeader()}
-                    </Modal.Header>
+                    {this.modalHeader()}
                     <Modal.Content className='modalDescription'>
                         <Modal.Description>
                             {this.modalDescription()}
