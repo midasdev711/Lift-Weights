@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Grid, List, Label, Input, Icon } from 'semantic-ui-react';
+import { Grid, List, Label, Input, Button } from 'semantic-ui-react';
 
 import './index.css';
 
@@ -86,8 +86,8 @@ class ExerciseDataForm extends Component {
                             </Label>
                             {this.renderInput(duration, 'smallInput')}
                         </Grid.Column>
-                        <Grid.Column width={3}>
-                            <Icon name='add circle' size='large' className='addIcon' />
+                        <Grid.Column width={3} className='addButtonColumn'>
+                            <Button circular icon='add' size='mini' className='addButton' />
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

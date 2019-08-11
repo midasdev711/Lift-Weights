@@ -30,7 +30,13 @@
     padding-top: 4px;
 }
 
-.addIcon {
-    padding-top: 28px;
-    color: #75D7F4;
+.addButtonColumn {
+    padding-top: 22px;
+    margin-left: 3px;
 }
+
+.ui.addButton {
+    background-color: #75D7F4;
+    color: white;
+}
+
