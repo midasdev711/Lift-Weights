@@ -10,15 +10,26 @@ class ExerciseDataForm extends Component {
 
         this.state = {
             set: [],
+            setJSX: <div />,
             reps: [],
+            repsJSX: <div />,
             weights: [],
+            weightsJSX: <div />,
             rpe: [],
-            duration: []
+            rpeJSX: <div />,
+            duration: [],
+            durationJSX: <div />,
+            exerciseCount: 0
         }
 
         this.setDefaultValues();
     }
 
+    componentDidMount = () => {
+        this.renderAllInputs();
+    }
+
+    // set values if null
     setDefaultValues = () => {
         let { set, reps, weights, rpe, duration } = this.state;
         
@@ -43,48 +54,72 @@ class ExerciseDataForm extends Component {
         }
     }
 
-    renderInput = (placeholder, name) => {
+    // render all inputs 
+    renderAllInputs = () => {
+        this.setState({ setJSX: this.state.set.map((set) => {
+                                    this.setState({ exerciseCount: this.state.exerciseCount + 1 })
+                                    return this.renderInput(this.state.exerciseCount, set, 'tinyInput');
+                                }),
+                        repsJSX: this.state.reps.map((rep) => {
+                                    this.setState({ exerciseCount: this.state.exerciseCount + 1 })
+                                    return this.renderInput(this.state.exerciseCount, rep, 'tinyInput');
+                                }),
+                        weightsJSX: this.state.weights.map((weight) => {
+                                    this.setState({ exerciseCount: this.state.exerciseCount + 1 })
+                                    return this.renderInput(this.state.exerciseCount, weight, 'smallInput');
+                                }),
+                        rpeJSX: this.state.rpe.map((rpe) => {
+                                    this.setState({ exerciseCount: this.state.exerciseCount + 1 })
+                                    return this.renderInput(this.state.exerciseCount, rpe, 'tinyInput');
+                                }),
+                        durationJSX: this.state.duration.map((duration) => {
+                                    this.setState({ exerciseCount: this.state.exerciseCount + 1 })
+                                    return this.renderInput(this.state.exerciseCount, duration, 'smallInput');
+                                })
+        })
+    }
+
+    // render one input
+    renderInput = (key, placeholder, name) => {
         return (
-            <Input type='text' placeholder={placeholder[0]}  className={name} />
+            <Input key={key} type='text' placeholder={placeholder} className={name} />
         );
     }
 
     render() {
-        const { set, reps, weights, rpe, duration } = this.state;
-
         return (
             <List.Description className='measurement'>
                 <Grid columns='equal'>
                     <Grid.Row columns={5}>
                         <Grid.Column width={2}>
                             <Label className='tinyLabel'>
-                                reps
+                                set
                             </Label>
-                            {this.renderInput(reps, 'tinyInput')}
+                            {this.state.setJSX}
                         </Grid.Column>
                         <Grid.Column width={2}>
                             <Label className='tinyLabel'>
-                                set
+                                reps
                             </Label>
-                            {this.renderInput(set, 'tinyInput')}
+                            {this.state.repsJSX}
                         </Grid.Column>
                         <Grid.Column width={3}>
                             <Label className='smallLabel'>
                                 weights
                             </Label>
-                            {this.renderInput(weights, 'smallInput')}
+                            {this.state.weightsJSX}
                         </Grid.Column>
                         <Grid.Column width={2}>
                             <Label className='tinyLabel'>
                                 rpe
                             </Label>
-                            {this.renderInput(rpe, 'tinyInput')}
+                            {this.state.rpeJSX}
                         </Grid.Column>
                         <Grid.Column width={3}>
                             <Label className='smallLabel'>
                                 duration
                             </Label>
-                            {this.renderInput(duration, 'smallInput')}
+                            {this.state.durationJSX}
                         </Grid.Column>
                         <Grid.Column width={3} className='addButtonColumn'>
                             <Button circular icon='add' size='mini' className='addButton' />
