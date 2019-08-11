@@ -41,7 +41,12 @@ class ExerciseDataForm extends Component {
         if (this.props.duration === null) {
             duration[0] = '0:00';
         }
+    }
 
+    renderInput = (placeholder, name) => {
+        return (
+            <Input type='text' placeholder={placeholder[0]}  className={name} />
+        );
     }
 
     render() {
@@ -55,31 +60,31 @@ class ExerciseDataForm extends Component {
                             <Label className='tinyLabel'>
                                 reps
                             </Label>
-                            <Input type='text' placeholder={reps[0]}  className='tinyInput' />
+                            {this.renderInput(reps, 'tinyInput')}
                         </Grid.Column>
                         <Grid.Column width={2}>
                             <Label className='tinyLabel'>
                                 set
                             </Label>
-                            <Input type='text' placeholder={set[0]}  className='tinyInput' />
+                            {this.renderInput(set, 'tinyInput')}
                         </Grid.Column>
                         <Grid.Column width={3}>
                             <Label className='smallLabel'>
                                 weights
                             </Label>
-                            <Input type='text' placeholder={weights[0]}  className='smallInput' />
+                            {this.renderInput(weights, 'smallInput')}
                         </Grid.Column>
                         <Grid.Column width={2}>
                             <Label className='tinyLabel'>
                                 rpe
                             </Label>
-                            <Input type='text' placeholder={rpe[0]}  className='tinyInput' />
+                            {this.renderInput(rpe, 'tinyInput')}
                         </Grid.Column>
                         <Grid.Column width={3}>
                             <Label className='smallLabel'>
                                 duration
                             </Label>
-                            <Input type='text' placeholder={duration[0]}  className='smallInput' />
+                            {this.renderInput(duration, 'smallInput')}
                         </Grid.Column>
                         <Grid.Column width={3}>
                             <Icon name='add circle' size='large' className='addIcon' />
