@@ -11,7 +11,9 @@ class WorkoutCard extends Component {
 
         this.state = { 
             exercises: [],
-            exercisesJSX: <div />
+            exercisesJSX: <div />,
+            id: this.props.id,
+            userId: this.props.userId
         };
     }
 
@@ -22,7 +24,7 @@ class WorkoutCard extends Component {
     // retrieve user's exercises for specified workout
     getExercises = async () => {
         let exercises = [];
-        const res = await fetch(`http://localhost:5000/exercises/retrieve?id=${this.props.id}`, {
+        const res = await fetch(`http://localhost:5000/exercises/retrieve?id=${this.state.id}`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -36,6 +38,10 @@ class WorkoutCard extends Component {
         })
         await this.setState({ exercises: exercises });
         await this.renderExercises();
+    }
+
+    updateWorkout = () => {
+        this.props.updateWorkout();
     }
 
     renderExercises = async () => {
@@ -56,13 +62,13 @@ class WorkoutCard extends Component {
                     <Grid columns='equal' className='cardButtons'>
                         <Grid.Row columns={3}>
                             <Grid.Column width={4}>
-                                <WorkoutModal userId={this.state.userId} modalType='delete' />
+                                <WorkoutModal userId={this.state.userId} modalType='delete' workoutId={this.state.id} updateWorkout={this.updateWorkout} />
                             </Grid.Column>
                             <Grid.Column width={4}>
-                                <WorkoutModal userId={this.state.userId} modalType='edit' />
+                                <WorkoutModal userId={this.state.userId} modalType='edit' workoutId={this.state.id} updateWorkout={this.updateWorkout} />
                             </Grid.Column>
                             <Grid.Column width={4}>
-                                <WorkoutModal userId={this.state.userId} modalType='workout' />
+                                <WorkoutModal userId={this.state.userId} modalType='workout' workoutId={this.state.id} updateWorkout={this.updateWorkout} />
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>

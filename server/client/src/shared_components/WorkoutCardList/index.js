@@ -6,6 +6,10 @@ import './index.css';
 
 class WorkoutCardList extends Component {
 
+    updateWorkout = () => {
+        this.props.updateWorkout();
+    }
+
     render() {
 
         return (
@@ -17,6 +21,8 @@ class WorkoutCardList extends Component {
                             key={workout[1]} 
                             id={workout[1]} 
                             name={workout[0]}
+                            userId={workout[2]}
+                            updateWorkout={this.updateWorkout}
                         />
                     );
                 })}

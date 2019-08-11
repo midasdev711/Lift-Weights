@@ -34,19 +34,21 @@ class Workouts extends Component {
         const resJSON = await res.json();
 
          resJSON.forEach(async w => {
-            await workouts.push([w.name, w.id])
+            await workouts.push([w.name, w.id, this.props.userId])
         })
         await this.setState({ workouts: workouts });
         await this.renderWorkouts();
     }
 
-    addWorkout = async () => {
+    // update workouts
+    updateWorkout = async () => {
         await this.getWorkouts();
     }
 
+    // render all workouts
     renderWorkouts = async () => {
         if (await this.state.workouts.length > 0) {
-            await this.setState({ workoutsJSX: <WorkoutCardList workouts={this.state.workouts} /> })
+            await this.setState({ workoutsJSX: <WorkoutCardList workouts={this.state.workouts} updateWorkout={this.updateWorkout} /> })
         }
     }
 
@@ -56,7 +58,7 @@ class Workouts extends Component {
                 <Container fluid>
                     <Grid>
                         <Grid.Row>
-                            <WorkoutModal userId={this.state.userId} modalType="create" addWorkout={this.addWorkout} />
+                            <WorkoutModal userId={this.state.userId} modalType="create" updateWorkout={this.updateWorkout} />
                         </Grid.Row>
                         <Divider horizontal>
                             <Header as='h3'>
