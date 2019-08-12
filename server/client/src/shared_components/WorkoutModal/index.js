@@ -91,6 +91,9 @@ class WorkoutModal extends Component {
     close = async () => {
         await this.setState({ open: false });
         await this.resetWorkout();
+        if (this.props.modalType === await 'start') {
+            await this.props.close();
+        }
     }
 
     // resets workout values so the modal is fresh for the next time it is opened
@@ -128,7 +131,7 @@ class WorkoutModal extends Component {
         const resJSON = await res.json();
 
         resJSON.forEach(async e => {
-            await exercises.push([e.name, e.id, e.equipment, e.sets, e.reps, e.weights, e.rpe, e.duration, this.props.userId])
+            await exercises.push([e.name, e.id, e.equipment, e.sets, e.reps, e.weights, e.rpe, e.duration, e.date, this.props.userId])
         })
         await this.setState({ exercises: exercises });
         await this.renderExercises();
@@ -301,6 +304,7 @@ class WorkoutModal extends Component {
                                 workoutId={this.props.workoutId}
                                 workoutName={this.props.workoutName}
                                 exercisesJSX={this.state.exercisesJSXcollapsed}
+                                close={this.close}
                             />
                         </Grid.Column>
                     </Grid.Row>
@@ -309,7 +313,7 @@ class WorkoutModal extends Component {
         } else {  // bottom Modal buttons for Start workout modal
             return (
                 <Button.Group size='medium' floated='right' className='bottomModalButtons'>
-                    <Button color='grey' id='leftButton' onClick={() => this.close}>
+                    <Button color='grey' id='leftButton' onClick={() => this.close()}>
                         Cancel
                     </Button>
                     <Button color='blue' id='rightButton'>

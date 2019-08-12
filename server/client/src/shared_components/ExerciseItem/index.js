@@ -102,6 +102,7 @@ class ExerciseItem extends Component {
                         weights={this.props.weights} 
                         rpe={this.props.rpe} 
                         duration={this.props.duration} 
+                        datetime={this.props.date} 
                     />
                 </List.Item>
             );
