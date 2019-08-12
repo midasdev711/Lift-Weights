@@ -56,8 +56,6 @@ class ExerciseDataForm extends Component {
 
     // adds data into the respective measurement's array
     handleInput = async (data, val) => {
-        await console.log('pre push data = ')
-        await console.log(data)
         if (data === await []) {
             await data.push(val)
         } else {
@@ -68,10 +66,8 @@ class ExerciseDataForm extends Component {
         await console.log(data)
     }
 
-    // render all inputs 
+    // render inputs for all measurements
     renderAllInputs = () => {
-        console.log('renderAllInputs set = ')
-        console.log(this.state.set)
 
         this.setState({ setJSX: this.renderInput(this.state.set, 'tinyInput'),
                         repsJSX: this.renderInput(this.state.reps, 'tinyInput'),
@@ -79,52 +75,13 @@ class ExerciseDataForm extends Component {
                         rpeJSX: this.renderInput(this.state.rpe, 'tinyInput'),
                         durationJSX: this.renderInput(this.state.duration, 'smallInput')
         })
-                                        
-        /*
-        this.setState({ setJSX: this.state.set.map((set) => {
-                                    this.setState({ exerciseCount: this.state.exerciseCount + 1 })
-                                    return (
-                                        <Input 
-                                            key={this.state.exerciseCount} 
-                                            type='text' 
-                                            placeholder={7} 
-                                            className='tinyInput' 
-                                            value={this.state.set[0]} 
-                                            onChange={e => this.setState({ set: set.push(e.target.value) })} 
-                                        />
-                                    );
-                                }),
-                        repsJSX: this.state.reps.map((rep) => {
-                                    this.setState({ exerciseCount: this.state.exerciseCount + 1 })
-                                    return this.renderInput(this.state.exerciseCount, rep, 'tinyInput');
-                                }),
-                        weightsJSX: this.state.weights.map((weight) => {
-                                    this.setState({ exerciseCount: this.state.exerciseCount + 1 })
-                                    return this.renderInput(this.state.exerciseCount, weight, 'smallInput');
-                                }),
-                        rpeJSX: this.state.rpe.map((rpe) => {
-                                    this.setState({ exerciseCount: this.state.exerciseCount + 1 })
-                                    return this.renderInput(this.state.exerciseCount, rpe, 'tinyInput');
-                                }),
-                        durationJSX: this.state.duration.map((duration) => {
-                                    this.setState({ exerciseCount: this.state.exerciseCount + 1 })
-                                    return this.renderInput(this.state.exerciseCount, duration, 'smallInput');
-                                })
-        })
-        */
     }
 
-    // render one input
+    // render one input for a single measurement type
     renderInput = (data, name) => {
-        let value = '';
+        let value = data[data.length - 1]
 
-        if (data === []) {
-            value = 0;
-        } else {
-            value = data[data.length - 1]
-        }
-
-        this.setState({ exerciseCount: this.state.exerciseCount + 1 });
+        this.setState({ exerciseCount: this.state.exerciseCount + 5 });
 
         return (
             <Input 
@@ -138,16 +95,35 @@ class ExerciseDataForm extends Component {
         );
     }
 
+    // render array inputs
+    renderMultiInput = (data, name) => {
+        let value = data[data.length - 1]
+
+        return (
+            <div>
+                {data.map((element, index) => {
+                    this.setState({ exerciseCount: this.state.exerciseCount + 5 });
+                    index += 1
+                    return (
+                        <Input 
+                            key={this.state.exerciseCount} 
+                            type='text' 
+                            placeholder={value} 
+                            className={name}
+                            value={data[index]}
+                            onChange={e => this.handleInput(data, e.target.value) } 
+                        />
+                    );
+                })}
+            </div>
+        );
+    }
+
     // add a new row of inputs when Add button is clicked
     handleAdd = async (e) => {
         e.preventDefault();
         const { set, reps, weights, rpe, duration } = await this.state;
         let index = this.state.totalSets - 1;
-        await console.log('INDEX: ' + index)
-
-        await console.log('handle ADD')
-
-        // TODO: copy values from previous row into new row and render
 
         await reps.push(reps[index])
         await weights.push(weights[index])
@@ -156,9 +132,12 @@ class ExerciseDataForm extends Component {
         await set.push(set[index])
 
         await this.setState({ totalSets: this.state.totalSets + 1 })
-
-        await console.log('post ADD')
-        await console.log(this.state)
+        await this.setState({ setJSX: this.renderMultiInput(this.state.set, 'tinyInput'),
+                              repsJSX: this.renderMultiInput(this.state.reps, 'tinyInput'),
+                              weightsJSX: this.renderMultiInput(this.state.weights, 'smallInput'),
+                              rpeJSX: this.renderMultiInput(this.state.rpe, 'tinyInput'),
+                              durationJSX: this.renderMultiInput(this.state.duration, 'smallInput')
+        })
     }
 
     render() {
