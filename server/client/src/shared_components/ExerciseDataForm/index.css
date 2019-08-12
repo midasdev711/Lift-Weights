@@ -29,3 +29,14 @@
     text-align: center;
     padding-top: 4px;
 }
+
+.addButtonColumn {
+    padding-top: 0px;
+    margin-left: 2px;
+}
+
+.ui.addButton {
+    background-color: #75D7F4;
+    color: white;
+}
+

@@ -71,7 +71,6 @@ app.get("/workouts/delete", async (req, res) => {
 app.get("/workout/retrieve", async (req, res) => {
     const { id } = await req.query;
     const q_select = await `SELECT name, id, equipment, sets, reps, weights, rpe, duration FROM exercises WHERE workoutId='${id}'`;
-    console.log('QUERY: ' + q_select)
 
     await db.query(q_select, async (err, select_res)  => {
         if(err) {
@@ -259,9 +258,6 @@ async function retrieveUser(username, password) {
 
 // request handler for '/profile' page
 app.get("/profile", (req, res) => {
-    console.log('redirected to profile')
-    console.log('user: ' + req.session.user)
-
     if (!req.session.user) {
         return res.status(401).send();
     }

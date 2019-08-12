@@ -1,47 +1,182 @@
 import React, {Component} from 'react';
-import { Grid, List, Label, Input } from 'semantic-ui-react';
+import { Grid, List, Label, Input, Button } from 'semantic-ui-react';
 
 import './index.css';
 
 
 class ExerciseDataForm extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            set: [],
+            setJSX: <div />,
+            reps: [],
+            repsJSX: <div />,
+            weights: [],
+            weightsJSX: <div />,
+            rpe: [],
+            rpeJSX: <div />,
+            duration: [],
+            durationJSX: <div />,
+            exerciseCount: 0,
+            totalSets: 1
+        }
+        this.setDefaultValues();
+    }
+
+    componentDidMount = () => {
+        this.renderAllInputs();
+    }
+
+    // set values if null
+    setDefaultValues = () => {
+
+        if (this.props.set !== null) {
+            console.log('setting this.props.set in setDefaultValues')
+            this.setState({ set: this.props.set })
+        }
+
+        if (this.props.reps !== null) {
+            this.setState({ reps: this.props.reps })
+        }
+
+        if (this.props.weights !== null) {
+            this.setState({ weights: this.props.weights })
+        }
+
+        if (this.props.rpe !== null) {
+            this.setState({ rpe: this.props.rpe })
+        }
+
+        if (this.props.duration !== null) {
+            this.setState({ duration: this.props.duration })
+        }
+    }
+
+    // adds data into the respective measurement's array
+    handleInput = async (data, val) => {
+        if (data === await []) {
+            await data.push(val)
+        } else {
+            await data.pop();
+            await data.push(val)
+        }
+        await console.log('post push data = ')
+        await console.log(data)
+    }
+
+    // render inputs for all measurements
+    renderAllInputs = () => {
+
+        this.setState({ setJSX: this.renderInput(this.state.set, 'tinyInput'),
+                        repsJSX: this.renderInput(this.state.reps, 'tinyInput'),
+                        weightsJSX: this.renderInput(this.state.weights, 'smallInput'),
+                        rpeJSX: this.renderInput(this.state.rpe, 'tinyInput'),
+                        durationJSX: this.renderInput(this.state.duration, 'smallInput')
+        })
+    }
+
+    // render one input for a single measurement type
+    renderInput = (data, name) => {
+        let value = data[data.length - 1]
+
+        this.setState({ exerciseCount: this.state.exerciseCount + 5 });
+
+        return (
+            <Input 
+                key={this.state.exerciseCount} 
+                type='text' 
+                placeholder={0} 
+                className={name}
+                value={value}
+                onChange={e => this.handleInput(data, e.target.value) } 
+            />
+        );
+    }
+
+    // render array inputs
+    renderMultiInput = (data, name) => {
+        let value = data[data.length - 1]
+
+        return (
+            <div>
+                {data.map((element, index) => {
+                    this.setState({ exerciseCount: this.state.exerciseCount + 5 });
+                    index += 1
+                    return (
+                        <Input 
+                            key={this.state.exerciseCount} 
+                            type='text' 
+                            placeholder={value} 
+                            className={name}
+                            value={data[index]}
+                            onChange={e => this.handleInput(data, e.target.value) } 
+                        />
+                    );
+                })}
+            </div>
+        );
+    }
+
+    // add a new row of inputs when Add button is clicked
+    handleAdd = async (e) => {
+        e.preventDefault();
+        const { set, reps, weights, rpe, duration } = await this.state;
+        let index = this.state.totalSets - 1;
+
+        await reps.push(reps[index])
+        await weights.push(weights[index])
+        await rpe.push(rpe[index])
+        await duration.push(duration[index])
+        await set.push(set[index])
+
+        await this.setState({ totalSets: this.state.totalSets + 1 })
+        await this.setState({ setJSX: this.renderMultiInput(this.state.set, 'tinyInput'),
+                              repsJSX: this.renderMultiInput(this.state.reps, 'tinyInput'),
+                              weightsJSX: this.renderMultiInput(this.state.weights, 'smallInput'),
+                              rpeJSX: this.renderMultiInput(this.state.rpe, 'tinyInput'),
+                              durationJSX: this.renderMultiInput(this.state.duration, 'smallInput')
+        })
+    }
 
     render() {
-        const { set, reps, weights, rpe, duration } = this.props;
-
         return (
             <List.Description className='measurement'>
                 <Grid columns='equal'>
                     <Grid.Row columns={5}>
                         <Grid.Column width={2}>
                             <Label className='tinyLabel'>
-                                reps
+                                set
                             </Label>
-                            <Input type='text' placeholder={reps}  className='tinyInput' />
+                            {this.state.setJSX}
                         </Grid.Column>
                         <Grid.Column width={2}>
                             <Label className='tinyLabel'>
-                                set
+                                reps
                             </Label>
-                            <Input type='text' placeholder={set}  className='tinyInput' />
+                            {this.state.repsJSX}
                         </Grid.Column>
                         <Grid.Column width={3}>
                             <Label className='smallLabel'>
                                 weights
                             </Label>
-                            <Input type='text' placeholder={weights}  className='smallInput' />
+                            {this.state.weightsJSX}
                         </Grid.Column>
                         <Grid.Column width={2}>
                             <Label className='tinyLabel'>
                                 rpe
                             </Label>
-                            <Input type='text' placeholder={rpe}  className='tinyInput' />
+                            {this.state.rpeJSX}
                         </Grid.Column>
                         <Grid.Column width={3}>
                             <Label className='smallLabel'>
                                 duration
                             </Label>
-                            <Input type='text' placeholder={duration}  className='smallInput' />
+                            {this.state.durationJSX}
+                        </Grid.Column>
+                        <Grid.Column width={3} className='addButtonColumn'>
+                            <Button circular icon='add' size='mini' className='addButton' onClick={(e) => this.handleAdd(e)} />
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
