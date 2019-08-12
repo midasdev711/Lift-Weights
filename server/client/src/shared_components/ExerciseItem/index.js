@@ -79,7 +79,15 @@ class ExerciseItem extends Component {
                     </List.Content>
                 </List.Item>
             );
-        } else if (this.props.display === 'full') {
+        } else if (this.props.collapse === true && this.props.display === 'full') {
+            return (
+                <List.Item>
+                    <Header as='h4' className='exerciseName'>
+                        {this.props.name}
+                    </Header>
+                </List.Item>
+            );
+        } else if (this.props.collapse !== true && this.props.display === 'full') {
             return (
                 <List.Item>
                     <Header as='h4' className='exerciseName'>
