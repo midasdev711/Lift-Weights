@@ -110,9 +110,14 @@ class ExerciseDataForm extends Component {
 
     updateExercises = async () => {
         const { set, reps, weights, rpe, duration, datetime } = await this.state;
+        const updatedExercise = await [set, reps, weights, rpe, duration, datetime];
         const length = set.length - 1
-        const updatedExercises = await [set.slice(0, length), reps.slice(0, length), weights.slice(0, length), rpe.slice(0, length), duration.slice(0, length), datetime.slice(0, length)];
-        await this.props.updateExercises(updatedExercises);
+
+        let exercise = updatedExercise.map(e => {
+            return e.slice(0, length);
+        })
+
+        await this.props.updateExercises(exercise);
     }
 
     // add a new row of inputs when Add button is clicked
