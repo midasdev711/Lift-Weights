@@ -14,6 +14,7 @@ class WorkoutModal extends Component {
         this.state = { 
             workoutName: '',
             exercisesJSX: <div></div>,
+            exercisesJSXcollapsed: <div></div>,
             exercises: [],
             visible: false,
             exerciseResultsJSX: <div></div>,
@@ -139,12 +140,17 @@ class WorkoutModal extends Component {
         await this.setState({ open: true, startTime: moment().format('LT'), date: moment().format('L') })
     }
 
-    // renders exercises
     renderExercises = async () => {
         if (await this.state.exercises.length > 0) {
             await this.setState({ exercisesJSX: <ExerciseList 
                                                     exercises={this.state.exercises} 
                                                     display='full' 
+                                                    collapse={true}
+                                                />, 
+                                  exercisesJSXcollapsed: <ExerciseList 
+                                                    exercises={this.state.exercises} 
+                                                    display='full' 
+                                                    collapse={false}
                                                 /> 
             })
         }
@@ -294,7 +300,7 @@ class WorkoutModal extends Component {
                                 modalType="start" 
                                 workoutId={this.props.workoutId}
                                 workoutName={this.props.workoutName}
-                                exercisesJSX={this.state.exercisesJSX}
+                                exercisesJSX={this.state.exercisesJSXcollapsed}
                             />
                         </Grid.Column>
                     </Grid.Row>

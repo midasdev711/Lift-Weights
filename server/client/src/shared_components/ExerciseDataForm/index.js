@@ -83,7 +83,7 @@ class ExerciseDataForm extends Component {
                     let pval = 0
                     let val = undefined;
 
-                    if (index > 0) {
+                    if (index > 0 && data[index - 1] !== '') {
                         pval = data[index - 1]
                     }
                     if (index < data.length - 1) {

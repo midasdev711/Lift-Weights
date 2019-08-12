@@ -15,7 +15,7 @@ class ExerciseList extends Component {
     }
 
     render() {
-        const { exercises, addOption, removeOption, display } = this.props;
+        const { exercises, addOption, removeOption, display, collapse } = this.props;
         const maxDisplay = 3;
         let count = 0;
 
@@ -63,6 +63,7 @@ class ExerciseList extends Component {
                                             addExercise={this.addExercise}
                                             removeExercise={this.removeExercise}
                                             display={display}
+                                            collapse={collapse}
                                         />
                                     );
                                 }
