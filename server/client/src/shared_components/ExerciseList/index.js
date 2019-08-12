@@ -14,8 +14,8 @@ class ExerciseList extends Component {
         this.props.removeExercise(id);
     }
 
-    updateExercises = (updatedExercises) => {
-        this.props.updateExercises(updatedExercises);
+    updateExercises = (exercise) => {
+        this.props.updateExercises(exercise);
     }
 
     render() {

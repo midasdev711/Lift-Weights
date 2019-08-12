@@ -67,10 +67,10 @@ class ExerciseItem extends Component {
         return <div />;
     }
 
-    updateExercises = async (updatedExercises) => {
-        await updatedExercises.push(this.props.name)
-        await updatedExercises.push(this.props.id)
-        await this.props.updateExercises(updatedExercises);
+    updateExercises = async (exercise) => {
+        await exercise.push(this.props.name)
+        await exercise.push(this.props.id)
+        await this.props.updateExercises(exercise);
     }
 
     render() {

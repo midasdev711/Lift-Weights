@@ -108,10 +108,17 @@ class WorkoutModal extends Component {
     }
 
     // update new exercise stats
-    updateExercises = async (updatedExercises) => {
-        await updatedExercises.map((exercise) => {
-           return this.state.updatedExercises.push(exercise) 
+    updateExercises = async (exercise) => {
+        const id = await exercise[exercise.length - 1]
+
+        // filter out previous set if identical exercise id exists for this workout
+        await this.setState({ updatedExercises: this.state.updatedExercises.filter(exer => {
+                return exer[exer.length - 1] !== id;
+            })
         });
+        this.state.updatedExercises.push(exercise);
+        console.log('updated exercises in WorkoutModal')
+        console.log(this.state.updatedExercises)
     }
 
     // delete workout
