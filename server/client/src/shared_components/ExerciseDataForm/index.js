@@ -9,15 +9,15 @@ class ExerciseDataForm extends Component {
         super(props)
 
         this.state = {
-            set: [],
+            set: [''],
             setJSX: <div />,
-            reps: [],
+            reps: [''],
             repsJSX: <div />,
-            weights: [],
+            weights: [''],
             weightsJSX: <div />,
-            rpe: [],
+            rpe: [''],
             rpeJSX: <div />,
-            duration: [],
+            duration: [''],
             durationJSX: <div />,
             exerciseCount: 0,
             totalSets: 1
@@ -73,26 +73,8 @@ class ExerciseDataForm extends Component {
         })
     }
 
-    // render one input for a single measurement type
-    renderInput = (data, name) => {
-        let value = data[data.length - 1]
-
-        this.setState({ exerciseCount: this.state.exerciseCount + 1 });
-
-        return (
-            <Input 
-                key={this.state.exerciseCount} 
-                type='text' 
-                placeholder={0} 
-                className={name}
-                value={value}
-                onChange={e => this.handleInput(e, data, e.target.value) } 
-            />
-        );
-    }
-
     // render array inputs
-    renderMultiInput = (data, name) => {
+    renderInput = (data, name) => {
         return (
             <div>
                 {data.map((_, index) => {
@@ -135,11 +117,11 @@ class ExerciseDataForm extends Component {
         await set.push('')
 
         await this.setState({ totalSets: this.state.totalSets + 1,
-                              setJSX: this.renderMultiInput(this.state.set, 'tinyInput'),
-                              repsJSX: this.renderMultiInput(this.state.reps, 'tinyInput'),
-                              weightsJSX: this.renderMultiInput(this.state.weights, 'smallInput'),
-                              rpeJSX: this.renderMultiInput(this.state.rpe, 'tinyInput'),
-                              durationJSX: this.renderMultiInput(this.state.duration, 'smallInput')
+                              setJSX: this.renderInput(this.state.set, 'tinyInput'),
+                              repsJSX: this.renderInput(this.state.reps, 'tinyInput'),
+                              weightsJSX: this.renderInput(this.state.weights, 'smallInput'),
+                              rpeJSX: this.renderInput(this.state.rpe, 'tinyInput'),
+                              durationJSX: this.renderInput(this.state.duration, 'smallInput')
         })
     }
 
