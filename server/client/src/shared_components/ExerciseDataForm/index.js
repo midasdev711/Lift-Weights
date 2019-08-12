@@ -55,20 +55,16 @@ class ExerciseDataForm extends Component {
     }
 
     // adds data into the respective measurement's array
-    handleInput = async (data, val) => {
-        if (data === await []) {
-            await data.push(val)
-        } else {
-            await data.pop();
-            await data.push(val)
+    handleInput = (e, data, val) => {
+        e.preventDefault();
+        if (data.length > 0) {
+            data.pop();
         }
-        await console.log('post push data = ')
-        await console.log(data)
+        data.push(val)
     }
 
     // render inputs for all measurements
     renderAllInputs = () => {
-
         this.setState({ setJSX: this.renderInput(this.state.set, 'tinyInput'),
                         repsJSX: this.renderInput(this.state.reps, 'tinyInput'),
                         weightsJSX: this.renderInput(this.state.weights, 'smallInput'),
@@ -81,7 +77,7 @@ class ExerciseDataForm extends Component {
     renderInput = (data, name) => {
         let value = data[data.length - 1]
 
-        this.setState({ exerciseCount: this.state.exerciseCount + 5 });
+        this.setState({ exerciseCount: this.state.exerciseCount + 1 });
 
         return (
             <Input 
@@ -90,28 +86,36 @@ class ExerciseDataForm extends Component {
                 placeholder={0} 
                 className={name}
                 value={value}
-                onChange={e => this.handleInput(data, e.target.value) } 
+                onChange={e => this.handleInput(e, data, e.target.value) } 
             />
         );
     }
 
     // render array inputs
     renderMultiInput = (data, name) => {
-        let value = data[data.length - 1]
-
         return (
             <div>
-                {data.map((element, index) => {
-                    this.setState({ exerciseCount: this.state.exerciseCount + 5 });
-                    index += 1
+                {data.map((_, index) => {
+                    this.setState({ exerciseCount: this.state.exerciseCount + 1 });
+
+                    let pval = 0
+                    let val = undefined;
+
+                    if (index > 0) {
+                        pval = data[index - 1]
+                    }
+                    if (index < data.length - 1) {
+                        val = data[index]
+                    }
+
                     return (
                         <Input 
                             key={this.state.exerciseCount} 
                             type='text' 
-                            placeholder={value} 
+                            placeholder={pval} 
                             className={name}
-                            value={data[index]}
-                            onChange={e => this.handleInput(data, e.target.value) } 
+                            value={val}
+                            onChange={e => this.handleInput(e, data, e.target.value) } 
                         />
                     );
                 })}
@@ -123,16 +127,15 @@ class ExerciseDataForm extends Component {
     handleAdd = async (e) => {
         e.preventDefault();
         const { set, reps, weights, rpe, duration } = await this.state;
-        let index = this.state.totalSets - 1;
 
-        await reps.push(reps[index])
-        await weights.push(weights[index])
-        await rpe.push(rpe[index])
-        await duration.push(duration[index])
-        await set.push(set[index])
+        await reps.push('')
+        await weights.push('')
+        await rpe.push('')
+        await duration.push('')
+        await set.push('')
 
-        await this.setState({ totalSets: this.state.totalSets + 1 })
-        await this.setState({ setJSX: this.renderMultiInput(this.state.set, 'tinyInput'),
+        await this.setState({ totalSets: this.state.totalSets + 1,
+                              setJSX: this.renderMultiInput(this.state.set, 'tinyInput'),
                               repsJSX: this.renderMultiInput(this.state.reps, 'tinyInput'),
                               weightsJSX: this.renderMultiInput(this.state.weights, 'smallInput'),
                               rpeJSX: this.renderMultiInput(this.state.rpe, 'tinyInput'),
