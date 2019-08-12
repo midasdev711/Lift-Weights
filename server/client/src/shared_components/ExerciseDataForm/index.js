@@ -108,6 +108,13 @@ class ExerciseDataForm extends Component {
         );
     }
 
+    updateExercises = async () => {
+        const { set, reps, weights, rpe, duration, datetime } = await this.state;
+        const length = set.length - 1
+        const updatedExercises = await [set.slice(0, length), reps.slice(0, length), weights.slice(0, length), rpe.slice(0, length), duration.slice(0, length), datetime.slice(0, length)];
+        await this.props.updateExercises(updatedExercises);
+    }
+
     // add a new row of inputs when Add button is clicked
     handleAdd = async (e) => {
         e.preventDefault();
@@ -119,8 +126,9 @@ class ExerciseDataForm extends Component {
         await rpe.push('')
         await duration.push('')
         await set.push('')
-
+        await datetime.pop()
         await datetime.push(currentTime)
+        await datetime.push('')
 
         await this.setState({ totalSets: this.state.totalSets + 1,
                               setJSX: this.renderInput(this.state.set, 'tinyInput'),
@@ -129,6 +137,8 @@ class ExerciseDataForm extends Component {
                               rpeJSX: this.renderInput(this.state.rpe, 'tinyInput'),
                               durationJSX: this.renderInput(this.state.duration, 'smallInput')
         })
+
+        await this.updateExercises();
     }
 
     render() {

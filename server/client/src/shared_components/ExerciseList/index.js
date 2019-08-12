@@ -14,6 +14,10 @@ class ExerciseList extends Component {
         this.props.removeExercise(id);
     }
 
+    updateExercises = (updatedExercises) => {
+        this.props.updateExercises(updatedExercises);
+    }
+
     render() {
         const { exercises, addOption, removeOption, display, collapse } = this.props;
         const maxDisplay = 3;
@@ -42,6 +46,7 @@ class ExerciseList extends Component {
                                             addExercise={this.addExercise}
                                             removeExercise={this.removeExercise}
                                             display={display}
+                                            updateExercises={this.updateExercises}
                                         />
                                     );
                                 } else if (display === 'full') {
@@ -63,6 +68,7 @@ class ExerciseList extends Component {
                                             removeOption={removeOption}
                                             addExercise={this.addExercise}
                                             removeExercise={this.removeExercise}
+                                            updateExercises={this.updateExercises}
                                             display={display}
                                             collapse={collapse}
                                         />

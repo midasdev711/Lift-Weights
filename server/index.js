@@ -36,6 +36,18 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// add new statistics
+app.get("/stats/add", async (req, res) => {
+
+    const { workoutId, data } = await req.query;
+    console.log('workoutId: ' + workoutId)
+    const dataStr = await JSON.parse(data)
+    console.log('dataStr')
+    console.log(dataStr)
+
+    // TODO: create query and insert
+});
+
 // retrieve exercises
 app.get("/exercises/retrieve", async (req, res) => {
     const { id } = await req.query;

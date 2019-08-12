@@ -67,6 +67,12 @@ class ExerciseItem extends Component {
         return <div />;
     }
 
+    updateExercises = async (updatedExercises) => {
+        await updatedExercises.push(this.props.name)
+        await updatedExercises.push(this.props.id)
+        await this.props.updateExercises(updatedExercises);
+    }
+
     render() {
 
         if (this.props.display === 'minimal') {
@@ -103,6 +109,7 @@ class ExerciseItem extends Component {
                         rpe={this.props.rpe} 
                         duration={this.props.duration} 
                         datetime={this.props.date} 
+                        updateExercises={this.updateExercises}
                     />
                 </List.Item>
             );
