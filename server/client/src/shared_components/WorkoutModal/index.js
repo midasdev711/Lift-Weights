@@ -91,6 +91,9 @@ class WorkoutModal extends Component {
     close = async () => {
         await this.setState({ open: false });
         await this.resetWorkout();
+        if (this.props.modalType === await 'start') {
+            await this.props.close();
+        }
     }
 
     // resets workout values so the modal is fresh for the next time it is opened
@@ -301,6 +304,7 @@ class WorkoutModal extends Component {
                                 workoutId={this.props.workoutId}
                                 workoutName={this.props.workoutName}
                                 exercisesJSX={this.state.exercisesJSXcollapsed}
+                                close={this.close}
                             />
                         </Grid.Column>
                     </Grid.Row>
@@ -309,7 +313,7 @@ class WorkoutModal extends Component {
         } else {  // bottom Modal buttons for Start workout modal
             return (
                 <Button.Group size='medium' floated='right' className='bottomModalButtons'>
-                    <Button color='grey' id='leftButton' onClick={() => this.close}>
+                    <Button color='grey' id='leftButton' onClick={() => this.close()}>
                         Cancel
                     </Button>
                     <Button color='blue' id='rightButton'>
