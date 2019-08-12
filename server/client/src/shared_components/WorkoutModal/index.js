@@ -23,7 +23,8 @@ class WorkoutModal extends Component {
             open: false,
             startTime: '',
             finishTime: '',
-            date: ''
+            date: '',
+            updatedExercises: []
         };
     }
 
@@ -106,6 +107,12 @@ class WorkoutModal extends Component {
         });
     }
 
+    // update new exercise stats
+    updateExercises = async (updatedExercises) => {
+        await this.setState({ updatedExercises: [] });
+        await this.setState({ updatedExercises: updatedExercises });
+    }
+
     // delete workout
     handleDelete = async (e) => {
         e.preventDefault();
@@ -137,10 +144,35 @@ class WorkoutModal extends Component {
         await this.renderExercises();
     }
 
-    // select workout
+    // start workout
     handleStart = async (e) => {
         e.preventDefault()
         await this.setState({ open: true, startTime: moment().format('LT'), date: moment().format('L') })
+    }
+
+    // finish workout
+    handleFinish = async (e) => {
+        const { updatedExercises } = this.state;
+        e.preventDefault()
+
+        await console.log('handleFinish fn')
+        let id = await updatedExercises.pop()
+        let name = await updatedExercises.pop()
+
+        await console.log('id: ' + id)
+        await console.log('name: ' + name)
+        await console.log('updatedExercises')
+        await console.log(updatedExercises)
+        let data = await JSON.stringify(updatedExercises);
+        await console.log('data')
+        await console.log(data)
+        /*
+        await fetch(`http://localhost:5000/stats/add?userId=${this.props.userId}&workoutName=${this.state.workoutName}&exercises=${exercises}`, {
+            method: 'GET',
+        }).then(this.props.updateWorkout()
+        ).then(this.close());
+        */
+        await this.close();
     }
 
     renderExercises = async () => {
@@ -154,6 +186,7 @@ class WorkoutModal extends Component {
                                                     exercises={this.state.exercises} 
                                                     display='full' 
                                                     collapse={false}
+                                                    updateExercises={this.updateExercises}
                                                 /> 
             })
         }
@@ -304,6 +337,7 @@ class WorkoutModal extends Component {
                                 workoutId={this.props.workoutId}
                                 workoutName={this.props.workoutName}
                                 exercisesJSX={this.state.exercisesJSXcollapsed}
+                                updateExercises={this.updateExercises}
                                 close={this.close}
                             />
                         </Grid.Column>
@@ -316,7 +350,7 @@ class WorkoutModal extends Component {
                     <Button color='grey' id='leftButton' onClick={() => this.close()}>
                         Cancel
                     </Button>
-                    <Button color='blue' id='rightButton'>
+                    <Button color='blue' id='rightButton' onClick={(e) => this.handleFinish(e)}>
                         Finish 
                     </Button>
                 </Button.Group>
