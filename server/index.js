@@ -70,7 +70,7 @@ app.get("/workouts/delete", async (req, res) => {
 // retrieve specific workout
 app.get("/workout/retrieve", async (req, res) => {
     const { id } = await req.query;
-    const q_select = await `SELECT name, id, equipment, sets, reps, weights, rpe, duration FROM exercises WHERE workoutId='${id}'`;
+    const q_select = await `SELECT name, id, equipment, sets, reps, weights, rpe, duration, date FROM exercises WHERE workoutId='${id}'`;
 
     await db.query(q_select, async (err, select_res)  => {
         if(err) {

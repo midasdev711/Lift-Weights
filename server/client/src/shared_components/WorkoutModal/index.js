@@ -128,7 +128,7 @@ class WorkoutModal extends Component {
         const resJSON = await res.json();
 
         resJSON.forEach(async e => {
-            await exercises.push([e.name, e.id, e.equipment, e.sets, e.reps, e.weights, e.rpe, e.duration, this.props.userId])
+            await exercises.push([e.name, e.id, e.equipment, e.sets, e.reps, e.weights, e.rpe, e.duration, e.date, this.props.userId])
         })
         await this.setState({ exercises: exercises });
         await this.renderExercises();

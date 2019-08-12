@@ -58,6 +58,7 @@ class ExerciseList extends Component {
                                             weights={exercise[5]} 
                                             rpe={exercise[6]} 
                                             duration={exercise[7]} 
+                                            datetime={exercise[8]} 
                                             addOption={addOption}
                                             removeOption={removeOption}
                                             addExercise={this.addExercise}

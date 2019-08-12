@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Grid, List, Label, Input, Button } from 'semantic-ui-react';
+import moment from 'moment';
 
 import './index.css';
 
@@ -19,14 +20,14 @@ class ExerciseDataForm extends Component {
             rpeJSX: <div />,
             duration: [''],
             durationJSX: <div />,
+            datetime: [''],
             exerciseCount: 0,
             totalSets: 1
         }
-        this.setDefaultValues();
     }
 
     componentDidMount = () => {
-        this.renderAllInputs();
+        this.setDefaultValues();
     }
 
     // set values if null
@@ -52,6 +53,8 @@ class ExerciseDataForm extends Component {
         if (this.props.duration !== null) {
             this.setState({ duration: this.props.duration })
         }
+
+        this.renderAllInputs();
     }
 
     // adds data into the respective measurement's array
@@ -108,13 +111,16 @@ class ExerciseDataForm extends Component {
     // add a new row of inputs when Add button is clicked
     handleAdd = async (e) => {
         e.preventDefault();
-        const { set, reps, weights, rpe, duration } = await this.state;
+        const { set, reps, weights, rpe, duration, datetime } = await this.state;
+        const currentTime = moment().format("YYYY-MM-DD HH:mm:ss");
 
         await reps.push('')
         await weights.push('')
         await rpe.push('')
         await duration.push('')
         await set.push('')
+
+        await datetime.push(currentTime)
 
         await this.setState({ totalSets: this.state.totalSets + 1,
                               setJSX: this.renderInput(this.state.set, 'tinyInput'),
@@ -129,7 +135,7 @@ class ExerciseDataForm extends Component {
         return (
             <List.Description className='measurement'>
                 <Grid columns='equal'>
-                    <Grid.Row columns={5}>
+                    <Grid.Row columns={6} className='formRow'>
                         <Grid.Column width={2}>
                             <Label className='tinyLabel'>
                                 set
