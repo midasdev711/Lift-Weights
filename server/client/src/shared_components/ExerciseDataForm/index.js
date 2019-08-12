@@ -110,7 +110,8 @@ class ExerciseDataForm extends Component {
 
     updateExercises = async () => {
         const { set, reps, weights, rpe, duration, datetime } = await this.state;
-        const updatedExercises = await [set, reps, weights, rpe, duration, datetime];
+        const length = set.length - 1
+        const updatedExercises = await [set.slice(0, length), reps.slice(0, length), weights.slice(0, length), rpe.slice(0, length), duration.slice(0, length), datetime.slice(0, length)];
         await this.props.updateExercises(updatedExercises);
     }
 
@@ -125,7 +126,9 @@ class ExerciseDataForm extends Component {
         await rpe.push('')
         await duration.push('')
         await set.push('')
+        await datetime.pop()
         await datetime.push(currentTime)
+        await datetime.push('')
 
         await this.setState({ totalSets: this.state.totalSets + 1,
                               setJSX: this.renderInput(this.state.set, 'tinyInput'),

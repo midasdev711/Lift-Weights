@@ -81,7 +81,7 @@ class WorkoutModal extends Component {
     // when Save is selected, save the workout details
     handleSave = async (e) => {
         e.preventDefault();
-        let exercises = await JSON.stringify(this.state.exercises);
+        const exercises = await JSON.stringify(this.state.exercises);
         await fetch(`http://localhost:5000/workout/new?userId=${this.props.userId}&workoutName=${this.state.workoutName}&exercises=${exercises}`, {
             method: 'GET',
         }).then(this.props.updateWorkout()
@@ -109,8 +109,9 @@ class WorkoutModal extends Component {
 
     // update new exercise stats
     updateExercises = async (updatedExercises) => {
-        await this.setState({ updatedExercises: [] });
-        await this.setState({ updatedExercises: updatedExercises });
+        await updatedExercises.map((exercise) => {
+           return this.state.updatedExercises.push(exercise) 
+        });
     }
 
     // delete workout
@@ -152,27 +153,14 @@ class WorkoutModal extends Component {
 
     // finish workout
     handleFinish = async (e) => {
-        const { updatedExercises } = this.state;
         e.preventDefault()
+        const { updatedExercises } = this.props;
 
-        await console.log('handleFinish fn')
-        let id = await updatedExercises.pop()
-        let name = await updatedExercises.pop()
+        const data = await JSON.stringify(updatedExercises);
 
-        await console.log('id: ' + id)
-        await console.log('name: ' + name)
-        await console.log('updatedExercises')
-        await console.log(updatedExercises)
-        let data = await JSON.stringify(updatedExercises);
-        await console.log('data')
-        await console.log(data)
-        /*
-        await fetch(`http://localhost:5000/stats/add?userId=${this.props.userId}&workoutName=${this.state.workoutName}&exercises=${exercises}`, {
+        await fetch(`http://localhost:5000/stats/add?workoutId=${this.props.workoutId}&data=${data}`, {
             method: 'GET',
-        }).then(this.props.updateWorkout()
-        ).then(this.close());
-        */
-        await this.close();
+        }).then(this.close());
     }
 
     renderExercises = async () => {
@@ -338,6 +326,7 @@ class WorkoutModal extends Component {
                                 workoutName={this.props.workoutName}
                                 exercisesJSX={this.state.exercisesJSXcollapsed}
                                 updateExercises={this.updateExercises}
+                                updatedExercises={this.state.updatedExercises}
                                 close={this.close}
                             />
                         </Grid.Column>
