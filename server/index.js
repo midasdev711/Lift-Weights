@@ -46,6 +46,9 @@ app.get("/stats/add", async (req, res) => {
     console.log(dataStr)
 
     // TODO: create query and insert
+    // Add date to workout table with workoutId
+    // Add all details to stats table with exerciseId and workoutId
+    // Replace exerciseId details in exercises table with last set details
 });
 
 // retrieve exercises
